@@ -211,13 +211,11 @@ This event is fired (presumably) when the `worldStepId` changes.
 
 ### `AuroraService.Misprediction(worldStepId: number, mispredictedInstances: {Instance})`
 
-This event is fired when a misprediction occurs on certain `Instance`(s).
-Currently unsure of how this event can be fired.
+This event is fired when a misprediction occurs on certain `Instance`(s), on the client.
 
 ### `AuroraService.Rollback(worldStepId: number)`
 
-This event is (presumably) fired when a rollback occurs.
-Currently unsure of how this event can be fired.
+This event is fired when a rollback occurs, on the client.
 
 !!! info 
     These are all of the current events and the methods of AuroraService. If more information gets found about them, this documentation will be updated.
@@ -230,6 +228,9 @@ This is a new `Script` object that allows you to connect to the various events o
 
 !!! warning
     All created `AuroraScript`s in the same location (e.g, `workspace`) must have a different name. Otherwise, one of them will not run.
+
+!!! warning
+    Calling `RunService` context checking methods such as `:IsClient()` or `:IsServer()` is not allowed in `AuroraScript`s.
 
 ## Methods
 
@@ -284,7 +285,7 @@ end
 
 ### `Behavior.DeclareField(fieldName: string, _: { Type: "boolean" | "cframe" | "color3" | "enum" | "instance" | "number" | "random" | "vector2" | "vector3" }): ()`
 
-This method allows you to define a field with a certain type in the `AuroraScriptObject`. Not sure what it is used for at the moment.
+This method allows you to define a field with a certain type in the `AuroraScriptObject`. The defined field will appear as a property within the `AuroraScriptObject`.
 
 ## AuroraScriptObject
 
@@ -299,7 +300,7 @@ type AuroraScriptObject = {
     Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
     Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
@@ -321,7 +322,7 @@ An example:
 }
 ```
 
-This is a detailed string that shows you certain information about the `AuroraScriptObject`, such as which frame it currently is on, the Behavior it is from, the bound instance, and lastly, the `self` table, which is used to show you the declared fields made with `Behavior.DeclareField()` function.
+This is a detailed string that shows you certain information about the `AuroraScriptObject`, such as which frame it currently is on, the Behavior it is from, the bound instance, and lastly, the `self` table, which is used to show you the declared fields made with `Behavior.DeclareField()` function. (These field properties can be accessed through indexing the `AuroraScriptObject` with their name.)
 
 Unfortunately, you cannot access these properties directly, and most likely this information is only shown for debugging purposes.
 In the previous example however, you might have noticed that I've added an `AuroraScriptObject` type which contains information about all of the currently known and actually accessible methods and properties of the `AuroraScriptObject`. 
@@ -357,7 +358,7 @@ type AuroraScriptObject = {
     Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
     Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
@@ -399,7 +400,7 @@ type AuroraScriptObject = {
     Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
     Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
@@ -448,7 +449,7 @@ type AuroraScriptObject = {
     Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
     Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
@@ -474,7 +475,7 @@ type AuroraScriptObject = {
     Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
     Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
@@ -492,7 +493,20 @@ end
 !!! warning
     All functions recieving a message must have a name that starts with "OnMessage". For example, if we call the `:SendMessage()` with a `functionName` argument called "Test", then the function name must be "OnMessageTest" on the recieving Behavior.
 
-##### *Unfinished, more coming soon.*
+### `AuroraScriptObject.Delay(self: AuroraScriptObject, amount: number, functionName: string): string`
+
+This method allows you to run a function in the Behavior with a certain amount of delay. (In seconds)
+
+### `AuroraScriptObject.SetMaxFrequency(self: AuroraScriptObject, frequency: number): number`
+
+This method allows you to set the maximum amount of frequency the `AuroraScriptObject` can run with. Must be a value between 1 to 60.
+
+-----
+
+# Closing Thoughts
+
+That's all! Hopefully I could explain these new features well. If you have any questions or things to share, please contact me through my Twitter.
+I may update this documentation with more information whenever I find them. Cheers!
 
 -----
 
