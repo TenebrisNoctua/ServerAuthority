@@ -16,12 +16,20 @@
                 <li><a href="#character-physics">Character Phsyics</a></li>
             </ul>
         </div>
-        <h3 class="api-summary-section-h3"><a href="#auroraservice">AuroraService</a></h3>
+        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#auroraservice">AuroraService</a></h3>
         <div class="api-summary-section-list">
             <ul style="list-style-type: none;">
                 <li><a href="#predictions">Predictions</a></li>
                 <li><a href="#methods">Methods</a></li>
                 <li><a href="#events">Events</a></li>
+            </ul>
+        </div>
+        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#aurorascript">AuroraScript</a></h3>
+        <div class="api-summary-section-list">
+            <ul style="list-style-type: none;">
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#behaviors">Behaviors</a></li>
+                <li><a href="#aurorascriptobject">AuroraScriptObject</a></li>
             </ul>
         </div>
     </div>
@@ -189,7 +197,6 @@ This method presumably allows you to set a certain property to input.
 ## Events
 
 !!! warning 
-    These events will not work unless connected to the Behavior of an `AuroraScript`.
     Attempting to connect to these events outside of the Behavior of an `AuroraScript` will error.
 
 ### `AuroraService.Step`
@@ -216,10 +223,275 @@ Currently unsure of how this event can be fired.
 
 -----
 
+# AuroraScript
+
+This is a new `Script` object that allows you to connect to the various events of `AuroraService`, and define Behaviors that operate on them. This `Instance` runs both on the Server and Client context. *(This means the code written in this `Instance` will be ran on both the Server and the Client.)*
+
+!!! warning
+    All created `AuroraScript`s in the same location (e.g, `workspace`) must have a different name. Otherwise, one of them will not run.
+
+## Methods
+
+### `AuroraScript:AddTo(instance: Instance): ()`
+
+This method adds the Behavior of the `AuroraScript` to the specified `Instance`.
+This then calls the (if defined) `.OnStart` method of the Behavior.
+
+Behaviors can also be added manually, without the need of this method.
+With the Server Authority feature enabled, the Properties widget gain a new section for every `Instance`, called: "Behaviors".
+Clicking the "+" button on this section will allow you to find and add any `AuroraScript`'s Behavior on an `Instance`.
+
+### `AuroraScript:RemoveFrom(instance: Instance): ()`
+
+This method removes the Behavior of the `AuroraScript` from the specified `Instance`.
+
+### `AuroraScript:IsOnInstance(instance: Instance): ()`
+
+This method allows you to check if the Behavior of the `AuroraScript` is on the specified `Instance`.
+
+## Behaviors 
+
+Every `AuroraScript` comes with a global data type called `Behavior`, which can be accessed everywhere from the script.
+This Behavior allows you to connect to certain methods and events that allow you to (presumably) configure how the prediction on a certain `Instance` works.
+
+!!! warning
+    Every `AuroraScript`'s Behavior must be bound to an `Instance` for their Behavior to work.
+
+There are certain methods you have to define in the Behavior for it to start working. They are listed below.
+
+### `Behavior.OnStart(self: AuroraScriptObject): ()`
+
+This is a special method that you can define in the Behavior, which runs when the Behavior has been bound to an `Instance`. It allows you to connect to various events of the `AuroraService`, and do some other things.
+
+```luau
+function Behavior.OnStart(self: AuroraScriptObject) -- This method is called when :AddTo() is called on an Instance.
+	  print(self)
+end
+```
+
+You might've noticed that `.OnStart` has a parameter called `self`, which is an `AuroraScriptObject`. This is the object that is given to every function that you define in the Behavior. It will be explained in detail in the next section.
+
+### `Behavior.OnStop(self: AuroraScriptObject): ()`
+
+This is a special method that you can define in the Behavior, which runs when the Behavior has been removed from the bound `Instance`.
+
+```luau
+function Behavior.OnStop(self: AuroraScriptObject) -- This method is called when :AddTo() is called on an Instance.
+	  print(self)
+end
+```
+
+### `Behavior.DeclareField(fieldName: string, _: { Type: "boolean" | "cframe" | "color3" | "enum" | "instance" | "number" | "random" | "vector2" | "vector3" }): ()`
+
+This method allows you to define a field with a certain type in the `AuroraScriptObject`. Not sure what it is used for at the moment.
+
+## AuroraScriptObject
+
+This is the object given to the every function defined in the Behavior. It has certain properties and methods that allows you to do things such as manual prediction, sending messages across Behaviors, and more. 
+
+```luau
+type AuroraScriptObject = {
+    Instance: Instance,
+    Frame: number,
+    LODLevel: number,
+    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+}
+
+function Behavior.OnStart(self: AuroraScriptObject)
+    print(self) -- prints the AuroraScriptObject
+end
+```
+
+Now be warned, unlike any other object which is found in the Roblox API, `AuroraScriptObject` does not reflect the properties found in the API dump. Even when you print this object, it does not give you any property name that allows you to directly access a certain value.
+
+An example:
+
+```luau
+{
+    [Attached Instance] = Part,
+	  [Behavior] = AuroraScript,
+    [Frame ID] = 509,
+    [self] =  ▶ {...}
+}
+```
+
+This is a detailed string that shows you certain information about the `AuroraScriptObject`, such as which frame it currently is on, the Behavior it is from, the bound instance, and lastly, the `self` table, which is used to show you the declared fields made with `Behavior.DeclareField()` function.
+
+Unfortunately, you cannot access these properties directly, and most likely this information is only shown for debugging purposes.
+In the previous example however, you might have noticed that I've added an `AuroraScriptObject` type which contains information about all of the currently known and actually accessible methods and properties of the `AuroraScriptObject`. 
+I have found these properties using reverse-engineering. They are described in detail below.
+
+### Properties
+
+### `AuroraScriptObject.Instance`
+
+This is the `Instance` that the Behavior is added to.
+
+### `AuroraScriptObject.Frame`
+
+The current Frame the world is on. Most likely changes after Heartbeat or PreAnimation.
+
+### `AuroraScriptObject.LODLevel`
+
+The level of distance level of the Behavior. Not sure what it is supposed to be used for at the moment.
+
+### Methods
+
+### `AuroraScriptObject.Connect:(self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection`
+
+This method allows you to connect to a certain given `RBXScriptSignal`. It is mostly used to connecting to certain `AuroraService` events.
+The `functionName` argument must be the name of a function in the Behavior.
+
+```lua
+type AuroraScriptObject = {
+	  Instance: Instance,
+	  Frame: number,
+	  LODLevel: number,
+	  Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+	  Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+	  Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+	  SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+	  Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+	  SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+}
+
+function Behavior.OnStart(self: AuroraScriptObject)
+	  self:Connect(AuroraService.FixedRateTick, "Predict")
+end
+
+function Behavior.Predict(self: AuroraScriptObject, deltaTime: number, worldStepId: number) -- This method will get called whenever the .FixedRateTick event fires.
+	  print(self, deltaTime, worldStepId)
+end
+``` 
+
+!!! warning 
+    `.Connect` can only be called in the `.OnStart` function. Attempting to call this function anywhere else will cause an error.
 
 
+### `AuroraScriptObject.Subscribe(self: AuroraScriptObject, name: string, functionName: string) -> string`
+
+This method allows you to subcribe to a published value in the Behavior with a certain `name`. The `functionName` must be the name of a function in the Behavior.
+The subcribed function will always have 2 arguments by default, the self `AuroraScriptObject` and the bound `Instance`. Additional arguments will come after. Calling this method will return the value of the `name` parameter.
+
+!!! warning
+    This function can only be called in `.OnStart`.
+
+### `AuroraScriptObject.Publish(self: AuroraScriptObject, name: string, ...any) -> any`
+
+This method allows you to publish a value in the Behavior with a certain `name`. The last argument given to this method will be returned as a value.
+
+!!! warning 
+    This function cannot be called in `.OnStart`.
 
 
+```lua
+type AuroraScriptObject = {
+	  Instance: Instance,
+	  Frame: number,
+	  LODLevel: number,
+	  Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+	  Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+	  Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+	  SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+	  Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+	  SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+}
+
+function Behavior.OnStart(self: AuroraScriptObject)
+	  self:Subscribe("Test", "GetPublishedValue")
+	  self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+end
+
+function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number)
+	  self:Publish("Test", "Hello!")
+end
+
+function Behavior.GetPublishedValue(self: AuroraScriptObject, boundInstance: Instance, recievedValue: any)
+	  print(boundInstance, recievedValue) -- Instance, Hello!
+end
+```
+
+### `AuroraScriptObject.SendMessage(self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any`
+
+This method allows you to communicate with other Behaviors in a world. When sending a message, you must specify the `Instance` that a Behavior is bound to, the name of the Behavior, and the name of the function you want to send this message to.
+Then, you can add additional values as arguments to send to the function.
+
+#### Sending and Recieving Messages
+
+Let's assume we have 2 `AuroraScript`s in the `workspace` called: "Test_1", and "Test_2".
+And let's also assume we have 2 `Part`s the Behavior of these `AuroraScript`s are bound to.
+
+Our system would be like this:
+
+Test_1 --> Part
+Test_2 --> Part_2
+
+If we wanted to send a message from Test_1 to Test_2, how would we do it?
+This is where `:SendMessage()` comes in. Using this method, we can send and recieve messages across different Behaviors.
+
+#### Test_1:
+
+```lua
+local AuroraService = game:GetService("AuroraService")
+
+type AuroraScriptObject = {
+	  Instance: Instance,
+	  Frame: number,
+	  LODLevel: number,
+	  Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+	  Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+	  Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+	  SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+	  Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+	  SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+}
+
+function Behavior.OnStart(self: AuroraScriptObject)
+	  self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+end
+
+function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number)
+	  self:SendMessage(game.Workspace.Part_2, "Test_2", "Test", "Hello!")
+end
+```
+
+#### Test_2
+
+```lua
+local AuroraService = game:GetService("AuroraService")
+
+type AuroraScriptObject = {
+	  Instance: Instance,
+	  Frame: number,
+	  LODLevel: number,
+	  Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+	  Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+	  Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+	  SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+	  Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+	  SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+}
+
+function Behavior.OnStart(self: AuroraScriptObject)
+	  self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+end
+
+function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number) end
+
+function Behavior.OnMessageTest(self: AuroraScriptObject, recievedMessage: string)
+	  warn(recievedMessage) -- "Hello!"
+end
+```
+
+!!! warning
+    All functions recieving a message must start with "OnMessage". For example, if we call the `:SendMessage()` with a `functionName` argument called "Test", then the function name must be "OnMessageTest" on the recieving Behavior.
+
+## *(More Coming Soon)*
 
 
 
