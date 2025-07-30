@@ -70,7 +70,7 @@ You would quickly notice that your character is constantly being teleported to t
 Or, you can create a wall infront of the character on the server, and delete it on the client. Then, you can try to pass through the place where the wall was prior to deletion. You would quickly notice that the server is constantly teleporting you back, like the wall is still there.
 
 !!! info
-    This is currently all the information I have about character prediction, if you have any additional information, please let me know!
+    If you have any additional information about character and part physics prediction, please let me know!
 
 -----
 
