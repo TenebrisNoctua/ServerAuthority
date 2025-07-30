@@ -44,6 +44,8 @@
 .api-summary-list {
     border-radius: 1.2em;
     background-color: var(--summary-bg-color);
+    margin-bottom: 2rem;
+    padding-bottom: 0.4em;
 }
 
 .api-summary-section {

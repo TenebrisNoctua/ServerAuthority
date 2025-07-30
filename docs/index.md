@@ -12,16 +12,16 @@
         <h3 class="api-summary-section-h3"><a href="#server-authority">Server Authority</a></h3>
         <div class="api-summary-section-list">
             <ul>
-                <li><a href="#part-physics">Part Physics</a></li>
-                <li><a href="#character-physics">Character Phsyics</a></li>
+                <a href="#part-physics">Part Physics</a>
+                <a href="#character-physics">Character Phsyics</a>
             </ul>
         </div>
         <h3 class="api-summary-section-h3"><a href="#auroraservice">AuroraService</a></h3>
         <div class="api-summary-section-list">
             <ul>
-                <li><a href="#predictions">Predictions</a></li>
-                <li><a href="#methods">Methods</a></li>
-                <li><a href="#events">Events</a></li>
+                <a href="#predictions">Predictions</a>
+                <a href="#methods">Methods</a>
+                <a href="#events">Events</a>
             </ul>
         </div>
     </div>
