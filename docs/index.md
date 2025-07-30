@@ -28,7 +28,7 @@
         <div class="api-summary-section-list">
             <ul style="list-style-type: none;">
                 <li><a href="#methods">Methods</a></li>
-                <li><a href="#behaviors">Behaviors</a></li>
+                <li><a href="#behavior">Behavior</a></li>
                 <li><a href="#aurorascriptobject">AuroraScriptObject</a></li>
             </ul>
         </div>
@@ -249,7 +249,7 @@ This method removes the Behavior of the `AuroraScript` from the specified `Insta
 
 This method allows you to check if the Behavior of the `AuroraScript` is on the specified `Instance`.
 
-## Behaviors 
+## Behavior
 
 Every `AuroraScript` comes with a global data type called `Behavior`, which can be accessed everywhere from the script.
 This Behavior allows you to connect to certain methods and events that allow you to (presumably) configure how the prediction on a certain `Instance` works.
