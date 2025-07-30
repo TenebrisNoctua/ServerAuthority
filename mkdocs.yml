@@ -1,7 +1,5 @@
 site_name: Server Authority Documentation
 site_url: https://tenebrisnoctua.github.io/ServerAuthority/
-repo_name: TenebrisNoctua/ServerAuthority
-repo_url: https://github.com/TenebrisNoctua/ServerAuthority
 
 theme:
   custom_dir: docs/overrides
