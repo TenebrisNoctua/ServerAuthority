@@ -498,10 +498,10 @@ end
 
 # Credits
 
-## Noctua (@TenebrisNoctua on Twitter)
-## Max (@MaximumADHD on Twitter)
-## Aztup (@RealAztup on Twitter)
-## x64 (@WalletOverflow on DevForum)
+#### Noctua (@TenebrisNoctua on Twitter)
+#### Max (@MaximumADHD on Twitter)
+#### Aztup (@RealAztup on Twitter)
+#### x64 (@WalletOverflow on DevForum)
 
 
 
