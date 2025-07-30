@@ -489,7 +489,7 @@ end
 ```
 
 !!! warning
-    All functions recieving a message must start with "OnMessage". For example, if we call the `:SendMessage()` with a `functionName` argument called "Test", then the function name must be "OnMessageTest" on the recieving Behavior.
+    All functions recieving a message must have a name that starts with "OnMessage". For example, if we call the `:SendMessage()` with a `functionName` argument called "Test", then the function name must be "OnMessageTest" on the recieving Behavior.
 
 ##### *Unfinished, more coming soon.*
 
