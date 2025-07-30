@@ -1,7 +1,31 @@
 ---
   hide:
     - navigation
+    - toc
 ---
+
+<div class="api-summary-list">
+    <h3 class="api-summary-list-h3">Navigation</h3>
+    <div class="api-summary-section">
+        <h3 class="api-summary-section-h3"><a href="#getting-started">Getting Started</a></h3>
+        <h3 class="api-summary-section-h3"><a href="#how-to-access">How to Access?</a></h3>
+        <h3 class="api-summary-section-h3"><a href="#server-authority">Server Authority</a></h3>
+        <div class="api-summary-section-list">
+            <ul>
+                <li><a href="#part-physics">Part Physics</a></li>
+                <li><a href="#character-physics">Character Phsyics</a></li>
+            </ul>
+        </div>
+        <h3 class="api-summary-section-h3"><a href="#auroraservice">AuroraService</a></h3>
+        <div class="api-summary-section-list">
+            <ul>
+                <li><a href="#predictions">Predictions</a></li>
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#events">Events</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 # Getting Started
 
@@ -191,6 +215,7 @@ Currently unsure of how this event can be fired.
     These are all of the current events and the methods of AuroraService. If more information gets found about them, this documentation will be updated.
 
 -----
+
 
 
 
