@@ -45,7 +45,7 @@
     border-radius: 1.2em;
     background-color: var(--summary-bg-color);
     margin-bottom: 2rem;
-    padding-bottom: 0.4em;
+    padding-bottom: 1.5em;
 }
 
 .api-summary-section {
