@@ -314,7 +314,7 @@ An example:
 ```luau
 {
     [Attached Instance] = Part,
-	  [Behavior] = AuroraScript,
+    [Behavior] = AuroraScript,
     [Frame ID] = 509,
     [self] =  ▶ {...}
 }
