@@ -265,7 +265,7 @@ This is a special method that you can define in the Behavior, which runs when th
 
 ```luau
 function Behavior.OnStart(self: AuroraScriptObject) -- This method is called when :AddTo() is called on an Instance.
-	  print(self)
+    print(self)
 end
 ```
 
@@ -277,7 +277,7 @@ This is a special method that you can define in the Behavior, which runs when th
 
 ```luau
 function Behavior.OnStop(self: AuroraScriptObject) -- This method is called when :AddTo() is called on an Instance.
-	  print(self)
+    print(self)
 end
 ```
 
@@ -361,11 +361,11 @@ type AuroraScriptObject = {
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
-	  self:Connect(AuroraService.FixedRateTick, "Predict")
+    self:Connect(AuroraService.FixedRateTick, "Predict")
 end
 
 function Behavior.Predict(self: AuroraScriptObject, deltaTime: number, worldStepId: number) -- This method will get called whenever the .FixedRateTick event fires.
-	  print(self, deltaTime, worldStepId)
+    print(self, deltaTime, worldStepId)
 end
 ``` 
 
@@ -403,16 +403,16 @@ type AuroraScriptObject = {
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
-	  self:Subscribe("Test", "GetPublishedValue")
-	  self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+    self:Subscribe("Test", "GetPublishedValue")
+    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
 end
 
 function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number)
-	  self:Publish("Test", "Hello!")
+    self:Publish("Test", "Hello!")
 end
 
 function Behavior.GetPublishedValue(self: AuroraScriptObject, boundInstance: Instance, recievedValue: any)
-	  print(boundInstance, recievedValue) -- Instance, Hello!
+    print(boundInstance, recievedValue) -- Instance, Hello!
 end
 ```
 
@@ -452,11 +452,11 @@ type AuroraScriptObject = {
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
-	  self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
 end
 
 function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number)
-	  self:SendMessage(game.Workspace.Part_2, "Test_2", "Test", "Hello!")
+    self:SendMessage(game.Workspace.Part_2, "Test_2", "Test", "Hello!")
 end
 ```
 
@@ -478,13 +478,13 @@ type AuroraScriptObject = {
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
-	  self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
 end
 
 function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number) end
 
 function Behavior.OnMessageTest(self: AuroraScriptObject, recievedMessage: string)
-	  warn(recievedMessage) -- "Hello!"
+    warn(recievedMessage) -- "Hello!"
 end
 ```
 
