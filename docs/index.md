@@ -32,13 +32,14 @@
                 <li><a href="#aurorascriptobject">AuroraScriptObject</a></li>
             </ul>
         </div>
+        <h3 class="api-summary-section-h3"><a href="#server-authority">Credits</a></h3>
     </div>
 </div>
 
 # Getting Started
 
-Hello! This post is a detailed documentation about the information I *(and some other people, credited at the bottom)* have found on the new server authority system that Roblox has been developing. This is a new system developed to achieve a more secure game state.
-Now, almost all of the information here has been gained through reverse-engineering methods. They will not be discussed here, however.
+Hello! This is a detailed documentation about the information I *(and some other people, credited at the bottom)* have found on the new server authority system that Roblox has been developing. This is a new system developed to achieve better security for your games.
+Now, almost all of the information here has been gained through reverse-engineering methods. However, they will not be discussed here.
 
 With all that being said, take every information presented here with a grain of salt, they might be inaccurate, and this feature (at the time of writing) isn't even in beta yet. So please be careful. If you have any additional information that you can present about this feature, please let me know with a message on [Twitter](https://twitter.com/TenebrisNoctua).
 
@@ -492,6 +493,13 @@ end
     All functions recieving a message must have a name that starts with "OnMessage". For example, if we call the `:SendMessage()` with a `functionName` argument called "Test", then the function name must be "OnMessageTest" on the recieving Behavior.
 
 ##### *Unfinished, more coming soon.*
+
+# Credits
+
+## Noctua (@TenebrisNoctua on Twitter)
+## Max (@MaximumADHD on Twitter)
+## Aztup (@RealAztup on Twitter)
+## x64 (@WalletOverflow on DevForum)
 
 
 
