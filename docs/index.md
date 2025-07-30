@@ -349,15 +349,15 @@ The `functionName` argument must be the name of a function in the Behavior.
 
 ```lua
 type AuroraScriptObject = {
-	  Instance: Instance,
-	  Frame: number,
-	  LODLevel: number,
-	  Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-	  Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-	  Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
-	  SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-	  Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
-	  SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+    Instance: Instance,
+    Frame: number,
+    LODLevel: number,
+    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
@@ -391,15 +391,15 @@ This method allows you to publish a value in the Behavior with a certain `name`.
 
 ```lua
 type AuroraScriptObject = {
-	  Instance: Instance,
-	  Frame: number,
-	  LODLevel: number,
-	  Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-	  Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-	  Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
-	  SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-	  Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
-	  SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+    Instance: Instance,
+    Frame: number,
+    LODLevel: number,
+    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
@@ -440,15 +440,15 @@ This is where `:SendMessage()` comes in. Using this method, we can send and reci
 local AuroraService = game:GetService("AuroraService")
 
 type AuroraScriptObject = {
-	  Instance: Instance,
-	  Frame: number,
-	  LODLevel: number,
-	  Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-	  Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-	  Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
-	  SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-	  Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
-	  SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+    Instance: Instance,
+    Frame: number,
+    LODLevel: number,
+    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
@@ -466,15 +466,15 @@ end
 local AuroraService = game:GetService("AuroraService")
 
 type AuroraScriptObject = {
-	  Instance: Instance,
-	  Frame: number,
-	  LODLevel: number,
-	  Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-	  Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-	  Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
-	  SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-	  Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
-	  SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
+    Instance: Instance,
+    Frame: number,
+    LODLevel: number,
+    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+    Delay: (self: AuroraScriptObject, functionName: string, ...any) -> ...any,
+    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
