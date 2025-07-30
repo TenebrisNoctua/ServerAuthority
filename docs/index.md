@@ -4,4 +4,5 @@
     - navigation
 ---
 
-# Server Authority System
+# The Server Authority System
+
