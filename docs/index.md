@@ -99,7 +99,7 @@ Or, you can create a wall infront of the character on the server, and delete it 
 
 # AuroraService
 
-Up until this point, I explained the default behavior of the server authority system on all parts and characters. However, this default behavior can be changed. For example, it is possible to create a system to exclude certain parts and characters from the prediction, so the network ownership system can be applied. And this is the service that allows you to do so. It is made out of methods and events that allows you to manually configure certain parts of the server authority system.
+Up until this point, I explained the default behavior of the server authority system on all parts and characters. However, this default behavior can be changed. For example, it is possible to create a system to exclude certain parts and characters from the prediction, so the network ownership system can be applied. And this is the service that allows you to do exactly that. It is made out of methods and events that allows you to manually configure certain parts of the server authority system.
 
 But first, let's talk about predictions in more detail.
 
