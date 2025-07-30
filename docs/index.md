@@ -428,7 +428,7 @@ And let's also assume we have 2 `Part`s the Behavior of these `AuroraScript`s ar
 
 Our system would be like this:
 
-Test_1 --> Part
+Test_1 --> Part<br>
 Test_2 --> Part_2
 
 If we wanted to send a message from Test_1 to Test_2, how would we do it?
