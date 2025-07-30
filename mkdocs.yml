@@ -5,6 +5,7 @@ theme:
   custom_dir: docs/overrides
   name: material
   features:
+    - navigation.tabs
     - navigation.top
     - navigation.sections
     - navigation.footer
