@@ -193,7 +193,10 @@ This method allows you to play the recorded input.
 
 ### `AuroraService:SetPropertyIsInput(target: Instance, propertyName: string, isInput: bool): ()`
 
-This method presumably allows you to set a certain property to input.
+This method presumably allows you to set `isInput` to a property of a target `Instance`.
+
+!!! warning
+    Setting the property to "Position" may crash your Studio. Unclear on why this occurs at the moment.
 
 ## Events
 
@@ -224,13 +227,17 @@ This event is fired when a rollback occurs, on the client.
 
 # AuroraScript
 
-This is a new `Script` object that allows you to connect to the various events of `AuroraService`, and define Behaviors that operate on them. This `Instance` runs both on the Server and Client context. *(This means the code written in this `Instance` will be ran on both the Server and the Client.)*
+This is a new unique `Script` object that allows you to connect to the various events of `AuroraService`, and define Behaviors that operate on them. 
 
-!!! warning
-    All created `AuroraScript`s in the same location (e.g, `workspace`) must have a different name. Otherwise, one of them will not run.
+Unlike the other `Script` types, `AuroraScript` is pretty limited in terms of what is possible to do with it. This is due to its purpose mainly being related to server authority and prediction, and not the main game logic. Here are the limitions that I'm currently aware of:
 
-!!! warning
-    Calling `RunService` context checking methods such as `:IsClient()` or `:IsServer()` is not allowed in `AuroraScript`s.
+* All `AuroraScript`s in the same location (e.g, `workspace`) must have a different name. Otherwise, one of them will not run.
+* Certain APIs and global libraries do not work in the environment of an `AuroraScript`. The ones I'm aware of at the moment are:
+    ** All methods of the `task` library (Except for `task.cancel()`).
+    ** `RunService:IsClient()` and `RunService:IsServer()`.
+    ** `coroutine.yield()` (Behaviors cannot yield.)
+
+Besides the limitations, generally `AuroraScript`s should always be parented to a location that can be both accessed from the client and the server, such as `ReplicatedStorage`. If you parent an `AuroraScript` to a location such as `ServerScriptStorage`, this will cause it to only run on the server, and not the client. This defeats the whole purpose of `AuroraScript`s, as they run both on the server and the client simultaneously.
 
 ## Methods
 
@@ -250,6 +257,10 @@ This method removes the Behavior of the `AuroraScript` from the specified `Insta
 ### `AuroraScript:IsOnInstance(instance: Instance): ()`
 
 This method allows you to check if the Behavior of the `AuroraScript` is on the specified `Instance`.
+
+### `AuroraScript:SignalFired(instance: Instance, topic: string)`
+
+This method allows you to create a Signal that is fired when the `AuroraScriptObject` of the `AuroraScript` publishes a value with a topic.
 
 ## Behavior
 
@@ -297,8 +308,8 @@ type AuroraScriptObject = {
     Frame: number,
     LODLevel: number,
     Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
     Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
@@ -355,8 +366,8 @@ type AuroraScriptObject = {
     Frame: number,
     LODLevel: number,
     Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
     Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
@@ -375,21 +386,21 @@ end
     `.Connect` can only be called in the `.OnStart` function. Attempting to call this function anywhere else will cause an error.
 
 
-### `AuroraScriptObject.Subscribe(self: AuroraScriptObject, name: string, functionName: string) -> string`
+### `AuroraScriptObject.Subscribe(self: AuroraScriptObject, topic: string, functionName: string) -> string`
 
-This method allows you to subcribe to a published value in the Behavior with a certain `name`. The `functionName` must be the name of a function in the Behavior.
-The subcribed function will always have 2 arguments by default, the self `AuroraScriptObject` and the bound `Instance`. Additional arguments will come after. Calling this method will return the value of the `name` parameter.
+This method allows you to subcribe to a published value in the Behavior with a certain `topic`. The `functionName` must be the name of a function in the Behavior.
+
+The subcribed function will always have 2 arguments by default, the self `AuroraScriptObject` and the bound `Instance`. Additional arguments will come after. Calling this method will return the value of the `topic` parameter.
 
 !!! warning
     This function can only be called in `.OnStart`.
 
-### `AuroraScriptObject.Publish(self: AuroraScriptObject, name: string, ...any) -> any`
+### `AuroraScriptObject.Publish(self: AuroraScriptObject, topic: string, ...any) -> any`
 
-This method allows you to publish a value in the Behavior with a certain `name`. The last argument given to this method will be returned as a value.
+This method allows you to publish a value in the Behavior with a certain `topic`. The last argument given to this method will be returned as a value.
 
 !!! warning 
     This function cannot be called in `.OnStart`.
-
 
 ```lua
 type AuroraScriptObject = {
@@ -397,8 +408,8 @@ type AuroraScriptObject = {
     Frame: number,
     LODLevel: number,
     Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
     Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
@@ -446,8 +457,8 @@ type AuroraScriptObject = {
     Frame: number,
     LODLevel: number,
     Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
     Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
@@ -472,8 +483,8 @@ type AuroraScriptObject = {
     Frame: number,
     LODLevel: number,
     Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, name: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, name: string, ...any) -> any,
+    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
+    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
     SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
     Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
     SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
