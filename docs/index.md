@@ -233,9 +233,9 @@ Unlike the other `Script` types, `AuroraScript` is pretty limited in terms of wh
 
 * All `AuroraScript`s in the same location (e.g, `workspace`) must have a different name. Otherwise, one of them will not run.
 * Certain APIs and global libraries do not work in the environment of an `AuroraScript`. The ones I'm aware of at the moment are:
-    ** All methods of the `task` library (Except for `task.cancel()`).
-    ** `RunService:IsClient()` and `RunService:IsServer()`.
-    ** `coroutine.yield()` (Behaviors cannot yield.)
+    * All methods of the `task` library (Except for `task.cancel()`).
+    * `RunService:IsClient()` and `RunService:IsServer()`.
+    * `coroutine.yield()` (Behaviors cannot yield.)
 
 Besides the limitations, generally `AuroraScript`s should always be parented to a location that can be both accessed from the client and the server, such as `ReplicatedStorage`. If you parent an `AuroraScript` to a location such as `ServerScriptStorage`, this will cause it to only run on the server, and not the client. This defeats the whole purpose of `AuroraScript`s, as they run both on the server and the client simultaneously.
 
@@ -248,7 +248,7 @@ This then calls the (if defined) `.OnStart` method of the Behavior.
 
 Behaviors can also be added manually, without the need of this method.
 With the Server Authority feature enabled, the Properties widget gain a new section for every `Instance`, called: "Behaviors".
-Clicking the "+" button on this section will allow you to find and add any `AuroraScript`'s Behavior on an `Instance`.
+Clicking the "+" button on this section will allow you to find and add any Behavior on an `Instance`.
 
 ### `AuroraScript:RemoveFrom(instance: Instance): ()`
 
@@ -267,8 +267,11 @@ This method allows you to create a Signal that is fired when the `AuroraScriptOb
 Every `AuroraScript` comes with a global data type called `Behavior`, which can be accessed everywhere from the script.
 This Behavior allows you to connect to certain methods and events that allow you to (presumably) configure how the prediction on a certain `Instance` works.
 
+!!! info
+    The term "Behavior" represents `AuroraScript`s. `AuroraScript`s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behavior" section in the Properties window, this is more apparent.
+
 !!! warning
-    Every `AuroraScript`'s Behavior must be bound to an `Instance` for their Behavior to work.
+    Every Behavior must be bound to an `Instance` for them to work.
 
 There are certain methods you have to define in the Behavior for it to start working. They are listed below.
 
@@ -320,7 +323,7 @@ function Behavior.OnStart(self: AuroraScriptObject)
 end
 ```
 
-Now be warned, unlike any other object which is found in the Roblox API, `AuroraScriptObject` does not reflect the properties found in the API dump. Even when you print this object, it does not give you any property name that allows you to directly access a certain value.
+Now be warned, unlike any other object which is found in the Roblox API, `AuroraScriptObject` does not reflect the properties found in the API dump. Even when you print this object, it does not give you any property names that allows you to directly access a certain value.
 
 An example:
 
@@ -333,7 +336,7 @@ An example:
 }
 ```
 
-This is a detailed string that shows you certain information about the `AuroraScriptObject`, such as which frame it currently is on, the Behavior it is from, the bound instance, and lastly, the `self` table, which is used to show you the declared fields made with `Behavior.DeclareField()` function. (These field properties can be accessed through indexing the `AuroraScriptObject` with their name.)
+This is a detailed string that shows you information about the `AuroraScriptObject`, such as which frame it currently is on, the Behavior it is from, the bound instance, and lastly, the `self` table, which is used to show you the declared fields made with `Behavior.DeclareField()` function. (These field properties can be accessed through indexing the `AuroraScriptObject` with their name.)
 
 Unfortunately, you cannot access these properties directly, and most likely this information is only shown for debugging purposes.
 In the previous example however, you might have noticed that I've added an `AuroraScriptObject` type which contains information about all of the currently known and actually accessible methods and properties of the `AuroraScriptObject`. 
@@ -351,7 +354,7 @@ The current Frame the world is on. Most likely changes after Heartbeat or PreAni
 
 ### `AuroraScriptObject.LODLevel`
 
-The level of distance level of the Behavior. Not sure what it is supposed to be used for at the moment.
+The level of distance number of the Behavior. Not sure what it is supposed to be used for at the moment.
 
 ### Methods
 
