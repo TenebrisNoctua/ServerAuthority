@@ -268,7 +268,7 @@ Every `AuroraScript` comes with a global data type called `Behavior`, which can 
 This Behavior allows you to connect to certain methods and events that allow you to (presumably) configure how the prediction on a certain `Instance` works.
 
 !!! info
-    The term "Behavior" represents `AuroraScript`s. `AuroraScript`s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behavior" section in the Properties window, this is more apparent.
+    You might've noticed that in the previous sections and descriptions, Behaviors are described as if they belong to or in an `AuroraScript`, this is kind of incorrect, as the term "Behavior" actually represents an `AuroraScript`. `AuroraScript`s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behaviors" section in the Properties window, this is more apparent.
 
 !!! warning
     Every Behavior must be bound to an `Instance` for them to work.
