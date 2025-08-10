@@ -214,7 +214,7 @@ This event is fired (presumably) when the `worldStepId` changes.
 
 ### `AuroraService.Misprediction(worldStepId: number, mispredictedInstances: {Instance})`
 
-This event is fired when a misprediction occurs on certain `Instance`(s). This happens when there's a mismatch between the Client and the Server's prediction on the attached `Instance`'s physics.
+This event is fired when a misprediction occurs on certain `Instance`(s). This happens when there's a mismatch between the client and the server's prediction on the attached `Instance`'s physics.
 
 ### `AuroraService.Rollback(worldStepId: number)`
 
