@@ -16,10 +16,10 @@
                 <li><a href="#character-physics">Character Phsyics</a></li>
             </ul>
         </div>
+        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#the-prediction-system">AuroraService</a></h3>
         <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#auroraservice">AuroraService</a></h3>
         <div class="api-summary-section-list">
             <ul style="list-style-type: none;">
-                <li><a href="#predictions">Predictions</a></li>
                 <li><a href="#methods">Methods</a></li>
                 <li><a href="#events">Events</a></li>
             </ul>
@@ -53,7 +53,7 @@ If you want to access everything that will be mentioned in the later sections, y
 This documentation will not mention on how you can edit flags in Studio, as there are plenty of resources out there that you can search and learn from on how. And it is simply not my responsibility.
 
 ```
-DubugAuroraDefaultConfig
+DebugAuroraDefaultConfig
 DebugHashTableMetrics
 NextGenReplicatorEnabledRead3
 NextGenReplicatorEnabledWrite4
@@ -72,7 +72,7 @@ Settings these flags to `True` should grant you access to the features mentioned
 
 To give a short summary on what Server Authority is, it is when the server becomes the single source of truth for game actions, logic, and data.
 This basically means that the server will dictate how the data and logic such as physics *should* work within your game.
-This does cause responsiveness and latency issues however, but those issues are mostly solvable with a prediction and rollback system, such as the one Roblox is utilizing, which I will mention further in later sections.
+This does cause responsiveness and latency issues however, but those issues are mostly solvable with a prediction and rollback system, such as the one Roblox is utilizing, which I will describe further in later sections.
 
 To enable the server authority system Roblox has implemented, after all the flags above have been enabled, you must go into
 `Workspace > Server Authority > AuthorityMode` and set it to `Server`.
@@ -86,37 +86,40 @@ After this step, server authority should be enabled within your place.
 
 Enabling this feature completely changes the behavior of all unanchored `Part`s in the `Workspace`. Before; the physics calculation of a `Part` was handled by both the server and the clients in a place. When a client came close to a `Part`, the network ownership would automatically shift from the server to the client, so the client could take the burden of calculating the physics for that `Part`.
 
-However, now, with server authority enabled; this network ownership behavior is completely bypassed, as even if a client comes close to a `Part`, the server will always be the one calculating the physics of that `Part`.
+However, now, with server authority enabled; this network ownership behavior is disabled by default. The server is now be the single source of truth about the physics of the said `Part`.
 
 ## Character Physics
 
-Enabling this feature also completely changes how characters work and behave within your place. Before; the client, because of network ownership, had full control over their character. This allowed them to change certain properties such as velocity, position, rotation, and many others, to their liking. This, of course, caused many security issues. Using exploits, the client would be able to give themselves an unfair advantage in gameplay. This gave the rise of many exploiting issues such as speed-hacking, fly-hacking, no-clipping, teleporting, and many others, inside popular places on the platform.
+Before, because of network ownership, the client had full control over their character. This allowed them to change certain properties of their character such as velocity, position, rotation, and many others, to their liking. This, of course, caused many security issues. Using exploits, the client would be able to give themselves an unfair advantage in gameplay by changing these properties. This gave the rise of many exploiting issues such as speed-hacking, fly-hacking, no-clipping, teleporting, and many others inside popular places on the platform.
 
-However, now, with server authority enabled; mostly any kind of these issues are almost impossible to happen, if not impossible.
-Because the server is now predicting where your character should be, it is incredibly hard to do character based exploits now.<br>
-In fact, to verify this, you can easily do some tests yourself. Hitting "Play" (or "Test" in the Next Gen Studio Ribbon), should give you the chance to test pretty much anything you want. Be warned however, you will notice some weirdness with animations. This is mostly an animations issue with the new characters, and should be resolved soon.
+However now, with server authority enabled, mostly any kind of these issues are now extremely difficult to happen. The implemented prediction and rollback system makes it incredibly difficult, if not impossible, to exploit character physics.
 
-A good example to test the new system would be to create a new `Part` instance in the `Workspace` on the client, and standing on it.
-You would quickly notice that your character is constantly being teleported to the bottom, like the part is not actually there. And if you were to switch to the server view, you would see that the character is standing at the bottom without any issues.  
+If you want to see this system in action, you can easily do some tests yourself. Hitting "Play" (or "Test" in the Next Gen Studio Ribbon), should give you the chance to test pretty much anything you want. Be warned however, you may notice some weirdness with animations. This is mostly an animation issue with the new characters, and should be resolved soon.
 
-Or, you can create a wall infront of the character on the server, and delete it on the client. Then, you can try to pass through the place where the wall was prior to deletion. You would quickly notice that the server is constantly teleporting you back, like the wall is still there.
+A good way to test the new system would be to create a wall infront of the character on the server, and then delete it on the client. Then, you can try to pass through the place where the wall was prior to deletion. You will quickly notice that the server is constantly teleporting you back, like the wall is still there.
 
 !!! info
     If you have any additional information about character and part physics prediction, please let me know!
 
 -----
 
+# The Prediction System
+
+!!! warning
+    Information in this section may be inaccurate in certain places, if you have any valid corrections, please don't hesitate to reach out to me. 
+
+!!! info
+    In this section it is assumed that unlike characters, all `Part`s are always predicted and simulated by the server. If this is incorrect, like I said above, please don't hesitate to reach out.
+
+The server authority system is powered by a prediction system. Under this system, all characters have their network ownership set to the server. On the client, the character physics are calculated and the simulation is stepped forward by one, based on the input. This input is also sent to the server, in which the server uses to calculate the physics of the said character and step the simulation by one as well. This is also what's replicated to the other clients as well. If one side disagrees about the simulation, a rollback occurs. And with the given inputs, the system is resimulated to catch up.
+
+While this is how the prediction system works by default, it is very well possible to be changed. This is done using the new services and the new `Instance` that comes with the server authority system. They are described in detail below.  
+
+-----
+
 # AuroraService
 
-Up until this point, I explained the default behavior of the server authority system on all parts and characters. However, this default behavior can be changed. For example, it is possible to create a system to exclude certain parts and characters from the prediction, so the network ownership system can be applied. And this is the service that allows you to do exactly that. It is made out of methods and events that allows you to manually configure certain parts of the server authority system.
-
-But first, let's talk about predictions in more detail.
-
-## Predictions
-
-The prediction system is what allows the server authority to work. It determines where a part should and should not be. When a `Part` falls down for example, it calculates where that `Part` should land, and should not. It is the same for characters, like it has been described in the previous section.
-
-This prediction system can be configured however, with certain methods exposed through this service. They are described in detail below.
+Up until this point, I explained the default behavior of the server authority system on all `Part`s and characters. However, like I said above, this default behavior can be changed. For example, it is possible to exclude certain `Part`s and characters from the prediction, so the network ownership system can be used instead. And this is the service allowing you to do exactly that. It is made out of methods and events that allows you to manually configure certain parts of the server authority system.
 
 ## Methods
 
@@ -226,6 +229,9 @@ This event is fired when a rollback occurs. Rollbacks generally occur after a mi
 -----
 
 # AuroraScript
+
+!!! info
+    It is most likely that Roblox will be changing the name "AuroraScript" to "BehaviorScript" in the near future, to more accurately represent what it does.
 
 This is a new unique `Script` object that allows you to connect to the various events of `AuroraService`, and define Behaviors that operate on them. 
 
