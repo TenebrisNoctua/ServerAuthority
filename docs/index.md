@@ -217,11 +217,11 @@ This event is fired (presumably) when the `worldStepId` changes.
 
 ### `AuroraService.Misprediction(worldStepId: number, mispredictedInstances: {Instance})`
 
-This event is fired when a misprediction occurs on certain `Instance`(s). This happens when there's a mismatch between the client and the server's prediction on the attached `Instance`'s physics.
+This event is fired when a misprediction occurs on certain `Instance`(s). This happens when there's a mismatch between the client and the server's prediction on an `Instance`'s physics.
 
 ### `AuroraService.Rollback(worldStepId: number)`
 
-This event is fired when a rollback occurs. Rollbacks generally occur after a misprediction, which causes the attached `Instance` to be reverted back to its previous state.
+This event is fired when a rollback occurs. Rollbacks generally occur after a misprediction, which causes an `Instance` to be reverted back to its previous state.
 
 !!! info 
     These are all of the current events and the methods of AuroraService. If more information gets found about them, this documentation will be updated.
