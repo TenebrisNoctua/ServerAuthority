@@ -16,7 +16,7 @@
                 <li><a href="#character-physics">Character Phsyics</a></li>
             </ul>
         </div>
-        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#the-prediction-system">AuroraService</a></h3>
+        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#the-prediction-system">The Prediction System</a></h3>
         <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#auroraservice">AuroraService</a></h3>
         <div class="api-summary-section-list">
             <ul style="list-style-type: none;">
