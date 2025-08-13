@@ -92,9 +92,9 @@ However, now, with server authority enabled; this network ownership behavior is 
 
 Before, because of network ownership, the client had full control over their character. This allowed them to change certain properties of their character such as velocity, position, rotation, and many others, to their liking. This, of course, caused many security issues. Using exploits, the client would be able to give themselves an unfair advantage in gameplay by changing these properties. This gave the rise of many exploiting issues such as speed-hacking, fly-hacking, no-clipping, teleporting, and many others inside popular places on the platform.
 
-However now, with server authority enabled, mostly any kind of these issues are now extremely difficult to happen. The implemented prediction and rollback system makes it incredibly difficult, if not impossible, to exploit character physics.
+However now, with the server authority enabled, mostly any kind of these issues are now extremely difficult to happen. The implemented prediction and rollback system makes it incredibly difficult, if not impossible, to exploit character physics.
 
-If you want to see this system in action, you can easily do some tests yourself. Hitting "Play" (or "Test" in the Next Gen Studio Ribbon), should give you the chance to test pretty much anything you want. Be warned however, you may notice some weirdness with animations. This is mostly an animation issue with the new characters, and should be resolved soon.
+If you want to see this system in action, you can easily do some tests yourself. Hitting "Play" (or "Test" in the Next Gen Studio Ribbon), should give you the chance to test pretty much anything you want. Be warned however, you may notice some weirdness with your character. These weird issues should be resolved in time.
 
 A good way to test the new system would be to create a wall infront of the character on the server, and then delete it on the client. Then, you can try to pass through the place where the wall was prior to deletion. You will quickly notice that the server is constantly teleporting you back, like the wall is still there.
 
