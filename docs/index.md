@@ -111,7 +111,7 @@ A good way to test the new system would be to create a wall infront of the chara
 !!! info
     In this section it is assumed that unlike characters, all `Part`s are always predicted and simulated by the server. If this is incorrect, like I said above, please don't hesitate to reach out.
 
-The server authority system is powered by a prediction system. Under this system, all characters have their network ownership set to the server. On the client, the character physics are calculated and the simulation is stepped forward by one, based on the input. This input is also sent to the server, in which the server uses to calculate the physics of the said character and step the simulation by one as well. This is also what's replicated to the other clients as well. If one side disagrees about the simulation, a rollback occurs. And with the given inputs, the system is resimulated to catch up.
+The server authority system is powered by a prediction and rollback system. Under this system, all characters have their network ownership set to the server. On the client, the character physics are calculated and the simulation is stepped forward by one, based on the input. This input is also sent to the server, in which the server uses to calculate the physics of the said character and step the simulation by one as well. This is also what's replicated to the other clients as well. If one side disagrees about the simulation, a rollback occurs. And with the given inputs, the system is resimulated to catch up.
 
 While this is how the prediction system works by default, it is very well possible to be changed. This is done using the new services and the new `Instance` that comes with the server authority system. They are described in detail below.  
 
