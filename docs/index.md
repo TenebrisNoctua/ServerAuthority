@@ -27,9 +27,15 @@
         <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#aurorascript">AuroraScript</a></h3>
         <div class="api-summary-section-list">
             <ul style="list-style-type: none;">
-                <li><a href="#methods">Methods</a></li>
+                <li><a href="#methods-1">Methods</a></li>
                 <li><a href="#behavior">Behavior</a></li>
                 <li><a href="#aurorascriptobject">AuroraScriptObject</a></li>
+            </ul>
+        </div>
+        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#aurorascriptservice">AuroraScriptService</a></h3>
+        <div class="api-summary-section-list">
+            <ul style="list-style-type: none;">
+                <li><a href="#methods-3">Methods</a></li>
             </ul>
         </div>
         <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#credits">Credits</a></h3>
@@ -70,17 +76,17 @@ Settings these flags to `True` should grant you access to the features mentioned
 
 # Server Authority
 
-To give a short summary on what Server Authority is, it is when the server becomes the single source of truth for game actions, logic, and data.
-This basically means that the server will dictate how the data and logic such as physics *should* work within your game.
-This does cause responsiveness and latency issues however, but those issues are mostly solvable with a prediction and rollback system, such as the one Roblox is utilizing, which I will describe further in later sections.
+To give a short summary on what Server Authority is, it is when the server becomes the single source of truth for game actions, logic, and data. This basically means that the server will dictate how the data and logic such as physics *should* work within your game.
 
-To enable the server authority system Roblox has implemented, after all the flags above have been enabled, you must go into
-`Workspace > Server Authority > AuthorityMode` and set it to `Server`.
+To fully enable this feature in Roblox Studio, you must go into the `Workspace` properties and change some values. They are listed below:
+* `Server Authority > AuthorityMode`: `Server`
+* `Behavior > PhysicsSteppingMethod`: `Fixed`
 
 !!! warning
-    In order to access the features mentioned in the later sections, this step is necessary to do. Otherwise, the features will simply not work.
-
-After this step, server authority should be enabled within your place.
+    Setting the `AuthorityMode` to `Server` will automatically change certain other workspace properties. They are listed below:
+    * `StreamingEnabled`: `true`
+    * `SignalBehavior`: `Deferred`
+    These properties cannot be changed while the `AuthorityMode` is set to `Server`.
 
 ## Part Physics
 
@@ -204,7 +210,7 @@ This method presumably allows you to set `isInput` to a property of a target `In
 ## Events
 
 !!! warning 
-    Attempting to connect to these events outside of the Behavior of an `AuroraScript` will error.
+    Attempting to connect to these events outside of a Behavior `AuroraScript` will error.
 
 ### `AuroraService.Step`
 
@@ -249,20 +255,20 @@ Besides the limitations, generally `AuroraScript`s should always be parented to 
 
 ### `AuroraScript:AddTo(instance: Instance): ()`
 
-This method adds the Behavior of the `AuroraScript` to the specified `Instance`.
+This method binds the Behavior `AuroraScript` to the specified `Instance`.
 This then calls the (if defined) `.OnStart` method of the Behavior.
 
-Behaviors can also be added manually, without the need of this method.
+Behaviors can also be binded manually, without the need of this method.
 With the Server Authority feature enabled, the Properties widget gain a new section for every `Instance`, called: "Behaviors".
-Clicking the "+" button on this section will allow you to find and add any Behavior on an `Instance`.
+Clicking the "+" button on this section will allow you to find and bind any Behavior on an `Instance`.
 
 ### `AuroraScript:RemoveFrom(instance: Instance): ()`
 
-This method removes the Behavior of the `AuroraScript` from the specified `Instance`.
+This method removes the Behavior `AuroraScript` from the specified `Instance`.
 
 ### `AuroraScript:IsOnInstance(instance: Instance): ()`
 
-This method allows you to check if the Behavior of the `AuroraScript` is on the specified `Instance`.
+This method allows you to check if the Behavior `AuroraScript` is on the specified `Instance`.
 
 ### `AuroraScript:SignalFired(instance: Instance, topic: string)`
 
@@ -274,7 +280,7 @@ Every `AuroraScript` comes with a global data type called `Behavior`, which can 
 This Behavior allows you to connect to certain methods and events that allow you to (presumably) configure how the prediction on a certain `Instance` works.
 
 !!! info
-    You might've noticed that in the previous sections and descriptions, Behaviors are described as if they belong to or in an `AuroraScript`, this is kind of incorrect, as the term "Behavior" actually represents an `AuroraScript`. `AuroraScript`s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behaviors" section in the Properties window, this is more apparent.
+    The term "Behavior" actually represents an `AuroraScript`. `AuroraScript`s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behaviors" section in the Properties window, this is more apparent.
 
 !!! warning
     Every Behavior must be bound to an `Instance` for them to work.
@@ -352,7 +358,7 @@ I have found these properties using reverse-engineering. They are described in d
 
 ### `AuroraScriptObject.Instance`
 
-This is the `Instance` that the Behavior is added to.
+This is the `Instance` that the Behavior is bound to.
 
 ### `AuroraScriptObject.Frame`
 
@@ -446,7 +452,7 @@ Then, you can add additional values as arguments to send to the function.
 #### Sending and Recieving Messages
 
 Let's assume we have 2 `AuroraScript`s in the `workspace` called: "Test_1", and "Test_2".
-And let's also assume we have 2 `Part`s the Behavior of these `AuroraScript`s are bound to.
+And let's also assume we have 2 `Part`s these Behavior `AuroraScript`s are bound to.
 
 Our system would be like this:
 
@@ -522,6 +528,32 @@ This method allows you to run a function in the Behavior with a certain amount o
 This method allows you to set the maximum amount of frequency the `AuroraScriptObject` can run with. Must be a value between 1 to 60.
 
 -----
+
+# AuroraScriptService
+
+This service is meant to manage and communicate with Behavior `AuroraScript`s. Unlike AuroraService however, it does not have special properties or events, just methods.
+
+## Methods
+
+### `AuroraScriptService:SendMessage(instance: Instance, behaviorName: string, functionName: string, ...: any): ()`
+
+This method works exactly the same as the [`AuroraScriptObject:SendMessage()`](#aurorascriptobjectsendmessageself-aurorascriptobject-boundinstance-instance-behaviorname-string-functionname-string-any---any), except it is used outside of Behaviors to send messages to Behaviors. The same rules apply.
+
+### `AuroraScriptService:getBehaviors(): {AuroraScript}`
+
+This method returns a table containing all of the Behaviors in the place.
+
+### `AuroraScriptService:getBehaviorsForInstance(instance: Instance): {AuroraScript}`
+
+This method returns a table containing all of the Behaviors bound to the specified `Instance`.
+
+### `AuroraScriptService:getInstancesForBehavior(behavior: AuroraScript): {Instance}`
+
+This method returns a table containing all of the `Instance`s that the specified Behavior is bound to.
+
+### `AuroraScriptService:GetLocalFrameId(): number`
+
+This method returns a number that presumably indicates the current frame of the world.
 
 # Closing Thoughts
 
