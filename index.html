@@ -1,0 +1,804 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://tenebrisnoctua.github.io/ServerAuthority/">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
+    
+    
+      
+        <title>Server Authority Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="css/colors.css">
+    
+      <link rel="stylesheet" href="css/theme.css">
+    
+      <link rel="stylesheet" href="css/code.css">
+    
+      <link rel="stylesheet" href="css/api-reference.css">
+    
+      <link rel="stylesheet" href="css/paragraph.css">
+    
+      <link rel="stylesheet" href="css/home.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="pedoc-dark" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Server Authority Documentation" class="md-header__button md-logo" aria-label="Server Authority Documentation" data-md-component="logo">
+      <!-- Logo -->
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Server Authority Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="pedoc-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to Light Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to Light Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19a7 7 0 1 1 0-14 7 7 0 0 1 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11m-5.657.157a.75.75 0 0 1 0 1.06l-1.768 1.768a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734l1.767-1.768a.75.75 0 0 1 1.061 0M3.515 3.515a.75.75 0 0 1 1.06 0l1.768 1.768a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L3.515 4.575a.75.75 0 0 1 0-1.06M12 0a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 12 0M4 12a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 4 12m8 8a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 12 20m12-8a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 24 12m-6.343 5.657a.75.75 0 0 1 1.06 0l1.768 1.768a.75.75 0 0 1-.018 1.042.75.75 0 0 1-1.042.018l-1.768-1.767a.75.75 0 0 1 0-1.061m2.828-14.142a.75.75 0 0 1 0 1.06l-1.768 1.768a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l1.767-1.768a.75.75 0 0 1 1.061 0"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="pedoc-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch To Dark Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch To Dark Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.768 3.96zl-.002-.005a9 9 0 0 0-.218-.779c-.13-.394.21-.8.602-.67q.435.144.855.328l.01.005A10.002 10.002 0 0 1 12 22a10 10 0 0 1-9.162-5.985l-.004-.01a10 10 0 0 1-.329-.855c-.13-.392.277-.732.67-.602q.386.126.78.218l.004.002A9 9 0 0 0 14.999 6a9 9 0 0 0-.231-2.04M16.5 6c0 5.799-4.701 10.5-10.5 10.5q-.64 0-1.26-.075A8.5 8.5 0 1 0 16.425 4.74q.075.62.075 1.259Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Server Authority Documentation" class="md-nav__button md-logo" aria-label="Server Authority Documentation" data-md-component="logo">
+      <!-- Logo -->
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Server Authority Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<div class="api-summary-list">
+    <h3 class="api-summary-list-h3">Navigation</h3>
+    <div class="api-summary-section">
+        <h3 class="api-summary-section-h3"><a href="#getting-started">Getting Started</a></h3>
+        <h3 class="api-summary-section-h3"><a href="#how-to-access">How to Access?</a></h3>
+        <h3 class="api-summary-section-h3"><a href="#server-authority">Server Authority</a></h3>
+        <div class="api-summary-section-list">
+            <ul style="list-style-type: none;">
+                <li><a href="#part-physics">Part Physics</a></li>
+                <li><a href="#character-physics">Character Phsyics</a></li>
+            </ul>
+        </div>
+        <h3 class="api-summary-section-h3" style="padding-top: 1px;"><a href="#the-prediction-system">The Prediction System</a></h3>
+        <h3 class="api-summary-section-h3"><a href="#auroraservice">AuroraService</a></h3>
+        <div class="api-summary-section-list">
+            <ul style="list-style-type: none;">
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#events">Events</a></li>
+            </ul>
+        </div>
+        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#aurorascript">AuroraScript</a></h3>
+        <div class="api-summary-section-list">
+            <ul style="list-style-type: none;">
+                <li><a href="#methods-1">Methods</a></li>
+                <li><a href="#behavior">Behavior</a></li>
+                <li><a href="#aurorascriptobject">AuroraScriptObject</a></li>
+            </ul>
+        </div>
+        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#aurorascriptservice">AuroraScriptService</a></h3>
+        <div class="api-summary-section-list">
+            <ul style="list-style-type: none;">
+                <li><a href="#methods-3">Methods</a></li>
+            </ul>
+        </div>
+        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#credits">Credits</a></h3>
+    </div>
+</div>
+
+<h1 id="getting-started">Getting Started</h1>
+<p>Hello! This is a detailed documentation about the information I <em>(and some other people, credited at the bottom)</em> have found on the new server authority system that Roblox has been developing. This is a new system developed to achieve better security for your games.
+Now, almost all of the information here has been gained through reverse-engineering methods. However, they will not be discussed here.</p>
+<p>With all that being said, take every information presented here with a grain of salt, they might be inaccurate, and this feature (at the time of writing) isn't even in beta yet. So please be careful. If you have any additional information that you can present about this feature, please let me know with a message on <a href="https://twitter.com/TenebrisNoctua">Twitter</a>.</p>
+<p>Now let's begin.</p>
+<hr />
+<h1 id="how-to-access">How to Access?</h1>
+<p>If you want to access everything that will be mentioned in the later sections, you must enable certain flags in Roblox Studio.
+This documentation will not mention on how you can edit flags in Studio, as there are plenty of resources out there that you can search and learn from on how. And it is simply not my responsibility.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>DebugAuroraDefaultConfig
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DebugHashTableMetrics
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>NextGenReplicatorEnabledRead3
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>NextGenReplicatorEnabledWrite4
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>DebugEnableAuroraService
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>StudioAuroraEditorSupport
+</code></pre></div>
+<p>Settings these flags to <code>True</code> should grant you access to the features mentioned forward.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Enabling these flags <em>MAY CORRUPT YOUR FILES OR PLACES</em>. Publishing a place with <code>AuroraScript</code>s inside may cause your place to never be launched on the client. And you may not be able to access your Team-Create sessions. <em>BE CAUTIOUS.</em></p>
+</div>
+<hr />
+<h1 id="server-authority">Server Authority</h1>
+<p>To give a short summary on what Server Authority is, it is when the server becomes the single source of truth for game actions, logic, and data. This basically means that the server will dictate how the data and logic such as physics <em>should</em> work within your game.</p>
+<p>To fully enable this feature in Roblox Studio, you must go into the <code>Workspace</code> properties and change some values. They are listed below:
+* <code>Server Authority &gt; AuthorityMode</code>: <code>Server</code>
+* <code>Behavior &gt; PhysicsSteppingMethod</code>: <code>Fixed</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Setting the <code>AuthorityMode</code> to <code>Server</code> will automatically change certain other workspace properties. They are listed below:
+* <code>StreamingEnabled</code>: <code>true</code>
+* <code>SignalBehavior</code>: <code>Deferred</code>
+These properties cannot be changed while the <code>AuthorityMode</code> is set to <code>Server</code>.</p>
+</div>
+<h2 id="part-physics">Part Physics</h2>
+<p>Enabling this feature completely changes the behavior of all unanchored <code>Part</code>s in the <code>Workspace</code>. Before; the physics calculation of a <code>Part</code> was handled by both the server and the clients in a place. When a client came close to a <code>Part</code>, the network ownership would automatically shift from the server to the client, so the client could take the burden of calculating the physics for that <code>Part</code>.</p>
+<p>However, now, with server authority enabled; this network ownership behavior is disabled by default. The server is now be the single source of truth about the physics of the said <code>Part</code>.</p>
+<h2 id="character-physics">Character Physics</h2>
+<p>Before, because of network ownership, the client had full control over their character. This allowed them to change certain properties of their character such as velocity, position, rotation, and many others, to their liking. This, of course, caused many security issues. Using exploits, the client would be able to give themselves an unfair advantage in gameplay by changing these properties. This gave the rise of many exploiting issues such as speed-hacking, fly-hacking, no-clipping, teleporting, and many others inside popular places on the platform.</p>
+<p>However now, with the server authority enabled, mostly any kind of these issues are now extremely difficult to happen. The implemented prediction and rollback system makes it incredibly difficult, if not impossible, to exploit character physics.</p>
+<p>If you want to see this system in action, you can easily do some tests yourself. Hitting "Play" (or "Test" in the Next Gen Studio Ribbon), should give you the chance to test pretty much anything you want. Be warned however, you may notice some weirdness with your character. These weird issues should be resolved in time.</p>
+<p>A good way to test the new system would be to create a wall infront of the character on the server, and then delete it on the client. Then, you can try to pass through the place where the wall was prior to deletion. You will quickly notice that the server is constantly teleporting you back, like the wall is still there.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you have any additional information about character and part physics prediction, please let me know!</p>
+</div>
+<hr />
+<h1 id="the-prediction-system">The Prediction System</h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Information in this section may be inaccurate in certain places, if you have any valid corrections, please don't hesitate to reach out to me. </p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In this section it is assumed that unlike characters, all <code>Part</code>s are always predicted and simulated by the server. If this is incorrect, like I said above, please don't hesitate to reach out.</p>
+</div>
+<p>The server authority system is powered by a prediction and rollback system. Under this system, all characters have their network ownership set to the server. On the client, the character physics are calculated and the simulation is stepped forward by one, based on the input. This input is also sent to the server, in which the server uses to calculate the physics of the said character and step the simulation by one as well. If one side disagrees about the simulation, a rollback occurs. And with the given inputs, the system is resimulated to catch up.</p>
+<p>While this is how the prediction system works by default, it is very well possible to be changed. This is done using the new services and the new <code>Instance</code> that comes with the server authority system. They are described in detail below.  </p>
+<hr />
+<h1 id="auroraservice">AuroraService</h1>
+<p>Up until this point, I explained the default behavior of the server authority system on all <code>Part</code>s and characters. However, like I said above, this default behavior can be changed. For example, it is possible to exclude certain <code>Part</code>s and characters from the prediction, so the network ownership system can be used instead. And this is the service allowing you to do exactly that. It is made out of methods and events that allows you to manually configure certain parts of the server authority system.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="auroraservicestartpredictiontarget-instance"><code>AuroraService:StartPrediction(target: Instance): ()</code></h3>
+<p>This method allows you to start prediction manually on the target <code>Instance</code>. When it is used, the server will start predicting the physics of the said <code>Instance</code>, if it's a <code>BasePart</code>. Additionally, this method completely bypasses network ownerships.</p>
+<h3 id="auroraservicestoppredictiontarget-instance"><code>AuroraService:StopPrediction(target: Instance): ()</code></h3>
+<p>This method stops the prediction on the target <code>Instance</code>. This method allows you to restore the network ownership behavior of the previous system.</p>
+<h3 id="auroraservicegetpredictedinstances-instance"><code>AuroraService:GetPredictedInstances(): {Instance}</code></h3>
+<p>This method returns a table which contains the current predicted <code>Instance</code>s by the server authority system.</p>
+<h3 id="auroraserviceispredictedtarget-instance-boolean"><code>AuroraService:IsPredicted(target: Instance): boolean</code></h3>
+<p>This method returns a <code>boolean</code>, indicating if the provided <code>Instance</code> is being predicted by the server or not.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Like it has been mentioned briefly in the above sections, every <code>Part</code> or character in <code>Workspace</code> will automatically have their physics predicted by the server, as long as they are not anchored. Anchoring a <code>Part</code> will automatically remove it from being predicted. (Or to remove it manually, you can call <code>AuroraService:StopPrediction()</code> on that said <code>Part</code>.)</p>
+</div>
+<h3 id="auroraservicegetserverviewtarget-instance-instance"><code>AuroraService:GetServerView(target: Instance): Instance</code></h3>
+<p>This method will return a completely new <code>Instance</code> that most likely shows how the server views the target <code>Instance</code>. 
+Parenting it to a container such as <code>Workspace</code> will show the exact same properties of the target <code>Instance</code>.</p>
+<h3 id="auroraserviceupdatepropertiestarget-instance"><code>AuroraService:UpdateProperties(target: Instance): ()</code></h3>
+<p>This method most likely is used to manually update an <code>Instance</code>'s properties, while its being predicted.
+Not sure about what it truly does or what it's really useful for, as all properties should automatically get updated while being predicted.</p>
+<h3 id="auroraserviceshowdebugvisaulizerstate-boolean"><code>AuroraService:ShowDebugVisaulizer(state: boolean): ()</code></h3>
+<p>This method, when called on the server in a play-test, shows you information about the current state of the prediction system.
+It contains many elements such as the prediction success rate on both <code>Instance</code>s and scripts. Or how many predicted <code>Instance</code>s there are, live.</p>
+<h3 id="auroraservicegetworldstepid-number"><code>AuroraService:GetWorldStepId(): number</code></h3>
+<p>This method returns the current world step id, which is a number.
+Step id is presumably used for rolling back to a previous state of the prediction.</p>
+<h3 id="auroraservicegetremoteworldstepid-number"><code>AuroraService:GetRemoteWorldStepId(): number</code></h3>
+<p>There's not much information about this method, other than it always returns 0.</p>
+<h3 id="auroraservicestepphysicsworldsteps-number-instances-instance"><code>AuroraService:StepPhysics(worldsteps: number, instances: {Instance}): ()</code></h3>
+<p>This method steps the physics of the given <code>Instance</code>s by the given <code>worldsteps</code> amount. 
+All the given <code>Instance</code>s must be a <code>BasePart</code>. If an <code>Instance</code> is not a <code>BasePart</code> in this table, then it will be ignored for the physics step. </p>
+<p><em>(This method is also important for <code>AuroraScript</code>s.)</em></p>
+<h3 id="auroraservicesetincomingreplicationlagseconds-number"><code>AuroraService:SetIncomingReplicationLag(seconds: number): ()</code></h3>
+<p>This method allows you to set the incoming replication lag. It may be used while debugging.</p>
+<h3 id="input-recording">Input Recording</h3>
+<p>Currently unsure of what input recording does, as all of the methods described below seemingly do nothing.
+Will update when more information has been found.</p>
+<h3 id="auroraservicestartinputrecording"><code>AuroraService:StartInputRecording(): ()</code></h3>
+<p>This method allows you to start recording input.</p>
+<h3 id="auroraservicestopinputrecording"><code>AuroraService:StopInputRecording(): ()</code></h3>
+<p>This method allows you to stop recording input.</p>
+<h3 id="auroraserviceplayinputrecording"><code>AuroraService:PlayInputRecording(): ()</code></h3>
+<p>This method allows you to play the recorded input.</p>
+<h3 id="auroraservicesetpropertyisinputtarget-instance-propertyname-string-isinput-bool"><code>AuroraService:SetPropertyIsInput(target: Instance, propertyName: string, isInput: bool): ()</code></h3>
+<p>This method presumably allows you to set <code>isInput</code> to a property of a target <code>Instance</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Setting the property to "Position" may crash your Studio. Unclear on why this occurs at the moment.</p>
+</div>
+<h2 id="events">Events</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Attempting to connect to these events outside of a Behavior <code>AuroraScript</code> will error.</p>
+</div>
+<h3 id="auroraservicestep"><code>AuroraService.Step</code></h3>
+<p>This event is fired when <code>AuroraService:StepPhysics()</code> has been called.</p>
+<h3 id="auroraservicefixedratetickdeltatime-number-worldstepid-number"><code>AuroraService.FixedRateTick(deltaTime: number, worldStepId: number)</code></h3>
+<p>This event is fired (presumably) when the <code>worldStepId</code> changes. 
+<code>deltaTime</code> should be a constant number, while the <code>worldStepId</code> increases.</p>
+<h3 id="auroraservicemispredictionworldstepid-number-mispredictedinstances-instance"><code>AuroraService.Misprediction(worldStepId: number, mispredictedInstances: {Instance})</code></h3>
+<p>This event is fired when a misprediction occurs on certain <code>Instance</code>(s). This happens when there's a mismatch between the client and the server's prediction on an <code>Instance</code>'s physics.</p>
+<h3 id="auroraservicerollbackworldstepid-number"><code>AuroraService.Rollback(worldStepId: number)</code></h3>
+<p>This event is fired when a rollback occurs. Rollbacks generally occur after a misprediction, which causes an <code>Instance</code> to be reverted back to its previous state.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>These are all of the current events and the methods of AuroraService. If more information gets found about them, this documentation will be updated.</p>
+</div>
+<hr />
+<h1 id="aurorascript">AuroraScript</h1>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>It is most likely that Roblox will be changing the name "AuroraScript" to "BehaviorScript" in the near future, to more accurately represent what it does.</p>
+</div>
+<p>This is a new unique <code>Script</code> object that allows you to connect to the various events of <code>AuroraService</code>, and define Behaviors that operate on them. </p>
+<p>Unlike the other <code>Script</code> types, <code>AuroraScript</code> is pretty limited in terms of what is possible to do with it. This is due to its purpose mainly being related to server authority and prediction, and not the main game logic. Here are the limitions that I'm currently aware of:</p>
+<ul>
+<li>All <code>AuroraScript</code>s in the same location (e.g, <code>workspace</code>) must have a different name. Otherwise, one of them will not run.</li>
+<li>Certain APIs and global libraries do not work in the environment of an <code>AuroraScript</code>. The ones I'm aware of at the moment are:<ul>
+<li>All methods of the <code>task</code> library (Except for <code>task.cancel()</code>).</li>
+<li><code>RunService:IsClient()</code> and <code>RunService:IsServer()</code>.</li>
+<li><code>coroutine.yield()</code> (Behaviors cannot yield.)</li>
+</ul>
+</li>
+</ul>
+<p>Besides the limitations, generally <code>AuroraScript</code>s should always be parented to a location that can be both accessed from the client and the server, such as <code>ReplicatedStorage</code>. If you parent an <code>AuroraScript</code> to a location such as <code>ServerScriptStorage</code>, this will cause it to only run on the server, and not the client. This defeats the whole purpose of <code>AuroraScript</code>s, as they run both on the server and the client simultaneously.</p>
+<h2 id="methods_1">Methods</h2>
+<h3 id="aurorascriptaddtoinstance-instance"><code>AuroraScript:AddTo(instance: Instance): ()</code></h3>
+<p>This method binds the Behavior <code>AuroraScript</code> to the specified <code>Instance</code>.
+This then calls the (if defined) <code>.OnStart</code> method of the Behavior.</p>
+<p>Behaviors can also be binded manually, without the need of this method.
+With the Server Authority feature enabled, the Properties widget gain a new section for every <code>Instance</code>, called: "Behaviors".
+Clicking the "+" button on this section will allow you to find and bind any Behavior on an <code>Instance</code>.</p>
+<h3 id="aurorascriptremovefrominstance-instance"><code>AuroraScript:RemoveFrom(instance: Instance): ()</code></h3>
+<p>This method removes the Behavior <code>AuroraScript</code> from the specified <code>Instance</code>.</p>
+<h3 id="aurorascriptisoninstanceinstance-instance"><code>AuroraScript:IsOnInstance(instance: Instance): ()</code></h3>
+<p>This method allows you to check if the Behavior <code>AuroraScript</code> is on the specified <code>Instance</code>.</p>
+<h3 id="aurorascriptsignalfiredinstance-instance-topic-string"><code>AuroraScript:SignalFired(instance: Instance, topic: string)</code></h3>
+<p>This method allows you to create a Signal that is fired when the <code>AuroraScriptObject</code> of the <code>AuroraScript</code> publishes a value with a topic.</p>
+<h2 id="behavior">Behavior</h2>
+<p>Every <code>AuroraScript</code> comes with a global data type called <code>Behavior</code>, which can be accessed everywhere from the script.
+This Behavior allows you to connect to certain methods and events that allow you to (presumably) configure how the prediction on a certain <code>Instance</code> works.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The term "Behavior" actually represents an <code>AuroraScript</code>. <code>AuroraScript</code>s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behaviors" section in the Properties window, this is more apparent.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Every Behavior must be bound to an <code>Instance</code> for them to work.</p>
+</div>
+<p>There are certain methods you have to define in the Behavior for it to start working. They are listed below.</p>
+<h3 id="behavioronstartself-aurorascriptobject"><code>Behavior.OnStart(self: AuroraScriptObject): ()</code></h3>
+<p>This is a special method that you can define in the Behavior, which runs when the Behavior has been bound to an <code>Instance</code>. It allows you to connect to various events of the <code>AuroraService</code>, and do some other things.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnStart</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">)</span><span class="w"> </span><span class="c1">-- This method is called when :AddTo() is called on an Instance.</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nf">print</span><span class="p">(</span><span class="nv">self</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kr">end</span>
+</code></pre></div>
+<p>You might've noticed that <code>.OnStart</code> has a parameter called <code>self</code>, which is an <code>AuroraScriptObject</code>. This is the object that is given to every function that you define in the Behavior. It will be explained in detail in the next section.</p>
+<h3 id="behavioronstopself-aurorascriptobject"><code>Behavior.OnStop(self: AuroraScriptObject): ()</code></h3>
+<p>This is a special method that you can define in the Behavior, which runs when the Behavior has been removed from the bound <code>Instance</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnStop</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">)</span><span class="w"> </span><span class="c1">-- This method is called when :AddTo() is called on an Instance.</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nf">print</span><span class="p">(</span><span class="nv">self</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kr">end</span>
+</code></pre></div>
+<h3 id="behaviordeclarefieldfieldname-string-_-type-boolean-cframe-color3-enum-instance-number-random-vector2-vector3"><code>Behavior.DeclareField(fieldName: string, _: { Type: "boolean" | "cframe" | "color3" | "enum" | "instance" | "number" | "random" | "vector2" | "vector3" }): ()</code></h3>
+<p>This method allows you to define a field with a certain type in the <code>AuroraScriptObject</code>. The defined field will appear as a property within the <code>AuroraScriptObject</code>.</p>
+<h2 id="aurorascriptobject">AuroraScriptObject</h2>
+<p>This is the object given to the every function defined in the Behavior. It has certain properties and methods that allows you to do things such as manual prediction, sending messages across Behaviors, and more. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">type</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nc">Instance</span><span class="p">:</span><span class="w"> </span><span class="nc">Instance</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nc">Frame</span><span class="p">:</span><span class="w"> </span><span class="nc">number</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nc">LODLevel</span><span class="p">:</span><span class="w"> </span><span class="nc">number</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nc">Connect</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nc">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nc">signal</span><span class="p">:</span><span class="w"> </span><span class="nc">RBXScriptSignal</span><span class="p">,</span><span class="w"> </span><span class="nc">functionName</span><span class="p">:</span><span class="w"> </span><span class="nc">string</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">RBXScriptConnection</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nc">Subscribe</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nc">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nc">topic</span><span class="p">:</span><span class="w"> </span><span class="nc">string</span><span class="p">,</span><span class="w"> </span><span class="nc">functionName</span><span class="p">:</span><span class="w"> </span><span class="nc">string</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">string</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nc">Publish</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nc">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nc">topic</span><span class="p">:</span><span class="w"> </span><span class="nc">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nc">any</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">any</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nc">SendMessage</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nc">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nc">boundInstance</span><span class="p">:</span><span class="w"> </span><span class="nc">Instance</span><span class="p">,</span><span class="w"> </span><span class="nc">behaviorName</span><span class="p">:</span><span class="w"> </span><span class="nc">string</span><span class="p">,</span><span class="w"> </span><span class="nc">functionName</span><span class="p">:</span><span class="w"> </span><span class="nc">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nc">any</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">...</span><span class="nc">any</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nc">Delay</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nc">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nc">amount</span><span class="p">:</span><span class="w"> </span><span class="nc">number</span><span class="p">,</span><span class="w"> </span><span class="nc">functionName</span><span class="p">:</span><span class="w"> </span><span class="nc">string</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">string</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nc">SetMaxFrequency</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nc">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nc">frequency</span><span class="p">:</span><span class="w"> </span><span class="nc">number</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">number</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnStart</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="nc">AuroraScriptObject</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nf">print</span><span class="p">(</span><span class="nv">self</span><span class="p">)</span><span class="w"> </span><span class="c1">-- prints the AuroraScriptObject</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="kr">end</span>
+</code></pre></div>
+<p>Now be warned, unlike any other object which is found in the Roblox API, <code>AuroraScriptObject</code> does not reflect the properties found in the API dump. Even when you print this object, it does not give you any property names that allows you to directly access a certain value.</p>
+<p>An example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">[</span><span class="nv">Attached</span><span class="w"> </span><span class="nv">Instance</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Part</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="p">[</span><span class="nv">Behavior</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">AuroraScript</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="p">[</span><span class="nv">Frame</span><span class="w"> </span><span class="nv">ID</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">509</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="p">[</span><span class="nv">self</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="err">▶</span><span class="w"> </span><span class="p">{...}</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>This is a detailed string that shows you information about the <code>AuroraScriptObject</code>, such as which frame it currently is on, the Behavior it is from, the bound instance, and lastly, the <code>self</code> table, which is used to show you the declared fields made with <code>Behavior.DeclareField()</code> function. (These field properties can be accessed through indexing the <code>AuroraScriptObject</code> with their name.)</p>
+<p>Unfortunately, you cannot access these properties directly, and most likely this information is only shown for debugging purposes.
+In the previous example however, you might have noticed that I've added an <code>AuroraScriptObject</code> type which contains information about all of the currently known and actually accessible methods and properties of the <code>AuroraScriptObject</code>. 
+I have found these properties using reverse-engineering. They are described in detail below.</p>
+<h3 id="properties">Properties</h3>
+<h3 id="aurorascriptobjectinstance"><code>AuroraScriptObject.Instance</code></h3>
+<p>This is the <code>Instance</code> that the Behavior is bound to.</p>
+<h3 id="aurorascriptobjectframe"><code>AuroraScriptObject.Frame</code></h3>
+<p>The current Frame the world is on. Most likely changes after Heartbeat or PreAnimation.</p>
+<h3 id="aurorascriptobjectlodlevel"><code>AuroraScriptObject.LODLevel</code></h3>
+<p>The level of distance number of the Behavior. Not sure what it is supposed to be used for at the moment.</p>
+<h3 id="methods_2">Methods</h3>
+<h3 id="aurorascriptobjectconnectself-aurorascriptobject-signal-rbxscriptsignal-functionname-string-rbxscriptconnection"><code>AuroraScriptObject.Connect:(self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -&gt; RBXScriptConnection</code></h3>
+<p>This method allows you to connect to a certain given <code>RBXScriptSignal</code>. It is mostly used to connecting to certain <code>AuroraService</code> events.
+The <code>functionName</code> argument must be the name of a function in the Behavior.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">type</span><span class="w"> </span><span class="nv">AuroraScriptObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nv">Instance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nv">Frame</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nv">LODLevel</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nv">Connect</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">signal</span><span class="p">:</span><span class="w"> </span><span class="py">RBXScriptSignal</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">RBXScriptConnection</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nv">Subscribe</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">topic</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">string</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nv">Publish</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">topic</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">any</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nv">SendMessage</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">boundInstance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span><span class="w"> </span><span class="nv">behaviorName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nv">Delay</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">string</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nv">SetMaxFrequency</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">frequency</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">number</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnStart</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="nv">self</span><span class="p">:</span><span class="nf">Connect</span><span class="p">(</span><span class="nv">AuroraService</span><span class="p">.</span><span class="py">FixedRateTick</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Predict&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="kr">end</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">Predict</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">deltaTime</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span><span class="w"> </span><span class="nv">worldStepId</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">)</span><span class="w"> </span><span class="c1">-- This method will get called whenever the .FixedRateTick event fires.</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="nv">self</span><span class="p">,</span><span class="w"> </span><span class="nv">deltaTime</span><span class="p">,</span><span class="w"> </span><span class="nv">worldStepId</span><span class="p">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="kr">end</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>.Connect</code> can only be called in the <code>.OnStart</code> function. Attempting to call this function anywhere else will cause an error.</p>
+</div>
+<h3 id="aurorascriptobjectsubscribeself-aurorascriptobject-topic-string-functionname-string-string"><code>AuroraScriptObject.Subscribe(self: AuroraScriptObject, topic: string, functionName: string) -&gt; string</code></h3>
+<p>This method allows you to subcribe to a published value in the Behavior with a certain <code>topic</code>. The <code>functionName</code> must be the name of a function in the Behavior.</p>
+<p>The subcribed function will always have 2 arguments by default, the self <code>AuroraScriptObject</code> and the bound <code>Instance</code>. Additional arguments will come after. Calling this method will return the value of the <code>topic</code> parameter.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function can only be called in <code>.OnStart</code>.</p>
+</div>
+<h3 id="aurorascriptobjectpublishself-aurorascriptobject-topic-string-any-any"><code>AuroraScriptObject.Publish(self: AuroraScriptObject, topic: string, ...any) -&gt; any</code></h3>
+<p>This method allows you to publish a value in the Behavior with a certain <code>topic</code>. The last argument given to this method will be returned as a value.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function cannot be called in <code>.OnStart</code>.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">type</span><span class="w"> </span><span class="nv">AuroraScriptObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nv">Instance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nv">Frame</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nv">LODLevel</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nv">Connect</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">signal</span><span class="p">:</span><span class="w"> </span><span class="py">RBXScriptSignal</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">RBXScriptConnection</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nv">Subscribe</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">topic</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">string</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="nv">Publish</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">topic</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">any</span><span class="p">,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nv">SendMessage</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">boundInstance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span><span class="w"> </span><span class="nv">behaviorName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">,</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nv">Delay</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">string</span><span class="p">,</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="nv">SetMaxFrequency</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">frequency</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">number</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">}</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnStart</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="nv">self</span><span class="p">:</span><span class="nf">Subscribe</span><span class="p">(</span><span class="s2">&quot;Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;GetPublishedValue&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="nv">self</span><span class="p">:</span><span class="nf">Connect</span><span class="p">(</span><span class="nv">AuroraService</span><span class="p">.</span><span class="py">FixedRateTick</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;OnFixedRateTick&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="kr">end</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnFixedRateTick</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">deltaTime</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span><span class="w"> </span><span class="nv">worldStepId</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">)</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span><span class="nv">self</span><span class="p">:</span><span class="nf">Publish</span><span class="p">(</span><span class="s2">&quot;Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hello!&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="kr">end</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">GetPublishedValue</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">boundInstance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span><span class="w"> </span><span class="nv">recievedValue</span><span class="p">:</span><span class="w"> </span><span class="py">any</span><span class="p">)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="nv">boundInstance</span><span class="p">,</span><span class="w"> </span><span class="nv">recievedValue</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Instance, Hello!</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="kr">end</span>
+</code></pre></div>
+<h3 id="aurorascriptobjectsendmessageself-aurorascriptobject-boundinstance-instance-behaviorname-string-functionname-string-any-any"><code>AuroraScriptObject.SendMessage(self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -&gt; ...any</code></h3>
+<p>This method allows you to communicate with other Behaviors in a world. When sending a message, you must specify the <code>Instance</code> that a Behavior is bound to, the name of the Behavior, and the name of the function you want to send this message to.
+Then, you can add additional values as arguments to send to the function.</p>
+<h4 id="sending-and-recieving-messages">Sending and Recieving Messages</h4>
+<p>Let's assume we have 2 <code>AuroraScript</code>s in the <code>workspace</code> called: "Test_1", and "Test_2".
+And let's also assume we have 2 <code>Part</code>s these Behavior <code>AuroraScript</code>s are bound to.</p>
+<p>Our system would be like this:</p>
+<p>Test_1 --&gt; Part<br>
+Test_2 --&gt; Part_2</p>
+<p>If we wanted to send a message from Test_1 to Test_2, how would we do it?
+This is where <code>:SendMessage()</code> comes in. Using this method, we can send and recieve messages across different Behaviors.</p>
+<h4 id="test_1">Test_1:</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">local</span><span class="w"> </span><span class="nv">AuroraService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nf">GetService</span><span class="p">(</span><span class="s2">&quot;AuroraService&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">type</span><span class="w"> </span><span class="nv">AuroraScriptObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nv">Instance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nv">Frame</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="nv">LODLevel</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="nv">Connect</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">signal</span><span class="p">:</span><span class="w"> </span><span class="py">RBXScriptSignal</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">RBXScriptConnection</span><span class="p">,</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="nv">Subscribe</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">topic</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">string</span><span class="p">,</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="nv">Publish</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">topic</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">any</span><span class="p">,</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="nv">SendMessage</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">boundInstance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span><span class="w"> </span><span class="nv">behaviorName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">,</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="nv">Delay</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">string</span><span class="p">,</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="nv">SetMaxFrequency</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">frequency</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">number</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">}</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnStart</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="nv">self</span><span class="p">:</span><span class="nf">Connect</span><span class="p">(</span><span class="nv">AuroraService</span><span class="p">.</span><span class="py">FixedRateTick</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;OnFixedRateTick&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="kr">end</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnFixedRateTick</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">deltaTime</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span><span class="w"> </span><span class="nv">worldStepId</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">)</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">    </span><span class="nv">self</span><span class="p">:</span><span class="nf">SendMessage</span><span class="p">(</span><span class="nv">game</span><span class="p">.</span><span class="py">Workspace</span><span class="p">.</span><span class="py">Part_2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Test_2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hello!&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="kr">end</span>
+</code></pre></div>
+<h4 id="test_2">Test_2</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">local</span><span class="w"> </span><span class="nv">AuroraService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nf">GetService</span><span class="p">(</span><span class="s2">&quot;AuroraService&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">type</span><span class="w"> </span><span class="nv">AuroraScriptObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nv">Instance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nv">Frame</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nv">LODLevel</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="nv">Connect</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">signal</span><span class="p">:</span><span class="w"> </span><span class="py">RBXScriptSignal</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">RBXScriptConnection</span><span class="p">,</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="nv">Subscribe</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">topic</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">string</span><span class="p">,</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="nv">Publish</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">topic</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">any</span><span class="p">,</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="nv">SendMessage</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">boundInstance</span><span class="p">:</span><span class="w"> </span><span class="py">Instance</span><span class="p">,</span><span class="w"> </span><span class="nv">behaviorName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">...</span><span class="nv">any</span><span class="p">,</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="nv">Delay</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span><span class="w"> </span><span class="nv">functionName</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">string</span><span class="p">,</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="nv">SetMaxFrequency</span><span class="p">:</span><span class="w"> </span><span class="err">(</span><span class="py">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">frequency</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">number</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">}</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnStart</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="nv">self</span><span class="p">:</span><span class="nf">Connect</span><span class="p">(</span><span class="nv">AuroraService</span><span class="p">.</span><span class="py">FixedRateTick</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;OnFixedRateTick&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="kr">end</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnFixedRateTick</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">deltaTime</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">,</span><span class="w"> </span><span class="nv">worldStepId</span><span class="p">:</span><span class="w"> </span><span class="py">number</span><span class="p">)</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="kr">function</span><span class="w"> </span><span class="nc">Behavior</span><span class="p">.</span><span class="nf">OnMessageTest</span><span class="p">(</span><span class="nv">self</span><span class="p">:</span><span class="w"> </span><span class="py">AuroraScriptObject</span><span class="p">,</span><span class="w"> </span><span class="nv">recievedMessage</span><span class="p">:</span><span class="w"> </span><span class="py">string</span><span class="p">)</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span><span class="nb">warn</span><span class="p">(</span><span class="nv">recievedMessage</span><span class="p">)</span><span class="w"> </span><span class="c1">-- &quot;Hello!&quot;</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="kr">end</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>All functions recieving a message must have a name that starts with "OnMessage". For example, if we call the <code>:SendMessage()</code> with a <code>functionName</code> argument called "Test", then the function name must be "OnMessageTest" on the recieving Behavior.</p>
+</div>
+<h3 id="aurorascriptobjectdelayself-aurorascriptobject-amount-number-functionname-string-string"><code>AuroraScriptObject.Delay(self: AuroraScriptObject, amount: number, functionName: string): string</code></h3>
+<p>This method allows you to run a function in the Behavior with a certain amount of delay. (In seconds)</p>
+<h3 id="aurorascriptobjectsetmaxfrequencyself-aurorascriptobject-frequency-number-number"><code>AuroraScriptObject.SetMaxFrequency(self: AuroraScriptObject, frequency: number): number</code></h3>
+<p>This method allows you to set the maximum amount of frequency the <code>AuroraScriptObject</code> can run with. Must be a value between 1 to 60.</p>
+<hr />
+<h1 id="aurorascriptservice">AuroraScriptService</h1>
+<p>This service is meant to manage and communicate with Behavior <code>AuroraScript</code>s. Unlike AuroraService however, it does not have special properties or events, just methods.</p>
+<h2 id="methods_3">Methods</h2>
+<h3 id="aurorascriptservicesendmessageinstance-instance-behaviorname-string-functionname-string-any"><code>AuroraScriptService:SendMessage(instance: Instance, behaviorName: string, functionName: string, ...: any): ()</code></h3>
+<p>This method works exactly the same as the <code>AuroraScriptObject:SendMessage()</code>, except it is used outside of Behaviors to send messages to Behaviors. The same rules apply.</p>
+<h3 id="aurorascriptservicegetbehaviors-aurorascript"><code>AuroraScriptService:getBehaviors(): {AuroraScript}</code></h3>
+<p>This method returns a table containing all of the Behaviors in the place.</p>
+<h3 id="aurorascriptservicegetbehaviorsforinstanceinstance-instance-aurorascript"><code>AuroraScriptService:getBehaviorsForInstance(instance: Instance): {AuroraScript}</code></h3>
+<p>This method returns a table containing all of the Behaviors bound to the specified <code>Instance</code>.</p>
+<h3 id="aurorascriptservicegetinstancesforbehaviorbehavior-aurorascript-instance"><code>AuroraScriptService:getInstancesForBehavior(behavior: AuroraScript): {Instance}</code></h3>
+<p>This method returns a table containing all of the <code>Instance</code>s that the specified Behavior is bound to.</p>
+<h3 id="aurorascriptservicegetlocalframeid-number"><code>AuroraScriptService:GetLocalFrameId(): number</code></h3>
+<p>This method returns a number that presumably indicates the current frame of the world.</p>
+<hr />
+<h1 id="closing-thoughts">Closing Thoughts</h1>
+<p>That's all! Hopefully I could explain these new features well. If you have any questions or things to share, please contact me through my Twitter.
+I may update this documentation with more information whenever I find them. Cheers!</p>
+<hr />
+<h1 id="credits">Credits</h1>
+<h4 id="noctua-tenebrisnoctua-on-twitter">Noctua (@TenebrisNoctua on Twitter)</h4>
+<h4 id="max-maximumadhd-on-twitter">Max (@MaximumADHD on Twitter)</h4>
+<h4 id="aztup-realaztup-on-twitter">Aztup (@RealAztup on Twitter)</h4>
+<h4 id="x64-walletoverflow-on-devforum">x64 (@WalletOverflow on DevForum)</h4>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://github.com/TenebrisNoctua"  target="_blank" rel="noopener">Tenebris Noctua</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "navigation.sections", "navigation.footer", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
