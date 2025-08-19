@@ -537,7 +537,7 @@ This service is meant to manage and communicate with Behavior `AuroraScript`s. U
 
 ### `AuroraScriptService:SendMessage(instance: Instance, behaviorName: string, functionName: string, ...: any): ()`
 
-This method works exactly the same as the [`AuroraScriptObject:SendMessage()`](#aurorascriptobjectsendmessageself-aurorascriptobject-boundinstance-instance-behaviorname-string-functionname-string-any---any), except it is used outside of Behaviors to send messages to Behaviors. The same rules apply.
+This method works exactly the same as the `AuroraScriptObject:SendMessage()`, except it is used outside of Behaviors to send messages to Behaviors. The same rules apply.
 
 ### `AuroraScriptService:getBehaviors(): {AuroraScript}`
 
@@ -554,6 +554,8 @@ This method returns a table containing all of the `Instance`s that the specified
 ### `AuroraScriptService:GetLocalFrameId(): number`
 
 This method returns a number that presumably indicates the current frame of the world.
+
+-----
 
 # Closing Thoughts
 
