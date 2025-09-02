@@ -289,25 +289,33 @@ There are certain methods you have to define in the Behavior for it to start wor
 
 ### `Behavior.OnStart(self: AuroraScriptObject): ()`
 
-This is a special method that you can define in the Behavior, which runs when the Behavior has been bound to an `Instance`. It allows you to connect to various events of the `AuroraService`, and do some other things.
+This is a special method that you can define in the Behavior, which runs when the Behavior has been started. It allows you to connect to various events of the `AuroraService`, and do some other things.
 
 ```luau
-function Behavior.OnStart(self: AuroraScriptObject) -- This method is called when :AddTo() is called on an Instance.
+function Behavior.OnStart(self: AuroraScriptObject)
     print(self)
 end
 ```
 
 You might've noticed that `.OnStart` has a parameter called `self`, which is an `AuroraScriptObject`. This is the object that is given to every function that you define in the Behavior. It will be explained in detail in the next section.
 
+!!! info
+    Behaviors are started when the physics simulation begins, if they've already been added to an `Instance` before the simulation.
+    If not, then Behaviors are started after `:AddTo()` has been called on them, or if they've been manually bound to an `Instance` in the Properties widget.
+
 ### `Behavior.OnStop(self: AuroraScriptObject): ()`
 
-This is a special method that you can define in the Behavior, which runs when the Behavior has been removed from the bound `Instance`.
+This is a special method that you can define in the Behavior, which runs when the Behavior has been stopped.
 
 ```luau
-function Behavior.OnStop(self: AuroraScriptObject) -- This method is called when :AddTo() is called on an Instance.
+function Behavior.OnStop(self: AuroraScriptObject)
     print(self)
 end
 ```
+
+!!! info
+    Behaviors are stopped when the Physics simulation ends, if they've already been started.
+    If not, then Behaviors are stopped when `:RemoveFrom()` has been called on them, or if they've been manually removed from an `Instance` in the Properties widget.
 
 ### `Behavior.DeclareField(fieldName: string, _: { Type: "boolean" | "cframe" | "color3" | "enum" | "instance" | "number" | "random" | "vector2" | "vector3" }): ()`
 
@@ -550,6 +558,16 @@ This method returns a table containing all of the Behaviors bound to the specifi
 ### `AuroraScriptService:getInstancesForBehavior(behavior: AuroraScript): {Instance}`
 
 This method returns a table containing all of the `Instance`s that the specified Behavior is bound to.
+
+### `AuroraScriptService:FindBindings(instance: Instance): { [string]: any }`
+
+This method returns a table containing all of the `AuroraScriptObject`s from the Behaviors bound to an `Instance`.
+Can only be used within `AuroraScript`s.
+
+### `AuroraScriptService:FindBinding(instance: Instance, scriptName: string): AuroraScriptObject`
+
+This method returns the `AuroraScriptObject` from the target Behavior (with the `scriptName`) bound to an `Instance`.
+Can only be used within `AuroraScript`s.
 
 ### `AuroraScriptService:GetLocalFrameId(): number`
 
