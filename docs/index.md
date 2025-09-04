@@ -79,13 +79,16 @@ Settings these flags to `True` should grant you access to the features mentioned
 To give a short summary on what Server Authority is, it is when the server becomes the single source of truth for game actions, logic, and data. This basically means that the server will dictate how the data and logic such as physics *should* work within your game.
 
 To fully enable this feature in Roblox Studio, you must go into the `Workspace` properties and change some values. They are listed below:
+
 * `Server Authority > AuthorityMode`: `Server`
 * `Behavior > PhysicsSteppingMethod`: `Fixed`
 
 !!! warning
     Setting the `AuthorityMode` to `Server` will automatically change certain other workspace properties. They are listed below:
+
     * `StreamingEnabled`: `true`
     * `SignalBehavior`: `Deferred`
+
     These properties cannot be changed while the `AuthorityMode` is set to `Server`.
 
 ## Part Physics
@@ -270,7 +273,7 @@ This method removes the Behavior `AuroraScript` from the specified `Instance`.
 
 This method allows you to check if the Behavior `AuroraScript` is on the specified `Instance`.
 
-### `AuroraScript:SignalFired(instance: Instance, topic: string)`
+### `AuroraScript:SignalFired(instance: Instance, topic: string): RBXScriptSignal`
 
 This method allows you to create a Signal that is fired when the `AuroraScriptObject` of the `AuroraScript` publishes a value with a topic.
 
@@ -300,7 +303,7 @@ end
 You might've noticed that `.OnStart` has a parameter called `self`, which is an `AuroraScriptObject`. This is the object that is given to every function that you define in the Behavior. It will be explained in detail in the next section.
 
 !!! info
-    Behaviors are started when the physics simulation begins, if they've already been added to an `Instance` before the simulation.
+    Behaviors are started when the physics simulation begins, if they've already been bound to an `Instance` before the simulation.
     If not, then Behaviors are started after `:AddTo()` has been called on them, or if they've been manually bound to an `Instance` in the Properties widget.
 
 ### `Behavior.OnStop(self: AuroraScriptObject): ()`
@@ -360,7 +363,7 @@ This is a detailed string that shows you information about the `AuroraScriptObje
 
 Unfortunately, you cannot access these properties directly, and most likely this information is only shown for debugging purposes.
 In the previous example however, you might have noticed that I've added an `AuroraScriptObject` type which contains information about all of the currently known and actually accessible methods and properties of the `AuroraScriptObject`. 
-I have found these properties using reverse-engineering. They are described in detail below.
+(Of course, I have found these properties using reverse-engineering methods.) They are described in detail below.
 
 ### Properties
 
