@@ -4,7 +4,7 @@
     The services and `Instance`s mentioned in this page cannot be accessed without configuring certain flags.
     If you have enabled the flags from the previous page, you may continue. However, if you've just enrolled into the program without changing the flags, then it is not recommended for you to read this page.
 
-!!! info
+!!! note
     Some information on this page may be inaccurate. Take it with a pinch of salt.
 
 Up until this point, I explained the default behavior of the server authority system on all `Part`s and characters. However, this default behavior can be changed. For example, it is possible to exclude certain `Part`s and characters from this system, so the network ownership system can be used instead. And this is the service allowing you to do exactly that. It is made out of methods and events that allows you to manually configure certain parts of the server authority system.
