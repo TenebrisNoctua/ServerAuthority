@@ -14,8 +14,8 @@ Let's begin.
 
 If you want to access everything that will be mentioned in later sections, you must either:
 
-**(A) Enroll in the Early Access Program for the Server Authority Core API.** 
-**(B) Enable certain flags in Roblox Studio.\***<br>
+**(A) Enroll in the Early Access Program for the Server Authority Core API.**<br>
+**(B) Enable certain flags in Roblox Studio.\***
 
 <h6>*: This documentation will not mention on how you can edit flags in Roblox Studio, as it is not my responsibility.</h6>
 
