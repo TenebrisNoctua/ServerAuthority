@@ -59,8 +59,9 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
-  - Server Authority: index.md
-  - AuroraService and Behaviors: aurora.md
-  - Credits: credits.md
+  - Server Authority: 
+    - Server Authority: index.md
+    - AuroraService and Behaviors: aurora.md
+    - Credits: credits.md
 copyright: |
   &copy; 2025 <a href="https://github.com/TenebrisNoctua"  target="_blank" rel="noopener">Tenebris Noctua</a>
