@@ -61,7 +61,7 @@ markdown_extensions:
 nav:
   - Server Authority: 
     - Server Authority: index.md
-    - AuroraService and Behaviors: aurora.md
+    - Services and Behaviors: aurora.md
     - Credits: credits.md
 copyright: |
   &copy; 2025 <a href="https://github.com/TenebrisNoctua"  target="_blank" rel="noopener">Tenebris Noctua</a>
