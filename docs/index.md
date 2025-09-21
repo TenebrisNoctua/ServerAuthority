@@ -34,7 +34,7 @@ Restart your Studio. Upon the restart, there will be an "Update Studio" button o
 
 If your custom bootstrapper application to launch Studio does not have a built-in system for automatically opening the version meant for the early access program, then follow the steps below.
 
-Go to the [create page](create.roblox.com). And re-download the Studio application. After install, it should automatically open. Click on the "Update Studio" button on the top right. This will automatically update your Studio and install the version meant for the program.
+Go to your [creator page](https://create.roblox.com). And re-download the Studio application. After install, it should automatically open. Click on the "Update Studio" button on the top right. This will automatically update your Studio and install the version meant for the program.
 After this, you should be good to go.
 
 Do not forget to launch the Studio application through the versions folder for the Studio application. Using your custom bootstrapper may not work.
