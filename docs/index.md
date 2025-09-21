@@ -144,7 +144,7 @@ There are new properties and events added to `RunService` which you can utilize 
 
 ## Properties
 
-## `RunService.FrameNumber`
+### `RunService.FrameNumber`
 
 This value determines the current frame number. This value is rolled back on the client when a resimulation occurs. It is the foundation upon which features like `FixedHeartbeat` are built. Printing this number can be helpful for understanding what exactly is happening when on the client and server.
 
