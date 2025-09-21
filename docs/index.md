@@ -1,8 +1,3 @@
----
-  hide:
-    - navigation
----
-
 # Getting Started
 
 Hello. This is a detailed documentation about the new server authority system that Roblox has showcased recently.
