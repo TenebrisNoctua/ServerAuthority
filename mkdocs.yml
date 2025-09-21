@@ -5,8 +5,9 @@ theme:
   custom_dir: docs/overrides
   name: material
   features:
-    - navigation.top
+    - navigation.tabs
     - navigation.sections
+    - navigation.top
     - navigation.footer
     - navigation.path
     - navigation.indexes 
@@ -58,6 +59,8 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
-  - Documentation: index.md
+  - Server Authority: index.md
+  - AuroraService and Behaviors: aurora.md
+  - Credits: credits.md
 copyright: |
   &copy; 2025 <a href="https://github.com/TenebrisNoctua"  target="_blank" rel="noopener">Tenebris Noctua</a>

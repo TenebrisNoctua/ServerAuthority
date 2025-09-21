@@ -1,62 +1,47 @@
----
-  hide:
-    - navigation
-    - toc
----
-
-<div class="api-summary-list">
-    <h3 class="api-summary-list-h3">Navigation</h3>
-    <div class="api-summary-section">
-        <h3 class="api-summary-section-h3"><a href="#getting-started">Getting Started</a></h3>
-        <h3 class="api-summary-section-h3"><a href="#how-to-access">How to Access?</a></h3>
-        <h3 class="api-summary-section-h3"><a href="#server-authority">Server Authority</a></h3>
-        <div class="api-summary-section-list">
-            <ul style="list-style-type: none;">
-                <li><a href="#part-physics">Part Physics</a></li>
-                <li><a href="#character-physics">Character Phsyics</a></li>
-            </ul>
-        </div>
-        <h3 class="api-summary-section-h3" style="padding-top: 1px;"><a href="#the-prediction-system">The Prediction System</a></h3>
-        <h3 class="api-summary-section-h3"><a href="#auroraservice">AuroraService</a></h3>
-        <div class="api-summary-section-list">
-            <ul style="list-style-type: none;">
-                <li><a href="#methods">Methods</a></li>
-                <li><a href="#events">Events</a></li>
-            </ul>
-        </div>
-        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#aurorascript">AuroraScript</a></h3>
-        <div class="api-summary-section-list">
-            <ul style="list-style-type: none;">
-                <li><a href="#methods-1">Methods</a></li>
-                <li><a href="#behavior">Behavior</a></li>
-                <li><a href="#aurorascriptobject">AuroraScriptObject</a></li>
-            </ul>
-        </div>
-        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#aurorascriptservice">AuroraScriptService</a></h3>
-        <div class="api-summary-section-list">
-            <ul style="list-style-type: none;">
-                <li><a href="#methods-3">Methods</a></li>
-            </ul>
-        </div>
-        <h3 class="api-summary-section-h3" style="padding-top: 4px;"><a href="#credits">Credits</a></h3>
-    </div>
-</div>
-
 # Getting Started
 
-Hello! This is a detailed documentation about the information I *(and some other people, credited at the bottom)* have found on the new server authority system that Roblox has been developing. This is a new system developed to achieve better security for your games.
-Now, almost all of the information here has been gained through reverse-engineering methods. However, they will not be discussed here.
+Hello. This is a detailed documentation about the new server authority system that Roblox has showcased recently.
+This is a new system aiming to achieve a better physics simulation, while also providing better security.<br>
+This documentation will try to give you almost all of the available information about this new system. However, not all information may be accurate, as this system is still a work-in-progress.
 
-With all that being said, take every information presented here with a grain of salt, they might be inaccurate, and this feature (at the time of writing) isn't even in beta yet. So please be careful. If you have any additional information that you can present about this feature, please let me know with a message on [Twitter](https://twitter.com/TenebrisNoctua).
+With all that being said, this documentation may recieve updates whenever there's a new feature added, or a feature removed. If you want to stay up-to-date, make sure to visit this documentation again later, and if you have any additional information that you can provide about this system, let me know with a message on my [Twitter](https://twitter.com/TenebrisNoctua).
 
-Now let's begin.
+Let's begin.
 
 -----
 
 # How to Access?
 
-If you want to access everything that will be mentioned in the later sections, you must enable certain flags in Roblox Studio.
-This documentation will not mention on how you can edit flags in Studio, as there are plenty of resources out there that you can search and learn from on how. And it is simply not my responsibility.
+If you want to access everything that will be mentioned in later sections, you must either:
+
+**(A) Enroll in the Early Access Program for the Server Authority Core API.** 
+**(B) Enable certain flags in Roblox Studio.\***<br>
+
+<h6>*: This documentation will not mention on how you can edit flags in Roblox Studio, as it is not my responsibility.</h6>
+
+## Enrolling to the Early Access Program for the Server Authority Core API
+
+This is the simplest way you can gain access to the new features that will be mentioned in this documentation. You can send an application [here](http://rblx.co/server-authority) to apply for the program. 
+
+If you're accepted, go to your [account settings](https://www.roblox.com/my/account), and scroll down to the "Early Access Programs" section.
+Then, select the *"Early Access: Server Authority Core API Early Access"* program. This will now enroll you to the program, and following the steps below, you can access the features.
+
+### If using vanilla Studio
+
+Restart your Studio. Upon the restart, there will be an "Update Studio" button on the top right. Clicking this button will automatically update your Studio and install the version meant for the program. After this, you should be good to go.
+
+### If using a custom bootstrapper
+
+If your custom bootstrapper application to launch Studio does not have a built-in system for automatically opening the version meant for the early access program, then follow the steps below.
+
+Go to the [create page](create.roblox.com). And re-download the Studio application. After install, it should automatically open. Click on the "Update Studio" button on the top right. This will automatically update your Studio and install the version meant for the program.
+After this, you should be good to go.
+
+Do not forget to launch the Studio application through the versions folder for the Studio application. Using your custom bootstrapper may not work.
+
+## Enabling certain flags in Roblox Studio
+
+If you're not enrolled in the early access program, you can set the flags below to `True` to access the features.
 
 ```
 DebugAuroraDefaultConfig
@@ -67,16 +52,14 @@ DebugEnableAuroraService
 StudioAuroraEditorSupport
 ```
 
-Settings these flags to `True` should grant you access to the features mentioned forward.
-
-!!! warning 
-    Enabling these flags *MAY CORRUPT YOUR FILES OR PLACES*. Publishing a place with `AuroraScript`s inside may cause your place to never be launched on the client. And you may not be able to access your Team-Create sessions. *BE CAUTIOUS.*
+!!! warning
+    Modifying Roblox Studio flags *is not recommended*, as it can corrupt your places, or even the Studio app itself. I heavily recommend you to try to gain access through the early access program instead. **Regardless, I will not accept any responsibility that comes from you modifying your Studio application.**
 
 -----
 
 # Server Authority
 
-To give a short summary on what Server Authority is, it is when the server becomes the single source of truth for game actions, logic, and data. This basically means that the server will dictate how the data and logic such as physics *should* work within your game.
+To give a short summary on what Server Authority is, it is when the server becomes the single source of truth for game actions, logic, and data. This basically means that the server will dictate how the data and logic such as physics will work within your game.
 
 To fully enable this feature in Roblox Studio, you must go into the `Workspace` properties and change some values. They are listed below:
 
@@ -95,20 +78,23 @@ To fully enable this feature in Roblox Studio, you must go into the `Workspace` 
 
 Enabling this feature completely changes the behavior of all unanchored `Part`s in the `Workspace`. Before; the physics calculation of a `Part` was handled by both the server and the clients in a place. When a client came close to a `Part`, the network ownership would automatically shift from the server to the client, so the client could take the burden of calculating the physics for that `Part`.
 
-However, now, with server authority enabled; this network ownership behavior is disabled by default. The server is now be the single source of truth about the physics of the said `Part`.
+However, now, with server authority enabled; this network ownership behavior is disabled by default. The server and the client now calculates the physics for the said part at the same time, while the server being the source of truth.
 
 ## Character Physics
 
-Before, because of network ownership, the client had full control over their character. This allowed them to change certain properties of their character such as velocity, position, rotation, and many others, to their liking. This, of course, caused many security issues. Using exploits, the client would be able to give themselves an unfair advantage in gameplay by changing these properties. This gave the rise of many exploiting issues such as speed-hacking, fly-hacking, no-clipping, teleporting, and many others inside popular places on the platform.
+Before, because of network ownership, the client had full control over their character. This allowed them to change certain properties of their character such as velocity, position, rotation, and many others to their liking. This of course, caused many security issues. Using exploits, the client would be able to give themselves an unfair advantage in gameplay by changing these properties. This gave the rise of many exploiting issues such as speed-hacking, fly-hacking, no-clipping, teleporting, and many others inside popular places on the platform.
 
-However now, with the server authority enabled, mostly any kind of these issues are now extremely difficult to happen. The implemented prediction and rollback system makes it incredibly difficult, if not impossible, to exploit character physics.
+The issues are not only limited to exploiting. In many competitive games, such as racing, the cars would most of the time be misaligned, or their position would constantly jitter, or look very different. That is because of client calculated physics of the previous system. Because the network ownership of each car is set to each client, rather than the server, the car positions would end up different than expected.
 
-If you want to see this system in action, you can easily do some tests yourself. Hitting "Play" (or "Test" in the Next Gen Studio Ribbon), should give you the chance to test pretty much anything you want. Be warned however, you may notice some weirdness with your character. These weird issues should be resolved in time.
+With the new server authority system, most of these issues, if not all of them, are automatically resolved.
 
-A good way to test the new system would be to create a wall infront of the character on the server, and then delete it on the client. Then, you can try to pass through the place where the wall was prior to deletion. You will quickly notice that the server is constantly teleporting you back, like the wall is still there.
+An example from the first case, where a client would modify their character to gain an unfair advantage such as speedhacking, would no longer be possible, as the client no longer holds ownership of their character, and all that is given to the server are inputs.
 
-!!! info
-    If you have any additional information about character and part physics prediction, please let me know!
+For the second case, since the server now calculates the positions of the cars, they now move more consistently. Maneuvers, drifts, hits, become more accurate on each client, and the system works more reliably.
+
+If you want to see this system in action, you can easily do some tests yourself. Hitting "Play" (or "Test" in the Next Gen Studio Ribbon), should give you the chance to test pretty much anything you want.
+
+A good way to test the new system would be to create a wall infront of the character on the server, and then delete it on the client. Then, you can try to pass through the place where the wall was prior to deletion. You will quickly notice that you're unable to move past the place where the wall once was, like the wall is still there, but invisible.
 
 -----
 
@@ -117,480 +103,101 @@ A good way to test the new system would be to create a wall infront of the chara
 !!! warning
     Information in this section may be inaccurate in certain places, if you have any valid corrections, please don't hesitate to reach out to me. 
 
-!!! info
-    In this section it is assumed that unlike characters, all `Part`s are always predicted and simulated by the server. If this is incorrect, like I said above, please don't hesitate to reach out.
+The server authority system is powered by a netcode system with predictions and rollback. Under this system, all characters and parts have their network ownership set to the server. By default, the server calculates the physics or movement of all of the parts and characters, and the only thing client sends to the server are the inputs for the movement. Normally, a system like this would result in choppy physics and movement, and it wouldn't feel responsive. This was the main issue with implementing a server authoritative system. However, to solve this issue, a prediction system was implemented.
 
-The server authority system is powered by a prediction and rollback system. Under this system, all characters have their network ownership set to the server. On the client, the character physics are calculated and the simulation is stepped forward by one, based on the input. This input is also sent to the server, in which the server uses to calculate the physics of the said character and step the simulation by one as well. If one side disagrees about the simulation, a rollback occurs. And with the given inputs, the system is resimulated to catch up.
+On the client, the character is simulated just like it's on the server. However, for the character movement to feel responsive and smooth, it is simulated a little bit ahead of the server. This is called "prediction". The client "predicts" where the character might be in the next second ahead of the server, to make sure the experience feels a lot smoother and responsive, while the server dictates where the character actually will be. However, if the client and server disagrees on where the character will be (a misprediction), then a rollback occurs. This rollback allows the client to resimulate the physics and the state of the character, and to catch up where it is supposed to be.
 
-While this is how the prediction system works by default, it is very well possible to be changed. This is done using the new services and the new `Instance` that comes with the server authority system. They are described in detail below.  
+Mispredictions are normal and expected. They should be small and the resulting correction should be imperceptible to clients.
+
+!!! example
+    Your client thinks you’ve moved forward. However, the server registered that you were hit by a stun grenade and can’t move for a few  seconds. The client and server now have different states.
+
+This divergence is called a misprediction. It can occur for several reasons: the network latency has shifted, other players acted in ways the client didn’t anticipate, the experience runs certain logic exclusively on the Server, etc. While you can’t prevent every misprediction, you can keep gameplay feeling smooth and responsive by using the right techniques.
+
+Basically, the client can be slightly incorrect and make a "misprediction." Things like latency variance and other players inputs can cause the client to be slightly incorrect.
+
+After misprediction, the client rolls back to the authoritative update by reverting its current state and time. Then, the client resimulates automatically after rollback to speed back to its predicted frame. The number of frames to resimulate is based on the latency between the client and the server. The client tries to stay far enough ahead of the server so that its own inputs arrive on the server just in time to be processed on the frame the user intended to perform them.
+
+!!! example 
+    Let’s say there is 100ms of latency between the client and server, and the experience is a 60Hz game.
+
+Each frame is 1/60s (or 16.67ms). Since 100ms of latency is equivalent to ~6 frames (100 ms divided by 16.67 ms/frame), we know the client will be 6 frames ahead of the server. This means that, when the client detects it made a misprediction, it will rollback to the server's state and then resimulate frames ahead. In general, the player should hardly notice this.
 
 -----
 
-# AuroraService
+# The Input Action System
 
-Up until this point, I explained the default behavior of the server authority system on all `Part`s and characters. However, like I said above, this default behavior can be changed. For example, it is possible to exclude certain `Part`s and characters from the prediction, so the network ownership system can be used instead. And this is the service allowing you to do exactly that. It is made out of methods and events that allows you to manually configure certain parts of the server authority system.
+The Input Action System (IAS) is a major part of the server authority system. It allows you to reliably transfer inputs from client to the server, while allowing you to customize them easily. I will not be explaining this system and how it works however. You can check out the main post talking about it through [here](https://devforum.roblox.com/t/client-beta-input-action-system-is-now-available-to-publish-in-experiences/3890979).
 
-## Methods
+Player inputs like joystick movement and button presses are sent from client to server using [`InputAction`](https://create.roblox.com/docs/reference/engine/classes/InputAction)s. You have to use `InputAction` for all inputs that affect the core game simulation, because they are the only client authoritative data in the core rollback system.
 
-### `AuroraService:StartPrediction(target: Instance): ()`
+You can send any continuous stream of data from the client to server using this API, and the server will trust what the client has sent. It is up to you to validate that the clients have sent legitimate inputs. Be sure to enforce maximum and minimum ranges on numbers sent from the client, just like how you would validate values sent from remotes.
 
-This method allows you to start prediction manually on the target `Instance`. When it is used, the server will start predicting the physics of the said `Instance`, if it's a `BasePart`. Additionally, this method completely bypasses network ownerships.
+!!! note 
+    The server will automatically ignore input data from the client if it arrives far too late or far too early, which can happen if there are sudden changes in a client's network conditions.
 
-### `AuroraService:StopPrediction(target: Instance): ()`
+-----
 
-This method stops the prediction on the target `Instance`. This method allows you to restore the network ownership behavior of the previous system.
+# RunService
 
-### `AuroraService:GetPredictedInstances(): {Instance}`
+There are new properties and events added to `RunService` which you can utilize to work with the server authority system.
 
-This method returns a table which contains the current predicted `Instance`s by the server authority system.
+## Properties
 
-### `AuroraService:IsPredicted(target: Instance): boolean`
+## `RunService.FrameNumber`
 
-This method returns a `boolean`, indicating if the provided `Instance` is being predicted by the server or not.
-
-!!! info
-    Like it has been mentioned briefly in the above sections, every `Part` or character in `Workspace` will automatically have their physics predicted by the server, as long as they are not anchored. Anchoring a `Part` will automatically remove it from being predicted. (Or to remove it manually, you can call `AuroraService:StopPrediction()` on that said `Part`.)
-
-### `AuroraService:GetServerView(target: Instance): Instance`
-
-This method will return a completely new `Instance` that most likely shows how the server views the target `Instance`. 
-Parenting it to a container such as `Workspace` will show the exact same properties of the target `Instance`.
-
-### `AuroraService:UpdateProperties(target: Instance): ()`
-
-This method most likely is used to manually update an `Instance`'s properties, while its being predicted.
-Not sure about what it truly does or what it's really useful for, as all properties should automatically get updated while being predicted.
-
-### `AuroraService:ShowDebugVisaulizer(state: boolean): ()`
-
-This method, when called on the server in a play-test, shows you information about the current state of the prediction system.
-It contains many elements such as the prediction success rate on both `Instance`s and scripts. Or how many predicted `Instance`s there are, live.
-
-### `AuroraService:GetWorldStepId(): number`
-
-This method returns the current world step id, which is a number.
-Step id is presumably used for rolling back to a previous state of the prediction.
-
-### `AuroraService:GetRemoteWorldStepId(): number`
-
-There's not much information about this method, other than it always returns 0.
-
-### `AuroraService:StepPhysics(worldsteps: number, instances: {Instance}): ()`
-
-This method steps the physics of the given `Instance`s by the given `worldsteps` amount. 
-All the given `Instance`s must be a `BasePart`. If an `Instance` is not a `BasePart` in this table, then it will be ignored for the physics step. 
-
-*(This method is also important for `AuroraScript`s.)*
-
-### `AuroraService:SetIncomingReplicationLag(seconds: number): ()`
-
-This method allows you to set the incoming replication lag. It may be used while debugging.
-
-### Input Recording
-
-Currently unsure of what input recording does, as all of the methods described below seemingly do nothing.
-Will update when more information has been found.
-
-### `AuroraService:StartInputRecording(): ()`
-
-This method allows you to start recording input.
-
-### `AuroraService:StopInputRecording(): ()`
-
-This method allows you to stop recording input.
-
-### `AuroraService:PlayInputRecording(): ()`
-
-This method allows you to play the recorded input.
-
-### `AuroraService:SetPropertyIsInput(target: Instance, propertyName: string, isInput: bool): ()`
-
-This method presumably allows you to set `isInput` to a property of a target `Instance`.
-
-!!! warning
-    Setting the property to "Position" may crash your Studio. Unclear on why this occurs at the moment.
+This value determines the current frame number. This value is rolled back on the client when a resimulation occurs. It is the foundation upon which features like `FixedHeartbeat` are built. Printing this number can be helpful for understanding what exactly is happening when on the client and server.
 
 ## Events
 
-!!! warning 
-    Attempting to connect to these events outside of a Behavior `AuroraScript` will error.
+### `RunService.FixedHeartbeat(deltaTime: number)`
 
-### `AuroraService.Step`
+This signal is fired just like the normal [`Heartbeat`](https://create.roblox.com/docs/reference/engine/classes/RunService#Heartbeat) signal, but is also fired again for each frame of resimulation after a misprediction is detected. This is the right place to put your core game logic, including processing input and updating your synchronized game data.
 
-This event is fired when `AuroraService:StepPhysics()` has been called.
+### `RunService.Misprediction(remoteWorldStepId: number, mispredictedInstances: {any})`
 
-### `AuroraService.FixedRateTick(deltaTime: number, worldStepId: number)`
-
-This event is fired (presumably) when the `worldStepId` changes. 
-`deltaTime` should be a constant number, while the `worldStepId` increases.
-
-### `AuroraService.Misprediction(worldStepId: number, mispredictedInstances: {Instance})`
-
-This event is fired when a misprediction occurs on certain `Instance`(s). This happens when there's a mismatch between the client and the server's prediction on an `Instance`'s physics.
-
-### `AuroraService.Rollback(worldStepId: number)`
-
-This event is fired when a rollback occurs. Rollbacks generally occur after a misprediction, which causes an `Instance` to be reverted back to its previous state.
-
-!!! info 
-    These are all of the current events and the methods of AuroraService. If more information gets found about them, this documentation will be updated.
+This signal is fired when a misprediction occurs on the client. This means the client has received data from the server that did not match what it had previously simulated. The client is about to go back to the server state and call `FixedHeartbeat` to bring itself back up to its present frame. The second argument contains information about which properties on which `Instance`s were incorrect, and how many frames will be simulated. In general, if playing by yourself, you should only see a small number of mispredictions when your ping to the server changes.
 
 -----
 
-# AuroraScript
+# Instance
 
-!!! info
-    It is most likely that Roblox will be changing the name "AuroraScript" to "BehaviorScript" in the near future, to more accurately represent what it does.
-
-This is a new unique `Script` object that allows you to connect to the various events of `AuroraService`, and define Behaviors that operate on them. 
-
-Unlike the other `Script` types, `AuroraScript` is pretty limited in terms of what is possible to do with it. This is due to its purpose mainly being related to server authority and prediction, and not the main game logic. Here are the limitions that I'm currently aware of:
-
-* All `AuroraScript`s in the same location (e.g, `workspace`) must have a different name. Otherwise, one of them will not run.
-* Certain APIs and global libraries do not work in the environment of an `AuroraScript`. The ones I'm aware of at the moment are:
-    * All methods of the `task` library (Except for `task.cancel()`).
-    * `RunService:IsClient()` and `RunService:IsServer()`.
-    * `coroutine.yield()` (Behaviors cannot yield.)
-
-Besides the limitations, generally `AuroraScript`s should always be parented to a location that can be both accessed from the client and the server, such as `ReplicatedStorage`. If you parent an `AuroraScript` to a location such as `ServerScriptStorage`, this will cause it to only run on the server, and not the client. This defeats the whole purpose of `AuroraScript`s, as they run both on the server and the client simultaneously.
+Alongside `RunService`, there are new methods implemented to control the prediction state for `Instance`s.
 
 ## Methods
 
-### `AuroraScript:AddTo(instance: Instance): ()`
+### `Instance:SetPredictionMode(mode: Enum.PredictionMode)`
 
-This method binds the Behavior `AuroraScript` to the specified `Instance`.
-This then calls the (if defined) `.OnStart` method of the Behavior.
+Determines whether the engine will rollback and resimulate the `Instance`.
 
-Behaviors can also be binded manually, without the need of this method.
-With the Server Authority feature enabled, the Properties widget gain a new section for every `Instance`, called: "Behaviors".
-Clicking the "+" button on this section will allow you to find and bind any Behavior on an `Instance`.
+* If `mode` is `Enum.PredictionMode.Off`: Disables rollback and resimulation for the Instance. When a place's `Workspace.AuthorityMode` is set to `Server`, the `Instance` will be owned by the server with no client-side prediction.
 
-### `AuroraScript:RemoveFrom(instance: Instance): ()`
+* If `mode` is `Enum.PredictionMode.Automatic` (default value): Allows the engine to determine whether to rollbaxck and resimulate the `Instance`. For `Instance`s that derive from `BasePart`, the engine uses the player’s simulation radius to determine if an `Instance` should be predicted. This helps limit expensive client-side prediction to only the relevant `Instance`s. At the moment, Non-`BasePart`s will not rollback when set to `Automatic`.
 
-This method removes the Behavior `AuroraScript` from the specified `Instance`.
+* If `mode` is `Enum.PredictionMode.On`: Will ensure the `Instance` is always rolled back when a misprediction occurs. For `Instance`s critical to your experience, use this setting. Otherwise, do not overuse `On` for `Instance`s, as it’ll have significant performance implications for low-end devices.
 
-### `AuroraScript:IsOnInstance(instance: Instance): ()`
+### `Instance:GetPredictionMode(): Enum.PredictionMode`
 
-This method allows you to check if the Behavior `AuroraScript` is on the specified `Instance`.
+Returns the prediction mode enum that indicates whether the engine will rollback and resimulate the `Instance`.
 
-### `AuroraScript:SignalFired(instance: Instance, topic: string): RBXScriptSignal`
+### `Instance:IsPredicted(): boolean`
 
-This method allows you to create a Signal that is fired when the `AuroraScriptObject` of the `AuroraScript` publishes a value with a topic.
+Returns a boolean indicating whether the `Instance` is being predicted or not.
 
-## Behavior
+## Attribute Rollback
 
-Every `AuroraScript` comes with a global data type called `Behavior`, which can be accessed everywhere from the script.
-This Behavior allows you to connect to certain methods and events that allow you to (presumably) configure how the prediction on a certain `Instance` works.
-
-!!! info
-    The term "Behavior" actually represents an `AuroraScript`. `AuroraScript`s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behaviors" section in the Properties window, this is more apparent.
-
-!!! warning
-    Every Behavior must be bound to an `Instance` for them to work.
-
-There are certain methods you have to define in the Behavior for it to start working. They are listed below.
-
-### `Behavior.OnStart(self: AuroraScriptObject): ()`
-
-This is a special method that you can define in the Behavior, which runs when the Behavior has been started. It allows you to connect to various events of the `AuroraService`, and do some other things.
-
-```luau
-function Behavior.OnStart(self: AuroraScriptObject)
-    print(self)
-end
-```
-
-You might've noticed that `.OnStart` has a parameter called `self`, which is an `AuroraScriptObject`. This is the object that is given to every function that you define in the Behavior. It will be explained in detail in the next section.
-
-!!! info
-    Behaviors are started when the physics simulation begins, if they've already been bound to an `Instance` before the simulation.
-    If not, then Behaviors are started after `:AddTo()` has been called on them, or if they've been manually bound to an `Instance` in the Properties widget.
-
-### `Behavior.OnStop(self: AuroraScriptObject): ()`
-
-This is a special method that you can define in the Behavior, which runs when the Behavior has been stopped.
-
-```luau
-function Behavior.OnStop(self: AuroraScriptObject)
-    print(self)
-end
-```
-
-!!! info
-    Behaviors are stopped when the Physics simulation ends, if they've already been started.
-    If not, then Behaviors are stopped when `:RemoveFrom()` has been called on them, or if they've been manually removed from an `Instance` in the Properties widget.
-
-### `Behavior.DeclareField(fieldName: string, _: { Type: "boolean" | "cframe" | "color3" | "enum" | "instance" | "number" | "random" | "vector2" | "vector3" }): ()`
-
-This method allows you to define a field with a certain type in the `AuroraScriptObject`. The defined field will appear as a property within the `AuroraScriptObject`.
-
-## AuroraScriptObject
-
-This is the object given to the every function defined in the Behavior. It has certain properties and methods that allows you to do things such as manual prediction, sending messages across Behaviors, and more. 
-
-```luau
-type AuroraScriptObject = {
-    Instance: Instance,
-    Frame: number,
-    LODLevel: number,
-    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
-    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
-    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
-}
-
-function Behavior.OnStart(self: AuroraScriptObject)
-    print(self) -- prints the AuroraScriptObject
-end
-```
-
-Now be warned, unlike any other object which is found in the Roblox API, `AuroraScriptObject` does not reflect the properties found in the API dump. Even when you print this object, it does not give you any property names that allows you to directly access a certain value.
-
-An example:
-
-```luau
-{
-    [Attached Instance] = Part,
-    [Behavior] = AuroraScript,
-    [Frame ID] = 509,
-    [self] =  ▶ {...}
-}
-```
-
-This is a detailed string that shows you information about the `AuroraScriptObject`, such as which frame it currently is on, the Behavior it is from, the bound instance, and lastly, the `self` table, which is used to show you the declared fields made with `Behavior.DeclareField()` function. (These field properties can be accessed through indexing the `AuroraScriptObject` with their name.)
-
-Unfortunately, you cannot access these properties directly, and most likely this information is only shown for debugging purposes.
-In the previous example however, you might have noticed that I've added an `AuroraScriptObject` type which contains information about all of the currently known and actually accessible methods and properties of the `AuroraScriptObject`. 
-(Of course, I have found these properties using reverse-engineering methods.) They are described in detail below.
-
-### Properties
-
-### `AuroraScriptObject.Instance`
-
-This is the `Instance` that the Behavior is bound to.
-
-### `AuroraScriptObject.Frame`
-
-The current Frame the world is on. Most likely changes after Heartbeat or PreAnimation.
-
-### `AuroraScriptObject.LODLevel`
-
-The level of distance number of the Behavior. Not sure what it is supposed to be used for at the moment.
-
-### Methods
-
-### `AuroraScriptObject.Connect:(self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection`
-
-This method allows you to connect to a certain given `RBXScriptSignal`. It is mostly used to connecting to certain `AuroraService` events.
-The `functionName` argument must be the name of a function in the Behavior.
-
-```lua
-type AuroraScriptObject = {
-    Instance: Instance,
-    Frame: number,
-    LODLevel: number,
-    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
-    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
-    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
-}
-
-function Behavior.OnStart(self: AuroraScriptObject)
-    self:Connect(AuroraService.FixedRateTick, "Predict")
-end
-
-function Behavior.Predict(self: AuroraScriptObject, deltaTime: number, worldStepId: number) -- This method will get called whenever the .FixedRateTick event fires.
-    print(self, deltaTime, worldStepId)
-end
-``` 
-
-!!! warning 
-    `.Connect` can only be called in the `.OnStart` function. Attempting to call this function anywhere else will cause an error.
-
-
-### `AuroraScriptObject.Subscribe(self: AuroraScriptObject, topic: string, functionName: string) -> string`
-
-This method allows you to subcribe to a published value in the Behavior with a certain `topic`. The `functionName` must be the name of a function in the Behavior.
-
-The subcribed function will always have 2 arguments by default, the self `AuroraScriptObject` and the bound `Instance`. Additional arguments will come after. Calling this method will return the value of the `topic` parameter.
-
-!!! warning
-    This function can only be called in `.OnStart`.
-
-### `AuroraScriptObject.Publish(self: AuroraScriptObject, topic: string, ...any) -> any`
-
-This method allows you to publish a value in the Behavior with a certain `topic`. The last argument given to this method will be returned as a value.
-
-!!! warning 
-    This function cannot be called in `.OnStart`.
-
-```lua
-type AuroraScriptObject = {
-    Instance: Instance,
-    Frame: number,
-    LODLevel: number,
-    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
-    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
-    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
-}
-
-function Behavior.OnStart(self: AuroraScriptObject)
-    self:Subscribe("Test", "GetPublishedValue")
-    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
-end
-
-function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number)
-    self:Publish("Test", "Hello!")
-end
-
-function Behavior.GetPublishedValue(self: AuroraScriptObject, boundInstance: Instance, recievedValue: any)
-    print(boundInstance, recievedValue) -- Instance, Hello!
-end
-```
-
-### `AuroraScriptObject.SendMessage(self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any`
-
-This method allows you to communicate with other Behaviors in a world. When sending a message, you must specify the `Instance` that a Behavior is bound to, the name of the Behavior, and the name of the function you want to send this message to.
-Then, you can add additional values as arguments to send to the function.
-
-#### Sending and Recieving Messages
-
-Let's assume we have 2 `AuroraScript`s in the `workspace` called: "Test_1", and "Test_2".
-And let's also assume we have 2 `Part`s these Behavior `AuroraScript`s are bound to.
-
-Our system would be like this:
-
-Test_1 --> Part<br>
-Test_2 --> Part_2
-
-If we wanted to send a message from Test_1 to Test_2, how would we do it?
-This is where `:SendMessage()` comes in. Using this method, we can send and recieve messages across different Behaviors.
-
-#### Test_1:
-
-```lua
-local AuroraService = game:GetService("AuroraService")
-
-type AuroraScriptObject = {
-    Instance: Instance,
-    Frame: number,
-    LODLevel: number,
-    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
-    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
-    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
-}
-
-function Behavior.OnStart(self: AuroraScriptObject)
-    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
-end
-
-function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number)
-    self:SendMessage(game.Workspace.Part_2, "Test_2", "Test", "Hello!")
-end
-```
-
-#### Test_2
-
-```lua
-local AuroraService = game:GetService("AuroraService")
-
-type AuroraScriptObject = {
-    Instance: Instance,
-    Frame: number,
-    LODLevel: number,
-    Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
-    Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
-    Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
-    SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
-    Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
-    SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number
-}
-
-function Behavior.OnStart(self: AuroraScriptObject)
-    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
-end
-
-function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number) end
-
-function Behavior.OnMessageTest(self: AuroraScriptObject, recievedMessage: string)
-    warn(recievedMessage) -- "Hello!"
-end
-```
-
-!!! warning
-    All functions recieving a message must have a name that starts with "OnMessage". For example, if we call the `:SendMessage()` with a `functionName` argument called "Test", then the function name must be "OnMessageTest" on the recieving Behavior.
-
-### `AuroraScriptObject.Delay(self: AuroraScriptObject, amount: number, functionName: string): string`
-
-This method allows you to run a function in the Behavior with a certain amount of delay. (In seconds)
-
-### `AuroraScriptObject.SetMaxFrequency(self: AuroraScriptObject, frequency: number): number`
-
-This method allows you to set the maximum amount of frequency the `AuroraScriptObject` can run with. Must be a value between 1 to 60.
+Attributes on predicted `Instance`s are fully synchronized with the rollback netcode model. For Non-`BasePart` `Instance`s, you must set the `Instance`'s `PredictionMode` to `Enum.PredictionMode.On` to have it be fully synchronized. This means that on the client, attributes are compared against the server’s version and mismatches will cause a full rollback and resimulation. You should use attributes to store the game data that affect your core simulation. Examples include scores, health, ammunition, inventory, or custom game rules (like which player last touched a ball).
 
 -----
 
-# AuroraScriptService
+# Debugging and Tooling
 
-This service is meant to manage and communicate with Behavior `AuroraScript`s. Unlike AuroraService however, it does not have special properties or events, just methods.
-
-## Methods
-
-### `AuroraScriptService:SendMessage(instance: Instance, behaviorName: string, functionName: string, ...: any): ()`
-
-This method works exactly the same as the `AuroraScriptObject:SendMessage()`, except it is used outside of Behaviors to send messages to Behaviors. The same rules apply.
-
-### `AuroraScriptService:getBehaviors(): {AuroraScript}`
-
-This method returns a table containing all of the Behaviors in the place.
-
-### `AuroraScriptService:getBehaviorsForInstance(instance: Instance): {AuroraScript}`
-
-This method returns a table containing all of the Behaviors bound to the specified `Instance`.
-
-### `AuroraScriptService:getInstancesForBehavior(behavior: AuroraScript): {Instance}`
-
-This method returns a table containing all of the `Instance`s that the specified Behavior is bound to.
-
-### `AuroraScriptService:FindBindings(instance: Instance): { [string]: any }`
-
-This method returns a table containing all of the `AuroraScriptObject`s from the Behaviors bound to an `Instance`.
-Can only be used within `AuroraScript`s.
-
-### `AuroraScriptService:FindBinding(instance: Instance, scriptName: string): AuroraScriptObject`
-
-This method returns the `AuroraScriptObject` from the target Behavior (with the `scriptName`) bound to an `Instance`.
-Can only be used within `AuroraScript`s.
-
-### `AuroraScriptService:GetLocalFrameId(): number`
-
-This method returns a number that presumably indicates the current frame of the world.
+Press CTRL + SHIFT + F6 on Windows or CMD + SHIFT + F6 on macOS to enable the Server Authority Visualizer. When it’s on, you’ll see a new debug pane appear at the bottom-right of your viewport. Along with showing statistics about server authority, this tool shows PV mispredictions for all predicted `Instance`s in the workspace. Pairs of boxes connected by pink lines show mispredictions: for each pair, the blue box represents the client’s misprediction and the green box represents the server’s authoritative simulation. Each box emits a vector representing the `CFrame`'s facing direction at the given location. You can clear the mispredictions from the world with CTRL/CMD + SHIFT + F7 and sort them by proximity to the player with CTRL/CMD + SHIFT + F8.
 
 -----
 
-# Closing Thoughts
+# What's Next?
 
-That's all! Hopefully I could explain these new features well. If you have any questions or things to share, please contact me through my Twitter.
-I may update this documentation with more information whenever I find them. Cheers!
+I will be adding more information and even some tutorials in this documentation for reference and experimentation. Stay tuned.
 
 -----
-
-# Credits
-
-#### Noctua (@TenebrisNoctua on Twitter)
-#### Max (@MaximumADHD on Twitter)
-#### Aztup (@RealAztup on Twitter)
-#### x64 (@WalletOverflow on DevForum)
-
-
-
