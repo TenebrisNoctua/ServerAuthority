@@ -143,7 +143,7 @@ end
 return MovementModule
 ```
 
-Our system is almost ready! Now, for the system to start working, we need to initialize and run this module from both the server and the client. And we also need to clone and parent the "Input" folder we created above to the player, so they can start capturing input from the client.
+Our system is almost ready! Now, for the system to start working, we need to initialize and run this module from both the server and the client. And we also need to clone and parent the "Input" folder we created above to the player, so the system can start capturing input from the client.
 
 ### ServerSetup
 
