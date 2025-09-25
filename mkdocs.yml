@@ -60,8 +60,11 @@ markdown_extensions:
 
 nav:
   - Server Authority: 
-    - Server Authority: index.md
-    - Services and Behaviors: aurora.md
-    - Credits: credits.md
+    - Server Authority: main/index.md
+    - Services and Behaviors: main/aurora.md
+    - Credits: main/credits.md
+  - Examples:
+    - Examples: examples/index.md
+    - Character Movement System: examples/character.md
 copyright: |
   &copy; 2025 <a href="https://github.com/TenebrisNoctua"  target="_blank" rel="noopener">Tenebris Noctua</a>
