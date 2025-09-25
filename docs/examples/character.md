@@ -52,16 +52,16 @@ To do this, we create another folder called "Input" and create an `InputContext`
 We will create 4 `InputAction`s under this `InputContext`, called: "Camera", "Jump", "Move", "Rotation".
 To support both gamepad and keyboard input, we create two `InputBinding`s under the "Jump" and "Move" `InputAction`s.
 
-For the "Jump" `InputAction` (`Bool` Type), we will add the `Space` KeyCode to first `InputBinding`. And for the next one, we add the `ButtonA` KeyCode.
+For the "Jump" `InputAction` (`Bool` Type), we will add the `Space` KeyCode to first `InputBinding`, called "KeyboardBinding". And for the next one, which we can call "GamepadBinding", we add the `ButtonA` KeyCode.
 
-For the "Move" `InputAction` (`Direction2D` Type), we will add 4 directions to the first `InputBinding` meant for keyboard:
+For the "Move" `InputAction` (`Direction2D` Type), we will add 4 directions to the first `InputBinding` meant for keyboard, called "KeyboardBinding":
 
 * Down: `S`
 * Up: `W`
 * Left: `A`
 * Right: `D`
 
-For the next `InputBinding`, we will set the KeyCode to `Thumbstick 1`.
+For the next `InputBinding`, called "GamepadBinding", we will set the KeyCode to `Thumbstick 1`.
 
 The hierarchy should now look like this:
 
