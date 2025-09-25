@@ -12,7 +12,7 @@ First, under the "ServerAuthority" folder in `ReplicatedStorage`, we create a `M
 
 The hierarchy should look like this:
 
-![hierarchy_1](../../.github/images/tutorial/character/hierarchyimage_1.png)
+![hierarchy_1](../img/tutorial/character/hierarchyimage_1.png)
 
 Then, in this module, we connect to the `RunService.FixedHeartbeat(deltaTime: number)` signal with a callback function.
 
@@ -65,7 +65,7 @@ For the next `InputBinding`, we will set the KeyCode to `Thumbstick 1`.
 
 The hierarchy should now look like this:
 
-![hierarchy_2](../../.github/images/tutorial/character/hierarchyimage_2.png)
+![hierarchy_2](../img/tutorial/character/hierarchyimage_2.png)
 
 Now that we can gain input from the client, we can move on to creating the actual system which will calculate the movement for the character.
 
@@ -254,7 +254,7 @@ end
 
 After everything above has been complete, our new system hierarchy should now look like this:
 
-![hierarchy_3](../../.github/images/tutorial/character/hierarchyimage_3.png)
+![hierarchy_3](../img/tutorial/character/hierarchyimage_3.png)
 
 -----
 

@@ -16,7 +16,7 @@ Besides example pages, there are certain open-source projects created by Roblox 
 
 ## The Soccer Game
 
-![soccergame](../.github/images/soccer/soccergame.webp)
+![soccergame](../img/tutorial/soccer/soccergame.webp)
 
 In this game, you play soccer while rolling around in a ball, playing against the opposite team.
 
