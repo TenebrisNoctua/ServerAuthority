@@ -256,6 +256,10 @@ After everything above has been complete, our new system hierarchy should now lo
 
 ![hierarchy_3](../img/tutorial/character/hierarchyimage_3.png)
 
+And that's all! Hitting the "Play" button should allow you to test our new system. This new character system provides a secure and accurate character simulation, while behaving smoothly for the player's view.
+
 -----
 
-And that's all! Hitting the "Play" button should allow you to test our new system. This new character system provides a secure and accurate character simulation, while behaving smoothly for the player's view.
+## Behavior Way
+
+Coming soon.
