@@ -60,7 +60,7 @@ markdown_extensions:
 
 nav:
   - Server Authority: 
-    - Server Authority: main/index.md
+    - Server Authority: index.md
     - Services and Behaviors: main/aurora.md
     - Credits: main/credits.md
   - Examples:
