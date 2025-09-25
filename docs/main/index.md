@@ -195,9 +195,3 @@ Attributes on predicted `Instance`s are fully synchronized with the rollback net
 Press CTRL + SHIFT + F6 on Windows or CMD + SHIFT + F6 on macOS to enable the Server Authority Visualizer. When it’s on, you’ll see a new debug pane appear at the bottom-right of your viewport. Along with showing statistics about server authority, this tool shows PV mispredictions for all predicted `Instance`s in the workspace. Pairs of boxes connected by pink lines show mispredictions: for each pair, the blue box represents the client’s misprediction and the green box represents the server’s authoritative simulation. Each box emits a vector representing the `CFrame`'s facing direction at the given location. You can clear the mispredictions from the world with CTRL/CMD + SHIFT + F7 and sort them by proximity to the player with CTRL/CMD + SHIFT + F8.
 
 -----
-
-# What's Next?
-
-I will be adding more information and even some tutorials in this documentation for reference and experimentation. Stay tuned.
-
------
