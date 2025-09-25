@@ -172,7 +172,7 @@ Determines whether the engine will rollback and resimulate the `Instance`.
 
 * If `mode` is `Enum.PredictionMode.Off`: Disables rollback and resimulation for the Instance. When a place's `Workspace.AuthorityMode` is set to `Server`, the `Instance` will be owned by the server with no client-side prediction.
 
-* If `mode` is `Enum.PredictionMode.Automatic` (default value): Allows the engine to determine whether to rollbaxck and resimulate the `Instance`. For `Instance`s that derive from `BasePart`, the engine uses the player’s simulation radius to determine if an `Instance` should be predicted. This helps limit expensive client-side prediction to only the relevant `Instance`s. At the moment, Non-`BasePart`s will not rollback when set to `Automatic`.
+* If `mode` is `Enum.PredictionMode.Automatic` (default value): Allows the engine to determine whether to rollback and resimulate the `Instance`. For `Instance`s that derive from `BasePart`, the engine uses the player’s simulation radius to determine if an `Instance` should be predicted. This helps limit expensive client-side prediction to only the relevant `Instance`s. At the moment, Non-`BasePart`s will not rollback when set to `Automatic`.
 
 * If `mode` is `Enum.PredictionMode.On`: Will ensure the `Instance` is always rolled back when a misprediction occurs. For `Instance`s critical to your experience, use this setting. Otherwise, do not overuse `On` for `Instance`s, as it’ll have significant performance implications for low-end devices.
 
