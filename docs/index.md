@@ -109,6 +109,8 @@ On the client, the character is simulated just like it's on the server. However,
 
 Mispredictions are normal and expected. They should be small and the resulting correction should be imperceptible to clients.
 
+![serverauthoritydiagram](img/main/ServerAuthorityImage_1.png)
+
 !!! example
     Your client thinks you’ve moved forward. However, the server registered that you were hit by a stun grenade and can’t move for a few  seconds. The client and server now have different states.
 
@@ -147,6 +149,15 @@ There are new properties and events added to `RunService` which you can utilize 
 ### `RunService.FrameNumber`
 
 This value determines the current frame number. This value is rolled back on the client when a resimulation occurs. It is the foundation upon which features like `FixedHeartbeat` are built. Printing this number can be helpful for understanding what exactly is happening when on the client and server.
+
+### `RunService.PredictionState`
+
+This property allows you to see the current state of the simulation. It can have one of the following values:
+
+* `Enum.PredictionState.Idle`: The default state outside of the simulation loop.
+* `Enum.PredictionState.Simulating`: Physics is stepping forward normally.
+* `Enum.PredictionState.RollingBack`: A misprediction has been detected, and the last known server values are being applied to the predicted instances.
+* `Enum.PredictionState.Resimulating`: The engine is rolling forward after a misprediction.
 
 ## Events
 
