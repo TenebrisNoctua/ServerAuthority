@@ -10,7 +10,7 @@
 In the previous pages, I've explained the default behavior of the Server Authority system. While this behavior is mostly sufficient, there are cases where you might need more control. For example, what if you want to opt-out of the prediction system manually on certain `Part`s?
 Or another example, what if you want to get a list of all currently predicted `Instance`s?
 
-Fortunately, in the Server Authority system, there exists new services and `Instance`s allowing you to control the system much better than ever before.
+Fortunately, in the Server Authority system, there exists new services and `Instance`s allowing you to control the system much greater than ever before.
 
 # AuroraService
 
