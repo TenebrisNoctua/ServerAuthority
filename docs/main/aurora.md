@@ -1,4 +1,4 @@
-# AuroraService
+# Services and Behaviors
 
 !!! warning
     The services and `Instance`s mentioned in this page cannot be accessed without configuring certain flags.
@@ -7,7 +7,14 @@
 !!! note
     Some information on this page may be inaccurate. Take it with a pinch of salt.
 
-Up until this point, I explained the default behavior of the server authority system on all `Part`s and characters. However, this default behavior can be changed. For example, it is possible to exclude certain `Part`s and characters from this system, so the network ownership system can be used instead. And this is the service allowing you to do exactly that. It is made out of methods and events that allows you to manually configure certain parts of the server authority system.
+In the previous pages, I've explained the default behavior of the Server Authority system. While this behavior is mostly sufficient, there are cases where you might need more control. For example, what if you want to opt-out of the prediction system manually on certain `Part`s?
+Or another example, what if you want to get a list of all currently predicted `Instance`s?
+
+Fortunately, in the Server Authority system, there exists new services and `Instance`s allowing you to control the system much better than ever before.
+
+# AuroraService
+
+This is the first new main service in Server Authority, where you're allowed to manually configure the prediction and physics. Its methods and events are listed below.
 
 ## Methods
 
@@ -26,9 +33,6 @@ This method returns a table which contains the current predicted `Instance`s by 
 ### `AuroraService:IsPredicted(target: Instance): boolean`
 
 This method returns a `boolean`, indicating if the provided `Instance` is being predicted by the server or not.
-
-!!! info
-    Like it has been mentioned briefly in the above sections, every `Part` or character in `Workspace` will automatically have their physics predicted by the server, as long as they are not anchored. Anchoring a `Part` will automatically remove it from being predicted. (Or to remove it manually, you can call `AuroraService:StopPrediction()` on that said `Part`.)
 
 ### `AuroraService:GetServerView(target: Instance): Instance`
 
@@ -59,8 +63,6 @@ There's not much information about this method, other than it always returns 0.
 This method steps the physics of the given `Instance`s by the given `worldsteps` amount. 
 All the given `Instance`s must be a `BasePart`. If an `Instance` is not a `BasePart` in this table, then it will be ignored for the physics step. 
 
-*(This method is also important for `AuroraScript`s.)*
-
 ### `AuroraService:SetIncomingReplicationLag(seconds: number): ()`
 
 This method allows you to set the incoming replication lag. It may be used while debugging.
@@ -85,9 +87,6 @@ This method allows you to play the recorded input.
 ### `AuroraService:SetPropertyIsInput(target: Instance, propertyName: string, isInput: bool): ()`
 
 This method presumably allows you to set `isInput` to a property of a target `Instance`.
-
-!!! warning
-    Setting the property to "Position" may crash your Studio. Unclear on why this occurs at the moment.
 
 ## Events
 
