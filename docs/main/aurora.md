@@ -12,6 +12,8 @@ Or another example, what if you want to get a list of all currently predicted `I
 
 Fortunately, in the Server Authority system, there exists new services and `Instance`s allowing you to control the system much greater than ever before.
 
+-----
+
 # AuroraService
 
 This is the first new main service in Server Authority, where you're allowed to manually configure the prediction and physics. Its methods and events are listed below.
