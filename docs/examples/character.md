@@ -408,17 +408,16 @@ local Input = ServerAuthority.Input
 -- This function sets the streaming mode for the character model to Atomic upon character load.
 local function InitializeCharacter(character: Model)
 	character.ModelStreamingMode = Enum.ModelStreamingMode.Atomic
+	Scripts.Behavior:AddTo(character)
 end
 
--- This function clones and parents the Input folder to the player to start capturing input, and begins the movement calculation by binding the Behavior to the character.
+-- This function clones and parents the Input folder to the player to start capturing input, and begins the movement calculation by adding the Behavior to the character.
 local function InitializePlayer(player: Player)
 	if player.Character then InitializeCharacter(player.Character) end
 	player.CharacterAdded:Connect(InitializeCharacter)
-	
+
 	local InputTemplate = Input:Clone()
 	InputTemplate.Parent = player
-	
-	Scripts.Behavior:AddTo(player.Character)
 end
 
 -- This function initializes the above functions for all existing players, or new players.
