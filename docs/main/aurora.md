@@ -16,25 +16,25 @@ Fortunately, in the Server Authority system, there exists new services and `Inst
 
 # AuroraService
 
-This is the first new main service in Server Authority, where you're allowed to manually configure the prediction and physics. Its methods and events are listed below.
+This is the first new main service in Server Authority, where you're able to manually configure the prediction and physics. Its methods and events are listed below.
 
 ## Methods
 
 ### `AuroraService:StartPrediction(target: Instance): ()`
 
-This method allows you to start prediction manually on the target `Instance`. When it is used, the server will start predicting the physics of the said `Instance`, if it's a `BasePart`. Additionally, this method completely bypasses network ownerships.
+This method allows you to start prediction manually on the target `Instance`. When it is used, the engine will start predicting the physics of the said `Instance`.
 
 ### `AuroraService:StopPrediction(target: Instance): ()`
 
-This method stops the prediction on the target `Instance`. This method allows you to restore the network ownership behavior of the previous system.
+This method stops the prediction on the target `Instance`. This method also allows you to restore the network ownership behavior of the previous system.
 
 ### `AuroraService:GetPredictedInstances(): {Instance}`
 
-This method returns a table which contains the current predicted `Instance`s by the server authority system.
+This method returns a table which contains the current predicted `Instance`s by the Server Authority system.
 
 ### `AuroraService:IsPredicted(target: Instance): boolean`
 
-This method returns a `boolean`, indicating if the provided `Instance` is being predicted by the server or not.
+This method returns a `boolean`, indicating if the provided `Instance` is being predicted by the engine or not.
 
 ### `AuroraService:GetServerView(target: Instance): Instance`
 
@@ -44,7 +44,6 @@ Parenting it to a container such as `Workspace` will show the exact same propert
 ### `AuroraService:UpdateProperties(target: Instance): ()`
 
 This method most likely is used to manually update an `Instance`'s properties, while its being predicted.
-Not sure about what it truly does or what it's really useful for, as all properties should automatically get updated while being predicted.
 
 ### `AuroraService:ShowDebugVisaulizer(state: boolean): ()`
 
@@ -101,12 +100,11 @@ This event is fired when `AuroraService:StepPhysics()` has been called.
 
 ### `AuroraService.FixedRateTick(deltaTime: number, worldStepId: number)`
 
-This event is fired (presumably) when the `worldStepId` changes. 
-`deltaTime` should be a constant number, while the `worldStepId` increases.
+This event is the same as `RunService.FixedHeartbeat`, but provides an additional parameter called `worldStepId`.
 
 ### `AuroraService.Misprediction(worldStepId: number, mispredictedInstances: {Instance})`
 
-This event is fired when a misprediction occurs on certain `Instance`(s). This happens when there's a mismatch between the client and the server's prediction on an `Instance`'s physics.
+This event is the same as `RunService.Misprediction`, and is fired when a misprediction occurs on certain `Instance`(s). This happens when there's a mismatch between the client and the server's position on an `Instance`'s physics and movement.
 
 ### `AuroraService.Rollback(worldStepId: number)`
 
@@ -141,7 +139,7 @@ Besides the limitations, generally `AuroraScript`s should always be parented to 
 This method binds the Behavior `AuroraScript` to the specified `Instance`.
 This then calls the (if defined) `.OnStart` method of the Behavior.
 
-Behaviors can also be binded manually, without the need of this method.
+Behaviors can also be bound manually, without the need of this method.
 With the Server Authority feature enabled, the Properties widget gain a new section for every `Instance`, called: "Behaviors".
 Clicking the "+" button on this section will allow you to find and bind any Behavior on an `Instance`.
 
