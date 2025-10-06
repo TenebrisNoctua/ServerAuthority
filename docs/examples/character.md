@@ -410,7 +410,7 @@ local function InitializeCharacter(character: Model)
 	character.ModelStreamingMode = Enum.ModelStreamingMode.Atomic
 end
 
--- This function clones and parents the Input folder to the player to start capturing input, and begins the movement calculation by adding the Behavior to the character.
+-- This function clones and parents the Input folder to the player to start capturing input, and begins the movement calculation by binding the Behavior to the character.
 local function InitializePlayer(player: Player)
 	if player.Character then InitializeCharacter(player.Character) end
 	player.CharacterAdded:Connect(InitializeCharacter)
