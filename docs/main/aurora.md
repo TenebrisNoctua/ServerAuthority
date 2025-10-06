@@ -4,9 +4,6 @@
     The services and `Instance`s mentioned in this page cannot be accessed without configuring certain flags.
     If you have enabled the flags from the previous page, you may continue. However, if you've just enrolled into the program without changing the flags, then it is not recommended for you to read this page.
 
-!!! note
-    Some information on this page may be inaccurate. Take it with a pinch of salt.
-
 In the previous pages, I've explained the default behavior of the Server Authority system. While this behavior is mostly sufficient, there are cases where you might need more control. For example, what if you want to opt-out of the prediction system manually on certain `Part`s?
 Or another example, what if you want to get a list of all currently predicted `Instance`s?
 

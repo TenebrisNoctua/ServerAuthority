@@ -262,4 +262,212 @@ And that's all! Hitting the "Play" button should allow you to test our new syste
 
 ## Behavior Way
 
-Coming soon.
+While the modular system works, it is not fully desirable as it requires us to create loaders from both the server and the client, and a module script which runs the movement system. To make make it more desirable and easier for us to create Server Authority systems, there exists a new `Instance` called `AuroraScript`. This new instance allows us to define a behavior which will both run on the server and the client.
+
+To learn more about Behaviors, check out the [Services and Behaviors](../main/aurora.md) section.
+
+First we create a new `AuroraScript` called "CharacterMovement". This will be our main script which will contain the movement system.
+
+### CharacterMovement
+
+```luau
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+type AuroraScriptObject = {
+	Instance: Instance,
+	Frame: number,
+	LODLevel: number,
+	Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+	Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
+	Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
+	SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+	Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
+	SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number,
+	[string]: any
+}
+
+-- This function runs when the Behavior starts.
+function Behavior.OnStart(self: AuroraScriptObject)
+	-- We connect to the .FixedHeartbeat event of RunService here to DefaultMovement function of the Behavior.
+	self:Connect(RunService.FixedHeartbeat, "DefaultMovement")
+	self.Player = Players:GetPlayerFromCharacter(self.Instance) -- We find the Player from the bound Character instance and set it as a value within our Behavior.
+end
+
+function Behavior.DefaultMovement(self: AuroraScriptObject, deltaTime: number)
+	-- This function runs when .FixedHeartbeat fires with the deltaTime argument.
+end
+
+-- We declare a field in our Behavior to store the Player instance.
+Behavior.DeclareField("Player", {Type = "instance"})
+```
+
+We now have a simple initial system that allows us to connect to the `.FixedHeartbeat` signal and set our Player property.
+Repeating the steps from the Modular way for Inputs, we now have a hierarchy like this:
+
+![hierarchy_4](../img/tutorial/character/hierarchyimage_4.png)
+
+Now that we can gain input from the client, we can move on to creating the actual system which will calculate the movement for the character.
+
+### CharacterMovement
+
+```luau
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+type AuroraScriptObject = {
+	Instance: Instance,
+	Frame: number,
+	LODLevel: number,
+	Connect: (self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection,
+	Subscribe: (self: AuroraScriptObject, topic: string, functionName: string) -> string,
+	Publish: (self: AuroraScriptObject, topic: string, ...any) -> any,
+	SendMessage: (self: AuroraScriptObject, boundInstance: Instance, behaviorName: string, functionName: string, ...any) -> ...any,
+	Delay: (self: AuroraScriptObject, amount: number, functionName: string) -> string,
+	SetMaxFrequency: (self: AuroraScriptObject, frequency: number) -> number,
+	[string]: any
+}
+
+-- This function runs when the Behavior starts.
+function Behavior.OnStart(self: AuroraScriptObject)
+	-- We connect to the .FixedHeartbeat event of RunService here to DefaultMovement function of the Behavior.
+	self:Connect(RunService.FixedHeartbeat, "DefaultMovement")
+	self.Player = Players:GetPlayerFromCharacter(self.Instance) -- We find the Player from the bound Character instance and set it as a value within our Behavior.
+end
+
+function Behavior.DefaultMovement(self: AuroraScriptObject, deltaTime: number)
+	-- This function runs when .FixedHeartbeat fires with the deltaTime argument.
+
+	local Character: Model = self.Instance
+	local Player: Player = self.Player
+	if not Player then return end
+	
+	local Humanoid: Humanoid = Character:WaitForChild("Humanoid")
+
+	local moveInput = Player.Input.Default.Move
+	local cameraInput = Player.Input.Default.Camera
+	local rotationInput = Player.Input.Default.Rotation
+	local sprintInput = Player.Input.Default.Sprint
+
+	local moveVector2D = moveInput:GetState()
+	local cameraVector2D = cameraInput:GetState()
+	local rotationIsCameraRelative = rotationInput:GetState()
+	local sprintBool = sprintInput:GetState()
+
+	Humanoid.WalkSpeed = if sprintBool then 25 else 16
+
+	local cameraVector3D = Vector3.new(cameraVector2D.X, 0, cameraVector2D.Y)
+	local rightVector = cameraVector3D:Cross(Vector3.yAxis)
+
+	local moveVector = cameraVector3D * moveVector2D.Y + rightVector * moveVector2D.X
+	local moveDirection = Vector3.new(moveVector.X, 0, moveVector.Z)
+
+	Humanoid:Move(moveDirection)
+
+	if rotationIsCameraRelative then
+		Humanoid.AutoRotate = false
+		if Humanoid.SeatPart == nil and Humanoid.RootPart ~= nil then
+			Humanoid.RootPart.CFrame = CFrame.new(
+				Humanoid.RootPart.CFrame.Position,
+				Humanoid.RootPart.CFrame.Position + cameraVector3D
+			)
+		end
+	else
+		Humanoid.AutoRotate = true
+	end
+
+	local jumpInput = Player.Input.Default.Jump
+	local jumpBoolean = jumpInput:GetState()
+
+	local currentState = Humanoid:GetState()
+	local isInAir = currentState == Enum.HumanoidStateType.FallingDown
+		or currentState == Enum.HumanoidStateType.Freefall
+		or currentState == Enum.HumanoidStateType.Jumping
+
+	if not isInAir and jumpBoolean then
+		Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+	end
+end
+
+-- We declare a field in our Behavior to store the Player instance.
+Behavior.DeclareField("Player", {Type = "instance"})
+```
+
+And that's it! All we need to do now is to bind this Behavior to the player on the server, so it can start. To do that, we can add a `Script` called "ServerSetup".
+
+### ServerSetup
+
+```luau
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local ServerAuthority = ReplicatedStorage.ServerAuthority
+local Scripts = ServerAuthority.Scripts
+local Input = ServerAuthority.Input
+
+-- This function sets the streaming mode for the character model to Atomic upon character load.
+local function InitializeCharacter(character: Model)
+	character.ModelStreamingMode = Enum.ModelStreamingMode.Atomic
+end
+
+-- This function clones and parents the Input folder to the player to start capturing input, and begins the movement calculation by adding the Behavior to the character.
+local function InitializePlayer(player: Player)
+	if player.Character then InitializeCharacter(player.Character) end
+	player.CharacterAdded:Connect(InitializeCharacter)
+	
+	local InputTemplate = Input:Clone()
+	InputTemplate.Parent = player
+	
+	Scripts.Behavior:AddTo(player.Character)
+end
+
+-- This function initializes the above functions for all existing players, or new players.
+local function Initialize()
+	for _, player in Players:GetPlayers() do
+		InitializePlayer(player)
+	end
+	Players.PlayerAdded:Connect(InitializePlayer)
+end
+
+-- We want to only run the above systems when the AuthorityMode is set to Server. Automatic results in inconsistent behavior.
+if workspace.AuthorityMode == Enum.AuthorityMode.Server then
+	Initialize()
+end
+```
+
+This is our server script that initializes the Behavior and input parenting for a player. This is our main system that allows the player to move.
+
+However, we still also need to create a client script to capture input for the camera:
+
+### CameraInput
+
+```luau
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserGameSetting = UserSettings():GetService("UserGameSettings")
+
+local LocalPlayer = Players.LocalPlayer
+
+-- Defining the InputActions for the camera and rotation.
+local Input = LocalPlayer:WaitForChild("Input")
+local CameraInput: InputAction = Input.Default.Camera
+local RotationInput: InputAction = Input.Default.Rotation
+
+if workspace.AuthorityMode == Enum.AuthorityMode.Server then
+	-- This callback function calculates the current rotation of the character and the camera, and sends it to the server.
+	RunService:BindToRenderStep("CameraInput", Enum.RenderPriority.Last.Value, function()
+		local Camera = workspace.CurrentCamera
+		local YAxis: Vector3 = Vector3.yAxis
+		local Forward = YAxis:Cross(Camera.CFrame.RightVector)
+		
+		CameraInput:Fire(Vector2.new(Forward.X, Forward.Z))
+		RotationInput:Fire(UserGameSetting.RotationType == Enum.RotationType.CameraRelative)
+	end)
+end
+```
+
+After everything above has been complete, our new system hierarchy should now look like this:
+
+![hierarchy_5](../img/tutorial/character/hierarchyimage_5.png)
+
+And that's all! Hitting the "Play" button should allow you to test our new system. This new character system provides a secure and accurate character simulation, while behaving smoothly for the player's view.
