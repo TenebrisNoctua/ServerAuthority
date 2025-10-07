@@ -1,7 +1,7 @@
 # Getting Started
 
 Hello. This is a detailed documentation about the new server authority system that Roblox has showcased recently.
-This is a new system aiming to achieve a better physics simulation, while also providing better security.<br>
+It is a new system aiming to achieve a better physics simulation, while also providing better security.<br>
 This documentation will try to give you almost all of the available information about this new system. However, not all information may be accurate, as this system is still a work-in-progress.
 
 With all that being said, this documentation may recieve updates whenever there's a new feature added, or a feature removed. If you want to stay up-to-date, make sure to visit this documentation again later, and if you have any additional information that you can provide about this system, let me know with a message on my [Twitter](https://twitter.com/TenebrisNoctua).
@@ -21,7 +21,7 @@ If you want to access everything that will be mentioned in later sections, you m
 
 ## Enrolling to the Early Access Program for the Server Authority Core API
 
-This is the simplest way you can gain access to the new features that will be mentioned in this documentation. You can send an application [here](http://rblx.co/server-authority) to apply for the program. 
+This is the simplest way you can gain access to the new features that will be mentioned in this documentation. You can send a reply to this [thread](devforum.roblox.com/t/early-access-server-authority/3983188/) to apply for the program. 
 
 If you're accepted, go to your [account settings](https://www.roblox.com/my/account), and scroll down to the "Early Access Programs" section.
 Then, select the *"Early Access: Server Authority Core API Early Access"* program. This will now enroll you to the program, and following the steps below, you can access the features.
