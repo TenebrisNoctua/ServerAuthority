@@ -21,7 +21,7 @@ If you want to access everything that will be mentioned in later sections, you m
 
 ## Enrolling to the Early Access Program for the Server Authority Core API
 
-This is the simplest way you can gain access to the new features that will be mentioned in this documentation. You can send a reply to this [thread](devforum.roblox.com/t/early-access-server-authority/3983188/) to apply for the program. 
+This is the simplest way you can gain access to the new features that will be mentioned in this documentation. You can send a reply to this [thread](https://devforum.roblox.com/t/early-access-server-authority/3983188) to apply for the program. 
 
 If you're accepted, go to your [account settings](https://www.roblox.com/my/account), and scroll down to the "Early Access Programs" section.
 Then, select the *"Early Access: Server Authority Core API Early Access"* program. This will now enroll you to the program, and following the steps below, you can access the features.
