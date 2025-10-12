@@ -67,7 +67,9 @@ The hierarchy should now look like this:
 
 ![hierarchy_2](../img/tutorial/character/hierarchyimage_2.png)
 
-Now that we can gain input from the client, we can move on to creating the actual system which will calculate the movement for the character.
+We will be cloning this input system to the player object with a script later.
+
+We can now move on to creating the actual system which will calculate the movement for the character.
 
 ### CharacterMovement
 
@@ -303,11 +305,13 @@ Behavior.DeclareField("Player", {Type = "instance"})
 ```
 
 We now have a simple initial system that allows us to connect to the `.FixedHeartbeat` signal and set our Player property.
-Repeating the steps from the Modular way for Inputs, we now have a hierarchy like this:
+
+However, just like in the modular way, we need to create an input system to capture input from the client.
+Repeating the steps from [Modular Way](#default-modular-way), we now have a hierarchy like this:
 
 ![hierarchy_4](../img/tutorial/character/hierarchyimage_4.png)
 
-Now that we can gain input from the client, we can move on to creating the actual system which will calculate the movement for the character.
+We can now move on to creating the actual system which will calculate the movement for the character.
 
 ### CharacterMovement
 
@@ -344,47 +348,45 @@ function Behavior.DefaultMovement(self: AuroraScriptObject, deltaTime: number)
 	
 	local Humanoid: Humanoid = Character:WaitForChild("Humanoid")
 
-	local moveInput = Player.Input.Default.Move
-	local cameraInput = Player.Input.Default.Camera
-	local rotationInput = Player.Input.Default.Rotation
-	local sprintInput = Player.Input.Default.Sprint
-
-	local moveVector2D = moveInput:GetState()
-	local cameraVector2D = cameraInput:GetState()
-	local rotationIsCameraRelative = rotationInput:GetState()
-	local sprintBool = sprintInput:GetState()
-
-	Humanoid.WalkSpeed = if sprintBool then 25 else 16
-
-	local cameraVector3D = Vector3.new(cameraVector2D.X, 0, cameraVector2D.Y)
-	local rightVector = cameraVector3D:Cross(Vector3.yAxis)
-
-	local moveVector = cameraVector3D * moveVector2D.Y + rightVector * moveVector2D.X
-	local moveDirection = Vector3.new(moveVector.X, 0, moveVector.Z)
-
-	Humanoid:Move(moveDirection)
-
-	if rotationIsCameraRelative then
+	local Input: InputContext = Player.Input.Default
+		
+	local MoveInput: InputAction = Input.Move
+	local CameraInput: InputAction = Input.Camera
+	local RotationInput: InputAction = Input.Rotation
+	local JumpInput: InputAction = Input.Jump
+	
+	-- Getting the values from InputActions. We use :GetState() here instead of .StateChanged.
+	local MoveVector2D: Vector2 = MoveInput:GetState() 
+	local CameraVector2D: Vector2 = CameraInput:GetState()
+	local RotationIsCameraRelative: boolean = RotationInput:GetState()
+	local JumpBoolean: boolean = JumpInput:GetState()
+	
+	-- Calculating the move direction based on camera and movement input.
+	local CameraVector3D = Vector3.new(CameraVector2D.X, 0, CameraVector2D.Y)
+	local RightVector = CameraVector3D:Cross(Vector3.yAxis)
+	
+	local MoveVector = CameraVector3D * MoveVector2D.Y + RightVector * MoveVector2D.X
+	local MoveDirection = Vector3.new(MoveVector.X, 0, MoveVector.Z)
+	
+	-- Moving the Humanoid to the target move direction.
+	Humanoid:Move(MoveDirection)
+	
+	-- Rotating the Character based on camera direction.
+	if RotationIsCameraRelative then
 		Humanoid.AutoRotate = false
-		if Humanoid.SeatPart == nil and Humanoid.RootPart ~= nil then
-			Humanoid.RootPart.CFrame = CFrame.new(
-				Humanoid.RootPart.CFrame.Position,
-				Humanoid.RootPart.CFrame.Position + cameraVector3D
-			)
+		if not Humanoid.SeatPart and Humanoid.RootPart then
+			Humanoid.RootPart.CFrame = CFrame.new(Humanoid.RootPart.CFrame.Position, Humanoid.RootPart.CFrame.Position + CameraVector3D)
 		end
 	else
 		Humanoid.AutoRotate = true
 	end
-
-	local jumpInput = Player.Input.Default.Jump
-	local jumpBoolean = jumpInput:GetState()
-
+	
+	-- Allowing the Character to jump based on input, and if it's not currently in-air.
 	local currentState = Humanoid:GetState()
 	local isInAir = currentState == Enum.HumanoidStateType.FallingDown
 		or currentState == Enum.HumanoidStateType.Freefall
 		or currentState == Enum.HumanoidStateType.Jumping
-
-	if not isInAir and jumpBoolean then
+	if not isInAir and JumpBoolean then
 		Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
 	end
 end
@@ -393,7 +395,7 @@ end
 Behavior.DeclareField("Player", {Type = "instance"})
 ```
 
-And that's it! All we need to do now is to bind this Behavior to the player on the server, so it can start. To do that, we can add a `Script` called "ServerSetup".
+Our behavior is now done! This behavior will now run when it has been bound to a player's character. To do this however, we need to manually bind it upon character load on the server. For this, we can add a `Script` called "ServerSetup".
 
 ### ServerSetup
 
@@ -405,13 +407,13 @@ local ServerAuthority = ReplicatedStorage.ServerAuthority
 local Scripts = ServerAuthority.Scripts
 local Input = ServerAuthority.Input
 
--- This function sets the streaming mode for the character model to Atomic upon character load.
+-- This function sets the streaming mode for the character model to Atomic, and binds the character to the behavior upon load.
 local function InitializeCharacter(character: Model)
 	character.ModelStreamingMode = Enum.ModelStreamingMode.Atomic
 	Scripts.Behavior:AddTo(character)
 end
 
--- This function clones and parents the Input folder to the player to start capturing input, and begins the movement calculation by adding the Behavior to the character.
+-- This function clones and parents the Input folder to the player to start capturing input.
 local function InitializePlayer(player: Player)
 	if player.Character then InitializeCharacter(player.Character) end
 	player.CharacterAdded:Connect(InitializeCharacter)
@@ -434,9 +436,9 @@ if workspace.AuthorityMode == Enum.AuthorityMode.Server then
 end
 ```
 
-This is our server script that initializes the Behavior and input parenting for a player. This is our main system that allows the player to move.
+This is our server script that parents the Input folder to a player, and binds the behavior to its character when it loads.
 
-However, we still also need to create a client script to capture input for the camera:
+With this system, the character can now move, however, we still need to create a client `Script` to capture input for the camera:
 
 ### CameraInput
 
@@ -469,4 +471,4 @@ After everything above has been complete, our new system hierarchy should now lo
 
 ![hierarchy_5](../img/tutorial/character/hierarchyimage_5.png)
 
-And that's all! Hitting the "Play" button should allow you to test our new system. This new character system provides a secure and accurate character simulation, while behaving smoothly for the player's view.
+And that's all! Hitting the "Test" button should allow you to test our new system. This new character system provides a secure and accurate character simulation, while behaving smoothly for the player's view.

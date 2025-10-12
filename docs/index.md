@@ -92,7 +92,7 @@ An example from the first case, where a client would modify their character to g
 
 For the second case, since the server now calculates the positions of the cars, they now move more consistently. Maneuvers, drifts, hits, become more accurate on each client, and the system works more reliably.
 
-If you want to see this system in action, you can easily do some tests yourself. Hitting "Play" (or "Test" in the Next Gen Studio Ribbon), should give you the chance to test pretty much anything you want.
+If you want to see this system in action, you can easily do some tests yourself. Hitting "Test", should give you the chance to test pretty much anything you want.
 
 A good way to test the new system would be to create a wall infront of the character on the server, and then delete it on the client. Then, you can try to pass through the place where the wall was prior to deletion. You will quickly notice that you're unable to move past the place where the wall once was, like the wall is still there, but invisible.
 
