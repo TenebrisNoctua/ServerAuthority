@@ -269,7 +269,7 @@ And that's all! Hitting the "Play" button should allow you to test our new syste
 
 While the modular system works, it is not fully desirable as it requires us to create loaders from both the server and the client, and a module script which runs the movement system. To make make it more desirable and easier for us to create Server Authority systems, there exists a new `Instance` called `AuroraScript`. This new instance allows us to define a behavior which will both run on the server and the client.
 
-To learn more about Behaviors, check out the [Services and Behaviors](../main/aurora.md) section.
+To learn more about Behaviors, check out the [Behaviors](../main/aurora.md) section.
 
 First we create a new `AuroraScript` called "CharacterMovement". This will be our main script which will contain the movement system.
 
