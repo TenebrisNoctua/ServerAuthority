@@ -1,125 +1,29 @@
-# Services and Behaviors
+# Behaviors
 
 !!! warning
-    The services and `Instance`s mentioned in this page cannot be accessed without configuring certain flags.
-    If you have enabled the flags from the previous page, you may continue. However, if you've just enrolled into the program without changing the flags, then it is not recommended for you to read this page.
+    The `Instance` and the Service mentioned in this page cannot be accessed without configuring certain flags. This `Instance` is also in heavy development and is not currently recommended for work.
 
-In the previous pages, I've explained the default behavior of the Server Authority system. While this behavior is mostly sufficient, there are cases where you might need more control. For example, what if you want to opt-out of the prediction system manually on certain `Part`s?
-Or another example, what if you want to get a list of all currently predicted `Instance`s?
+## What are Behaviors?
 
-Fortunately, in the Server Authority system, there exists new services and `Instance`s allowing you to control the system much greater than ever before.
+In the Server Authority system, you need to simulate the physics and controls for a certain `Instance` on both the server and the client simultaneously. This is what allows the systems explained in the previous pages to work.
 
------
+To achieve this, there are two ways one can go on about, such as creating a multi-script architecture, where exists a `ModuleScript` which exports a method that runs the simulation for the `Instance`, that is then required and ran by both the server and the client.
+Or a single-script architecture, where one or more `Script`s do the same thing. Regardless of which way one can go on about, it is not convenient to do this system in multiple `Script`s just to be able to run the same system on both the server and the client. These `Script`s may also run into certain issues such as yielding.
 
-# AuroraService
-
-This is the first new main service in Server Authority, where you're able to manually configure the prediction and physics. Its methods and events are listed below.
-
-## Methods
-
-### `AuroraService:StartPrediction(target: Instance): ()`
-
-This method allows you to start prediction manually on the target `Instance`. When it is used, the engine will start predicting the physics of the said `Instance`.
-
-### `AuroraService:StopPrediction(target: Instance): ()`
-
-This method stops the prediction on the target `Instance`. This method also allows you to restore the network ownership behavior of the previous system.
-
-### `AuroraService:GetPredictedInstances(): {Instance}`
-
-This method returns a table which contains the current predicted `Instance`s by the Server Authority system.
-
-### `AuroraService:IsPredicted(target: Instance): boolean`
-
-This method returns a `boolean`, indicating if the provided `Instance` is being predicted by the engine or not.
-
-### `AuroraService:GetServerView(target: Instance): Instance`
-
-This method will return a completely new `Instance` that most likely shows how the server views the target `Instance`. 
-Parenting it to a container such as `Workspace` will show the exact same properties of the target `Instance`.
-
-### `AuroraService:UpdateProperties(target: Instance): ()`
-
-This method most likely is used to manually update an `Instance`'s properties, while its being predicted.
-
-### `AuroraService:ShowDebugVisaulizer(state: boolean): ()`
-
-This method, when called on the server in a play-test, shows you information about the current state of the prediction system.
-It contains many elements such as the prediction success rate on both `Instance`s and scripts. Or how many predicted `Instance`s there are, live.
-
-### `AuroraService:GetWorldStepId(): number`
-
-This method returns the current world step id, which is a number.
-Step id is presumably used for rolling back to a previous state of the prediction.
-
-### `AuroraService:GetRemoteWorldStepId(): number`
-
-There's not much information about this method, other than it always returns 0.
-
-### `AuroraService:StepPhysics(worldsteps: number, instances: {Instance}): ()`
-
-This method steps the physics of the given `Instance`s by the given `worldsteps` amount. 
-All the given `Instance`s must be a `BasePart`. If an `Instance` is not a `BasePart` in this table, then it will be ignored for the physics step. 
-
-### `AuroraService:SetIncomingReplicationLag(seconds: number): ()`
-
-This method allows you to set the incoming replication lag. It may be used while debugging.
-
-### Input Recording
-
-Currently unsure of what input recording does, as all of the methods described below seemingly do nothing.
-Will update when more information has been found.
-
-### `AuroraService:StartInputRecording(): ()`
-
-This method allows you to start recording input.
-
-### `AuroraService:StopInputRecording(): ()`
-
-This method allows you to stop recording input.
-
-### `AuroraService:PlayInputRecording(): ()`
-
-This method allows you to play the recorded input.
-
-### `AuroraService:SetPropertyIsInput(target: Instance, propertyName: string, isInput: bool): ()`
-
-This method presumably allows you to set `isInput` to a property of a target `Instance`.
-
-## Events
-
-!!! warning 
-    Attempting to connect to these events outside of a Behavior `AuroraScript` will error.
-
-### `AuroraService.Step`
-
-This event is fired when `AuroraService:StepPhysics()` has been called.
-
-### `AuroraService.FixedRateTick(deltaTime: number, worldStepId: number)`
-
-This event is the same as `RunService.FixedHeartbeat`, but provides an additional parameter called `worldStepId`.
-
-### `AuroraService.Misprediction(worldStepId: number, mispredictedInstances: {Instance})`
-
-This event is the same as `RunService.Misprediction`, and is fired when a misprediction occurs on certain `Instance`(s). This happens when there's a mismatch between the client and the server's position on an `Instance`'s physics and movement.
-
-### `AuroraService.Rollback(worldStepId: number)`
-
-This event is fired when a rollback occurs. Rollbacks generally occur after a misprediction, which causes an `Instance` to be reverted back to its previous state.
-
-!!! info 
-    These are all of the current events and the methods of AuroraService. If more information gets found about them, this documentation will be updated.
+Luckily for us, there exists a work-in-progress `Instance` that makes it more convenient for us to run the same simulation on both the server and the client, while ensuring that our `Script`s will not run into any yielding issues. It allows us to define Behaviors, which are systems that run the same code on both the server and the client simultaneously, and can be bound to `Instance`s.
 
 -----
 
-# AuroraScript
+## AuroraScript
 
-!!! info
-    It is most likely that Roblox will be changing the name "AuroraScript" to "BehaviorScript" in the near future, to more accurately represent what it does.
+This `Instance` that I've mentioned above is called `AuroraScript`. This new script `Instance` allows you to define those Behaviors that can be bound to other `Instance`s and operate on them. 
 
-This is a new unique `Script` object that allows you to connect to the various events of `AuroraService`, and define Behaviors that operate on them. 
+!!! note
+    In the future, the class name "AuroraScript" will most likely be replaced with "BehaviorScript".
 
-Unlike the other `Script` types, `AuroraScript` is pretty limited in terms of what is possible to do with it. This is due to its purpose mainly being related to server authority and prediction, and not the main game logic. Here are the limitions that I'm currently aware of:
+Unlike the other script `Instance`s, `AuroraScript` has certain limitations placed within its environment. There are a few reasons for this, ranging from optimization, to ensuring the thread does not yield, and to Behaviors to smoothly interact with other Behaviors and run within the world.
+
+## Limitations
 
 * All `AuroraScript`s in the same location (e.g, `workspace`) must have a different name. Otherwise, one of them will not run.
 * Certain APIs and global libraries do not work in the environment of an `AuroraScript`. The ones I'm aware of at the moment are:
@@ -127,7 +31,7 @@ Unlike the other `Script` types, `AuroraScript` is pretty limited in terms of wh
     * `RunService:IsClient()` and `RunService:IsServer()`.
     * `coroutine.yield()` (Behaviors cannot yield.)
 
-Besides the limitations, generally `AuroraScript`s should always be parented to a location that can be both accessed from the client and the server, such as `ReplicatedStorage`. If you parent an `AuroraScript` to a location such as `ServerScriptStorage`, this will cause it to only run on the server, and not the client. This defeats the whole purpose of `AuroraScript`s, as they run both on the server and the client simultaneously.
+Besides the limitations, generally `AuroraScript`s should always be parented to a location that can be both accessed from the client and the server, such as `ReplicatedStorage`. If you parent an `AuroraScript` to a location such as `ServerScriptStorage`, this will cause it to only run on the server, and not the client.
 
 ## Methods
 
@@ -136,9 +40,10 @@ Besides the limitations, generally `AuroraScript`s should always be parented to 
 This method binds the Behavior `AuroraScript` to the specified `Instance`.
 This then calls the (if defined) `.OnStart` method of the Behavior.
 
-Behaviors can also be bound manually, without the need of this method.
-With the Server Authority feature enabled, the Properties widget gain a new section for every `Instance`, called: "Behaviors".
-Clicking the "+" button on this section will allow you to find and bind any Behavior on an `Instance`.
+!!! note
+    Behaviors can also be bound manually, without the need of this method.
+    With the Server Authority feature enabled, the Properties widget gain a new section for every `Instance`, called: "Behaviors".
+    Clicking the "+" button on this section will allow you to find and bind any Behavior on an `Instance`.
 
 ### `AuroraScript:RemoveFrom(instance: Instance): ()`
 
@@ -152,13 +57,14 @@ This method allows you to check if the Behavior `AuroraScript` is on the specifi
 
 This method allows you to create a Signal that is fired when the `AuroraScriptObject` of the `AuroraScript` publishes a value with a topic.
 
-## Behavior
+-----
 
-Every `AuroraScript` comes with a global data type called `Behavior`, which can be accessed everywhere from the script.
-This Behavior allows you to connect to certain methods and events that allow you to (presumably) configure how the prediction on a certain `Instance` works.
+## The Behavior Data Type
+
+Every `AuroraScript` comes with a global data type called `Behavior`, which can be accessed everywhere from the script. We use this data type to define our methods which will run the simulation system.
 
 !!! info
-    The term "Behavior" actually represents an `AuroraScript`. `AuroraScript`s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behaviors" section in the Properties window, this is more apparent.
+    The term "Behavior" represents an `AuroraScript`. `AuroraScript`s do not have Behaviors, they are the Behaviors themselves. In certain places, for example the "Behaviors" section in the Properties window, this is more apparent.
 
 !!! warning
     Every Behavior must be bound to an `Instance` for them to work.
@@ -167,7 +73,7 @@ There are certain methods you have to define in the Behavior for it to start wor
 
 ### `Behavior.OnStart(self: AuroraScriptObject): ()`
 
-This is a special method that you can define in the Behavior, which runs when the Behavior has been started. It allows you to connect to various events of the `AuroraService`, and do some other things.
+This is a special method that you can define in the Behavior, which runs when the Behavior has been started. It allows you to connect certain events to certain methods and set certain field values, which are explained below.
 
 ```luau
 function Behavior.OnStart(self: AuroraScriptObject)
@@ -199,9 +105,15 @@ end
 
 This method allows you to define a field with a certain type in the `AuroraScriptObject`. The defined field will appear as a property within the `AuroraScriptObject`.
 
+### `Behavior.ExportMethod(methodName: string)`
+
+This method allows you to export a defined method in the data type. Do note that you must call this after the method with the specified `methodName` has been declared, otherwise, it will error.
+
+-----
+
 ## AuroraScriptObject
 
-This is the object given to the every function defined in the Behavior. It has certain properties and methods that allows you to do things such as manual prediction, sending messages across Behaviors, and more. 
+This is the object given to the every function defined in the Behavior. It has certain properties and methods that allows you to do things such as publishing and sending values and messages across Behaviors, and more. 
 
 ```luau
 type AuroraScriptObject = {
@@ -258,10 +170,12 @@ The level of distance number of the Behavior. Not sure what it is supposed to be
 
 ### `AuroraScriptObject.Connect:(self: AuroraScriptObject, signal: RBXScriptSignal, functionName: string) -> RBXScriptConnection`
 
-This method allows you to connect to a certain given `RBXScriptSignal`. It is mostly used to connecting to certain `AuroraService` events.
-The `functionName` argument must be the name of a function in the Behavior.
+This method allows you to connect to a certain given `RBXScriptSignal`. The `functionName` argument must be the name of a function in the Behavior.
 
 ```lua
+
+local RunService = game:GetService("RunService")
+
 type AuroraScriptObject = {
     Instance: Instance,
     Frame: number,
@@ -275,11 +189,11 @@ type AuroraScriptObject = {
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
-    self:Connect(AuroraService.FixedRateTick, "Predict")
+    self:Connect(RunService.Heartbeat, "Test")
 end
 
-function Behavior.Predict(self: AuroraScriptObject, deltaTime: number, worldStepId: number) -- This method will get called whenever the .FixedRateTick event fires.
-    print(self, deltaTime, worldStepId)
+function Behavior.Test(self: AuroraScriptObject, deltaTime: number) -- This method will get called whenever the .Heartbeat event fires.
+    print(self, deltaTime)
 end
 ``` 
 
@@ -304,6 +218,9 @@ This method allows you to publish a value in the Behavior with a certain `topic`
     This function cannot be called in `.OnStart`.
 
 ```lua
+
+local RunService = game:GetService("RunService")
+
 type AuroraScriptObject = {
     Instance: Instance,
     Frame: number,
@@ -318,10 +235,10 @@ type AuroraScriptObject = {
 
 function Behavior.OnStart(self: AuroraScriptObject)
     self:Subscribe("Test", "GetPublishedValue")
-    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+    self:Connect(RunService.Heartbeat, "OnHeartbeat")
 end
 
-function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number)
+function Behavior.OnHeartbeat(self: AuroraScriptObject, deltaTime: number)
     self:Publish("Test", "Hello!")
 end
 
@@ -351,7 +268,7 @@ This is where `:SendMessage()` comes in. Using this method, we can send and reci
 #### Test_1:
 
 ```lua
-local AuroraService = game:GetService("AuroraService")
+local RunService = game:GetService("RunService")
 
 type AuroraScriptObject = {
     Instance: Instance,
@@ -366,10 +283,10 @@ type AuroraScriptObject = {
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
-    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+    self:Connect(RunService.Heartbeat, "OnHeartbeat")
 end
 
-function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number)
+function Behavior.OnHeartbeat(self: AuroraScriptObject, deltaTime: number)
     self:SendMessage(game.Workspace.Part_2, "Test_2", "Test", "Hello!")
 end
 ```
@@ -377,7 +294,7 @@ end
 #### Test_2
 
 ```lua
-local AuroraService = game:GetService("AuroraService")
+local RunService = game:GetService("RunService")
 
 type AuroraScriptObject = {
     Instance: Instance,
@@ -392,10 +309,10 @@ type AuroraScriptObject = {
 }
 
 function Behavior.OnStart(self: AuroraScriptObject)
-    self:Connect(AuroraService.FixedRateTick, "OnFixedRateTick")
+    self:Connect(RunService.Heartbeat, "OnHeartbeat")
 end
 
-function Behavior.OnFixedRateTick(self: AuroraScriptObject, deltaTime: number, worldStepId: number) end
+function Behavior.OnHeartbeat(self: AuroraScriptObject, deltaTime: number) end
 
 function Behavior.OnMessageTest(self: AuroraScriptObject, recievedMessage: string)
     warn(recievedMessage) -- "Hello!"
@@ -417,7 +334,7 @@ This method allows you to set the maximum amount of frequency the `AuroraScriptO
 
 # AuroraScriptService
 
-This service is meant to manage and communicate with Behavior `AuroraScript`s. Unlike AuroraService however, it does not have special properties or events, just methods.
+This service is meant to manage and communicate with Behavior `AuroraScript`s.
 
 ## Methods
 

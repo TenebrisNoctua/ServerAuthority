@@ -2,6 +2,9 @@
 
 This is an example character movement system that you can create with Server Authority.
 
+!!! failure "Deprecated"
+	In the newer versions, Server Authority comes with an updated PlayerModule that does and supports everything mentioned in this tutorial. This tutorial will continue to exist as an example, however.
+
 ## The Design
 
 In a server-authoritative model, the same code must run on both the Server and the Client. This is how the client predicts what the server will do. To achieve this, we have two options: We can use `ModuleScript`s to do it in a modular way, or we can use the new `AuroraScript` object to do it all in one script architecture.
@@ -14,7 +17,7 @@ The hierarchy should look like this:
 
 ![hierarchy_1](../img/tutorial/character/hierarchyimage_1.png)
 
-Then, in this module, we connect to the `RunService.FixedHeartbeat(deltaTime: number)` signal with a callback function.
+Then, in this module, we bind our movement function to the simulation using the `RunService:BindToSimulation(callback: (deltaTime: number) -> ())` method with a callback function.
 
 ### CharacterMovement
 
@@ -27,8 +30,8 @@ local MovementModule = {
 
  -- This function begins the movement calculation for a player.
 function MovementModule.BeginMovement(player: Player)
-	-- We connect to the .FixedHeartbeat event of RunService, and add the Connection object to the Connections table to track it.
-	MovementModule.Connections[player] = RunService.FixedHeartbeat:Connect(function(deltaTime: number)
+	-- We bind our function to the simulation using RunService, and add the Connection object to the Connections table to track it.
+	MovementModule.Connections[player] = RunService:BindToSimulation(function(deltaTime: number)
         -- This will be the function to start calculating the movement of a player's character in.
 	end)
 end
@@ -82,9 +85,9 @@ local MovementModule = {
 
  -- This is the function that begins the movement calculation for a player.
 function MovementModule.BeginMovement(player: Player)
-	-- We connect to the .FixedHeartbeat event of RunService, and add the Connection object to the Connections table to track it.
-	MovementModule.Connections[player] = RunService.FixedHeartbeat:Connect(function(deltaTime: number)
-		if not player.Character then player.CharacterAdded:Wait() end -- Waiting until there's a valid character model.
+	-- We bind our function to the simulation using RunService, and add the Connection object to the Connections table to track it.
+	MovementModule.Connections[player] = RunService:BindToSimulation(function(deltaTime: number)
+		if not player.Character then return end -- If the character has not loaded yet, return.
 		
 		local Character = player.Character
 		local Humanoid: Humanoid = Character.Humanoid 
@@ -291,20 +294,22 @@ type AuroraScriptObject = {
 
 -- This function runs when the Behavior starts.
 function Behavior.OnStart(self: AuroraScriptObject)
-	-- We connect to the .FixedHeartbeat event of RunService here to DefaultMovement function of the Behavior.
-	self:Connect(RunService.FixedHeartbeat, "DefaultMovement")
+	-- We bind the DefaultMovement method of the Behavior to the Simulation.
+	RunService:BindToSimulation(function(deltaTime: number) 
+		self:DefaultMovement(deltaTime)
+	end)
 	self.Player = Players:GetPlayerFromCharacter(self.Instance) -- We find the Player from the bound Character instance and set it as a value within our Behavior.
 end
 
 function Behavior.DefaultMovement(self: AuroraScriptObject, deltaTime: number)
-	-- This function runs when .FixedHeartbeat fires with the deltaTime argument.
+	-- This function runs when BindToSimulation calls it with the deltaTime argument.
 end
 
 -- We declare a field in our Behavior to store the Player instance.
 Behavior.DeclareField("Player", {Type = "instance"})
 ```
 
-We now have a simple initial system that allows us to connect to the `.FixedHeartbeat` signal and set our Player property.
+We now have a simple initial system that allows us to bind our method to the simulation and set our Player property.
 
 However, just like in the modular way, we need to create an input system to capture input from the client.
 Repeating the steps from [Modular Way](#default-modular-way), we now have a hierarchy like this:
@@ -334,19 +339,22 @@ type AuroraScriptObject = {
 
 -- This function runs when the Behavior starts.
 function Behavior.OnStart(self: AuroraScriptObject)
-	-- We connect to the .FixedHeartbeat event of RunService here to DefaultMovement function of the Behavior.
-	self:Connect(RunService.FixedHeartbeat, "DefaultMovement")
+	-- We bind the DefaultMovement method of the Behavior to the Simulation.
+	RunService:BindToSimulation(function(deltaTime: number) 
+		self:DefaultMovement(deltaTime)
+	end)
 	self.Player = Players:GetPlayerFromCharacter(self.Instance) -- We find the Player from the bound Character instance and set it as a value within our Behavior.
 end
 
 function Behavior.DefaultMovement(self: AuroraScriptObject, deltaTime: number)
-	-- This function runs when .FixedHeartbeat fires with the deltaTime argument.
+	-- This function runs when BindToSimulation calls it with the deltaTime argument.
 
 	local Character: Model = self.Instance
 	local Player: Player = self.Player
 	if not Player then return end
 	
-	local Humanoid: Humanoid = Character:WaitForChild("Humanoid")
+	local Humanoid: Humanoid = Character.Humanoid
+	if not Humanoid then return end
 
 	local Input: InputContext = Player.Input.Default
 		
