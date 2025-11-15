@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Working with Server Authority
 
 To start working with Server Authority, you must first go into the `Workspace` properties and change some values. They are listed below.
