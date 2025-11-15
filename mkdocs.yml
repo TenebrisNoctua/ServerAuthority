@@ -61,7 +61,7 @@ markdown_extensions:
 nav:
   - Server Authority: 
     - Server Authority and Rollback Netcode: index.md
-    - Working with Server Authority: howto.md
+    - Working with Server Authority: main/howto.md
     - Behaviors: main/aurora.md
   - Examples:
     - Examples: examples/index.md
