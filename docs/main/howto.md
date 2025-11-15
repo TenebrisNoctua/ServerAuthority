@@ -67,6 +67,12 @@ Attributes on predicted `Instance`s are fully synchronized with the rollback net
 
 Although attributes are fully synchronized with the rollback netcode model, to ensure efficient data synchronization and the best gameplay experience, Roblox has imposed certain limits on the number and size of attributes that can be set per `Instance` on the Server. Attempting to exceed these limits will result in an error. While you can still set attributes in the Studio UI, any that violate these limits will not be loaded.
 
+Attribute Limits Per Instance (Server-side):
+
+* Maximum of 64 Entries.
+* Names and string values must be < 50 characters long.
+* Maximum of 1KB total data size.
+
 -----
 
 # Debugging and Tooling
