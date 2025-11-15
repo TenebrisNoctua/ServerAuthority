@@ -3,7 +3,7 @@
 This is an example character movement system that you can create with Server Authority.
 
 !!! failure "Deprecated"
-	In the newer versions, Server Authority comes with an updated PlayerModule that does and supports everything mentioned in this tutorial. This tutorial will continue to exist as an example, however.
+	In the newer versions, Server Authority comes with an updated `PlayerModule` that does and supports everything mentioned in this tutorial. This tutorial will continue to exist as an example, however.
 
 ## The Design
 
