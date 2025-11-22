@@ -5,20 +5,26 @@ hide:
 
 # Working with Server Authority
 
-To start working with Server Authority, you must first go into the `Workspace` properties and change some values. They are listed below.
+Roblox has created certain `Workspace` properties that you can configure to enable all or certain parts of Server Authority. They are listed below.
 
-* `Server Authority > AuthorityMode`: `Server`
-* `Behavior > PhysicsSteppingMethod`: `Fixed`
+* `Workspace > UseFixedSimulation`: Enables/Disables `RunService:BindToSimulation()`.
+* `Workspace > PlayerScriptsUseInputActionSystem`: Updates the built in Player scripts to a new model where they live under `StarterPlayer`, use the Input Action System, and allow the Server to process player inputs.
+* `Workspace > NextGenerationReplication`: Enables/Disables a new replication system that alters and improves how properties are replicated under the hood. Note that this system is fully disconnected from remote events so you should not rely on the ordering of property replication and remote events.
+* `Workspace > Server Authority > AuthorityMode`: Allows you to set the authority mode of the place. 
 
 !!! warning
-    Setting the `AuthorityMode` to `Server` will automatically change certain other workspace properties.
+    Setting the `AuthorityMode` to `Server` will automatically enable all of the properties above, and change certain other workspace properties. Below is a list of all properties that will be changed.
 
-    * `StreamingEnabled`: `true`
-    * `SignalBehavior`: `Deferred`
+    * `Workspace > StreamingEnabled`: `Enabled`
+    * `Workspace > SignalBehavior`: `Deferred`
+    * `Workspace > Behavior > PhysicsSteppingMethod`: `Fixed`
+    * `Workspace > UseFixedSimulation`: `Enabled`
+    * `Workspace > PlayerScriptsUseInputActionSystem`: `Enabled`
+    * `Workspace > NextGenerationReplication`: `Enabled`
 
     These properties cannot be changed while the `AuthorityMode` is set to `Server`.
 
-After completing the steps above, Server Authority should now be ready for usage.
+After configuring the properties above, Server Authority should now be ready for usage.
 
 If you wish to simply enable Server Authority for your characters and parts in your game, and you do not have systems dependant on how these characters and parts behave on your world, then these are all you need to do. The default `PlayerModule` instance already handles how Server Authority will be used internally, so you generally don't need to do anything.
 
@@ -28,13 +34,7 @@ However, if you have systems dependant on how these characters and parts will be
 
 # RunService
 
-To begin working with Server Authority, there are a few new methods and properties in `RunService` you need to utilize.
-
-## Properties
-
-### `RunService.FrameNumber`
-
-This value determines the current frame number of the world. It is also rolled back on the client when a misprediction occurs. Printing this number can be helpful for debugging your systems.
+To begin working with Server Authority, there are a few new methods in `RunService` you need to utilize.
 
 ## Methods
 
@@ -55,6 +55,12 @@ Determines whether the engine will rollback and resimulate the context `Instance
 ### `RunService:GetPredictionStatus(context: Instance): Enum.PredictionStatus`
 
 This function allows you to check the prediction status of the context `Instance`. This may be essential for scripts affecting multiple instances (e.g., vehicle controllers, custom physics) where some might be predicted and other might not. It may also be useful for debugging and observing the effects of automatic prediction.
+
+-----
+
+## Obtaining the Current Frame
+
+When Server Authority is enabled, the global [`time()`](https://create.roblox.com/docs/reference/engine/globals/RobloxGlobals#time) function becomes synchronized with the rollback netcode model. Calling this function will return a value that determines the current frame number of the world. It is also rolled back on the client when a misprediction occurs. Printing this number can be helpful for debugging your systems.
 
 -----
 
