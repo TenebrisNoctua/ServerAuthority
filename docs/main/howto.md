@@ -87,7 +87,7 @@ Press CTRL + SHIFT + F6 on Windows or CMD + SHIFT + F6 on macOS to enable the Se
 
 -----
 
-# Implementing systems with Server Authority
+# Implementing Systems with Server Authority
 
 Server Authority requires you to run the same simulation code on both the Server and the Client. This is necessary for accuracy.
 
