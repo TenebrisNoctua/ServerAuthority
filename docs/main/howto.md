@@ -119,4 +119,4 @@ end
 return module
 ```
 
-This simple architecture will be the foundation of our many systems that will run on this server-authoritative model. Using this, we can implement many types of systems, such as a character movement system, which can be found in the [Examples](../examples/index.md) section.
+This simple architecture will be the foundation of our many systems that will run on the server-authoritative model. Using this, we can implement many types of systems, such as a character movement system, which can be found in the [Examples](../examples/index.md) section.
