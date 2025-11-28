@@ -86,3 +86,37 @@ Attribute Limits Per Instance (Server-side):
 Press CTRL + SHIFT + F6 on Windows or CMD + SHIFT + F6 on macOS to enable the Server Authority Visualizer. When it’s on, you’ll see a new debug pane appear at the bottom-right of your viewport. Along with showing statistics about Server Authority, this tool shows PV mispredictions for all predicted `Instance`s in the workspace. Pairs of boxes connected by pink lines show mispredictions: for each pair, the blue box represents the client’s misprediction and the green box represents the server’s authoritative simulation. Each box emits a vector representing the `CFrame`'s facing direction at the given location. You can clear the mispredictions from the world with CTRL/CMD + SHIFT + F7 and sort them by proximity to the player with CTRL/CMD + SHIFT + F8.
 
 -----
+
+# Implementing systems with Server Authority
+
+Server Authority requires you to run the same simulation code on both the Server and the Client. This is necessary for accuracy.
+
+We can implement this simulation code in many ways, however, to make it easier and more efficient to implement such a system, a multi-script architecture will be used for implementation in this documentation.
+
+We will use this architecture to initialize the same system on both the Server and the Client. To do this, you can create a `ModuleScript` which is parented to a location that is accessible from both the Server and the Client, such as `ReplicatedStorage`. Then, by creating a `Script` for both the Server and Client contexts, we can initialize and run this shared `ModuleScript` on each context.
+
+An example:
+
+![hierarchyimage_1](../img/main/hierarchyimage_1.png)
+
+We have two scripts which initialize the "SimulationModule" `ModuleScript` on both the Server and the Client.
+
+## SimulationClient and SimulationServer
+
+```luau
+require(script.Parent.SimulationModule).Run()
+```
+
+## SimulationModule
+
+```luau
+local module = {}
+
+function module.Run()
+	-- This code will be ran on both the server and the client.
+end
+
+return module
+```
+
+This simple architecture will be the foundation of our many systems that will run on this server-authoritative model. Using this, we can implement many types of systems, such as a character movement system, which can be found in the [Examples](../examples/index.md) section.

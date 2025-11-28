@@ -7,7 +7,7 @@ This is an example character movement system that you can create with Server Aut
 
 ## The Design
 
-In a server-authoritative model, the same code must run on both the Server and the Client. This is how the client predicts what the server will do. To achieve this, we have two options: We can use `ModuleScript`s to do it in a modular way, or we can use the new `AuroraScript` object to do it all in one script architecture.
+We will create a simple character movement system, that will allow the player to move in any direction. To do this, we can use a multi-script architecture (the Modular Way), or a singular script architecture (the Behavior Way) to run our simulation code on both the Server and the Client. It is recommended that you use the modular way, as the behavior way is unstable and not finished yet.
 
 ## Default (Modular) Way
 
