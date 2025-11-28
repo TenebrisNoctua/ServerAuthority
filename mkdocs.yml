@@ -66,6 +66,9 @@ nav:
   - Examples:
     - Examples: examples/index.md
     - Character Movement System: examples/character.md
+    - Basic Admin System: 
+      - Basic Admin System: examples/admin/index.md
+      - Fly: examples/admin/fly.md
   - Credits: main/credits.md
 copyright: |
   &copy; 2025 <a href="https://github.com/TenebrisNoctua"  target="_blank" rel="noopener">Tenebris Noctua</a>
