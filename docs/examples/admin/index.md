@@ -6,7 +6,7 @@ This is an example basic admin system that you can create and use with Server Au
 
 We will create a simple modular admin system, that contains some also simple command modules which allows the player to commit certain actions in the game. We can begin by creating a folder in `ReplicatedStorage`, which both the Server and the Client can access.
 
-![hierarchyimage_1](../img/tutorial/admin/hierarchyimage_1.png)
+![hierarchyimage_1](../../img/tutorial/admin/hierarchyimage_1.png)
 
 Next, we will create these instances:
 
@@ -18,5 +18,5 @@ Next, we will create these instances:
 
 * "Main" `ModuleScript`: This is a module which essentially requires all the command modules and puts them in a simple API for usage. Instead of requiring each and individual command module, one can simply require this module and access the functions and data of all command modules. This module is purely for ease of use, and not necessary, you can also require the modules individually if you wish to customize that behavior, too.
 
-![hierarchyimage_2](../img/tutorial/admin/hierarchyimage_2.png)
+![hierarchyimage_2](../../img/tutorial/admin/hierarchyimage_2.png)
 
