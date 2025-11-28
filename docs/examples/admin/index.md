@@ -16,7 +16,7 @@ Next, we will create these instances:
 
 * "Commands" `Folder`: This will hold our main command modules which will contain our simulation code for running the command. These modules will be ran on both the Server and the Client.
 
-* "Main" `ModuleScript`: This is a module which essentially requires all the command modules and puts them in a simple API for usage. Instead of requiring each and individual command module, one can simply require this module and access the functions and data of all command modules. This module is purely for ease of use, and not necessary, you can also require the modules individually if you wish to customize that behavior, too.
+* "Main" `ModuleScript`: This is a module which essentially requires all the command modules and puts them in a simple API for usage. Instead of requiring each and individual command module, one can simply require this module and access the functions and data of all command modules through it. However, this module is purely for ease of use, and not necessary. You can also require the modules individually if you wish to customize that behavior, too.
 
 ![hierarchyimage_2](../../img/tutorial/admin/hierarchyimage_2.png)
 
