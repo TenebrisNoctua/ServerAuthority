@@ -20,4 +20,4 @@ Next, we will create these instances:
 
 ![hierarchyimage_2](../../img/tutorial/admin/hierarchyimage_2.png)
 
-We have now set-up our main admin system. We can now begin adding our command modules and scripts. You can check out the basic command tutorial pages on the left side, to see how you can implement them.
+Now that we have set-up our main admin system, we can begin adding our command modules and scripts. To do so, you can check out the basic command tutorial pages on the left side. You may use them to learn how to implement some basic general commands.
