@@ -4,8 +4,6 @@ Welcome to the Examples section! In this section, you can find examples of syste
 On the left side, there are pages which contain tutorials and snippets of code which may help you to learn how to do various small or large scale systems with Server Authority.
 
 !!! note
-    * Every script must be parented under the "ServerAuthority" folder in `ReplicatedStorage`. (Create one if it doesn't exist)
-    
     * Each example contains two ways to achieve the same system. 
 
 -----
