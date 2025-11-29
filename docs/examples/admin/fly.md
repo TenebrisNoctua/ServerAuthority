@@ -245,4 +245,4 @@ end
 Players.PlayerAdded:Connect(onPlayerAdded)
 ```
 
-And that's all! Hitting the "Play" button should allow you to test our new admin command. You are free to change the Server code as much as you like, to implement an input-based system where player can press certain keys to start or stop flying.
+And that's all! Hitting the "Play" button should allow you to test our new admin command. You are free to change the Server code as much as you like, to implement an input-based system where the player can press certain keys, or use a certain command string, to start or stop flying.
