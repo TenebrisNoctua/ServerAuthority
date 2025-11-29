@@ -20,4 +20,57 @@ Next, we will create these instances:
 
 ![hierarchyimage_2](../../img/tutorial/admin/hierarchyimage_2.png)
 
+After setting our hierarchy, we can now set the Main module code:
+
+### Main
+
+```luau
+-- Written by @TenebrisNoctua
+-- Initializes and loads the command modules.
+
+--// Types
+
+type ModuleReturnType = {
+	Begin: (player: Player, ...any) -> (...any),
+	End: (player: Player, ...any) -> (...any)?
+}
+
+type function GetCommandsType(commandsFolder: type)
+	assert(commandsFolder:is("class"), "commandsFolder argument is not an extern type.")
+	local commandsTable = types.newtable()
+	commandsTable:setindexer(types.string, types.any)
+	
+	local properties = commandsFolder:properties()
+	for i, property in properties do
+		local name = i:value()
+		if name == "Parent" then continue end
+		commandsTable:setproperty(types.singleton(name), types.optional(ModuleReturnType))
+	end
+	
+	return commandsTable
+end
+
+--// Main Initialization
+
+local CommandsFolder = script.Parent:FindFirstChild("Commands")
+assert(CommandsFolder, "Cannot find the commands folder.")
+
+local CommandModules = CommandsFolder:GetChildren()
+local GlobalCommands: GetCommandsType<typeof(CommandsFolder)> = {}
+
+for _, moduleScript in CommandModules do
+	if not moduleScript:IsA("ModuleScript") then continue end
+	local success, commandModule = pcall(require, moduleScript)
+	if success then
+		GlobalCommands[moduleScript.Name] = commandModule
+	else
+		warn("Failed to require command module:", moduleScript.Name)
+	end
+end
+
+return GlobalCommands
+```
+
+This module will now allow us to easily access the command modules with a simple to use API system.
+
 Now that we have set-up our main admin system, we can begin adding our command modules and scripts. To do so, you can check out the basic command tutorial pages on the left side. You may use them to learn how to implement some basic general commands.
