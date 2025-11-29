@@ -1,0 +1,1277 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://tenebrisnoctua.github.io/ServerAuthority/examples/admin/fly/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../../main/credits/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Fly - Server Authority Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/colors.css">
+    
+      <link rel="stylesheet" href="../../../css/theme.css">
+    
+      <link rel="stylesheet" href="../../../css/code.css">
+    
+      <link rel="stylesheet" href="../../../css/api-reference.css">
+    
+      <link rel="stylesheet" href="../../../css/paragraph.css">
+    
+      <link rel="stylesheet" href="../../../css/home.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="pedoc-dark" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fly-command" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Server Authority Documentation" class="md-header__button md-logo" aria-label="Server Authority Documentation" data-md-component="logo">
+      <!-- Logo -->
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Server Authority Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fly
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="pedoc-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to Light Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to Light Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19a7 7 0 1 1 0-14 7 7 0 0 1 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11m-5.657.157a.75.75 0 0 1 0 1.06l-1.768 1.768a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734l1.767-1.768a.75.75 0 0 1 1.061 0M3.515 3.515a.75.75 0 0 1 1.06 0l1.768 1.768a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L3.515 4.575a.75.75 0 0 1 0-1.06M12 0a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 12 0M4 12a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 4 12m8 8a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 12 20m12-8a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 24 12m-6.343 5.657a.75.75 0 0 1 1.06 0l1.768 1.768a.75.75 0 0 1-.018 1.042.75.75 0 0 1-1.042.018l-1.768-1.767a.75.75 0 0 1 0-1.061m2.828-14.142a.75.75 0 0 1 0 1.06l-1.768 1.768a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l1.767-1.768a.75.75 0 0 1 1.061 0"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="pedoc-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch To Dark Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch To Dark Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.768 3.96zl-.002-.005a9 9 0 0 0-.218-.779c-.13-.394.21-.8.602-.67q.435.144.855.328l.01.005A10.002 10.002 0 0 1 12 22a10 10 0 0 1-9.162-5.985l-.004-.01a10 10 0 0 1-.329-.855c-.13-.392.277-.732.67-.602q.386.126.78.218l.004.002A9 9 0 0 0 14.999 6a9 9 0 0 0-.231-2.04M16.5 6c0 5.799-4.701 10.5-10.5 10.5q-.64 0-1.26-.075A8.5 8.5 0 1 0 16.425 4.74q.075.62.075 1.259Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Server Authority
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../main/credits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Credits
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Server Authority Documentation" class="md-nav__button md-logo" aria-label="Server Authority Documentation" data-md-component="logo">
+      <!-- Logo -->
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Server Authority Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Authority
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Server Authority
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../main/howto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Server Authority
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../main/aurora/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Behaviors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../character/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Character Movement System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Admin System
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic Admin System
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../main/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Examples
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Basic Admin System
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="fly-command">Fly Command</h1>
+<p>This is an example basic fly command that allows the players to fly in the direction of their camera.</p>
+<h2 id="the-design">The Design</h2>
+<p>We will create a command module, an event, and scripts to allow a certain player's character to fly in the game. We can begin by creating a new command module under the "Commands" folder in our admin system folder.</p>
+<p><img alt="hierarchyimage_fly_1" src="../../../img/tutorial/admin/hierarchyimage_fly_1.png" /></p>
+<h3 id="fly">Fly</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">-- Written by @TenebrisNoctua</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">-- Makes the given player fly.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">--// Variables</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kd">local</span><span class="w"> </span><span class="nv">RunService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nc">GetService</span><span class="p">(</span><span class="s2">&quot;RunService&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kd">local</span><span class="w"> </span><span class="nv">AdminModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nv">Speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="c1">-- How fast a player will fly. (Studs per second)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nv">Flying</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="p">{[</span><span class="nc">Instance</span><span class="p">]:</span><span class="w"> </span><span class="p">{</span><span class="nc">RBXScriptConnection</span><span class="p">}}</span><span class="w"> </span><span class="c1">-- Stores the currently flying players, and their connections.</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1">--// Types</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="kr">type</span><span class="w"> </span><span class="nc">TPlayer</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nc">InputContexts</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="nc">Character</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">            </span><span class="nc">Camera</span><span class="p">:</span><span class="w"> </span><span class="nc">InputAction</span><span class="p">,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="nc">CameraPosition</span><span class="p">:</span><span class="w"> </span><span class="nc">InputAction</span><span class="p">,</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="nc">Move</span><span class="p">:</span><span class="w"> </span><span class="nc">InputAction</span><span class="p">,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="nc">Jump</span><span class="p">:</span><span class="w"> </span><span class="nc">InputAction</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="nc">InputContext</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="nc">Folder</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">}</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="nc">Player</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="c1">--// Module Functions</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1">-- This is the main command module function that when ran, allows the target player to fly.</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="kr">function</span><span class="w"> </span><span class="nc">AdminModule</span><span class="p">.</span><span class="nf">Begin</span><span class="p">(</span><span class="nv">player</span><span class="p">:</span><span class="w"> </span><span class="nc">TPlayer</span><span class="p">)</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">player</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;InputContexts&quot;</span><span class="p">)</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">AdminModule</span><span class="p">.</span><span class="nv">Flying</span><span class="p">[</span><span class="nv">player</span><span class="p">]</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span><span class="w"> </span><span class="c1">-- We check if the player is already flying or not.</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">Character</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">player</span><span class="p">.</span><span class="nv">Character</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">Character</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Character</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;HumanoidRootPart&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">BasePart</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">AlignPosition</span><span class="p">:</span><span class="w"> </span><span class="nc">AlignPosition</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">AlignOrientation</span><span class="p">:</span><span class="w"> </span><span class="nc">AlignOrientation</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">CameraPosition</span><span class="p">:</span><span class="w"> </span><span class="nc">InputAction</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="c1">-- Here, we create the necessary instances that will allow the character to fly, if the module is ran on the server. These instances are used to align the player to a specific location at a specific orientation.</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">RunService</span><span class="p">:</span><span class="nc">IsServer</span><span class="p">()</span><span class="w"> </span><span class="kr">then</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">        </span><span class="nv">AlignPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Instance</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">&quot;AlignPosition&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">        </span><span class="nv">AlignPosition</span><span class="p">.</span><span class="nv">ApplyAtCenterOfMass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">        </span><span class="nv">AlignPosition</span><span class="p">.</span><span class="nv">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Enum</span><span class="p">.</span><span class="nv">PositionAlignmentMode</span><span class="p">.</span><span class="nv">OneAttachment</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">        </span><span class="nv">AlignPosition</span><span class="p">.</span><span class="nv">Attachment0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">:</span><span class="nc">WaitForChild</span><span class="p">(</span><span class="s2">&quot;RootAttachment&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">Attachment</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">        </span><span class="nv">AlignPosition</span><span class="p">.</span><span class="nv">Position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">.</span><span class="nv">Position</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">        </span><span class="nv">AlignPosition</span><span class="p">.</span><span class="nv">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">        </span><span class="nv">AlignOrientation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Instance</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">&quot;AlignOrientation&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">        </span><span class="nv">AlignOrientation</span><span class="p">.</span><span class="nv">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Enum</span><span class="p">.</span><span class="nv">OrientationAlignmentMode</span><span class="p">.</span><span class="nv">OneAttachment</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">        </span><span class="nv">AlignOrientation</span><span class="p">.</span><span class="nv">Attachment0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">:</span><span class="nc">WaitForChild</span><span class="p">(</span><span class="s2">&quot;RootAttachment&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">Attachment</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">        </span><span class="nv">AlignOrientation</span><span class="p">.</span><span class="nv">Responsiveness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">        </span><span class="nv">AlignOrientation</span><span class="p">.</span><span class="nv">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">        </span><span class="c1">-- Here, we create a new InputAction that captures the camera position of the client. The server will recieve and use this position to calculate the orientation of the character.</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">        </span><span class="nv">CameraPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Instance</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">&quot;InputAction&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">        </span><span class="nv">CameraPosition</span><span class="p">.</span><span class="nv">Type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Enum</span><span class="p">.</span><span class="nv">InputActionType</span><span class="p">.</span><span class="nv">Direction3D</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">        </span><span class="nv">CameraPosition</span><span class="p">.</span><span class="nv">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;CameraPosition&quot;</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">        </span><span class="nv">CameraPosition</span><span class="p">.</span><span class="nv">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">player</span><span class="p">.</span><span class="nv">InputContexts</span><span class="p">.</span><span class="nv">Character</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">    </span><span class="kr">else</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">        </span><span class="c1">-- We do not need to create these instances on the client, as they will be replicated anyway. We just need to locate them.</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">        </span><span class="nv">AlignPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;AlignPosition&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">AlignPosition</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">        </span><span class="nv">AlignOrientation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;AlignOrientation&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">AlignOrientation</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">        </span><span class="nv">CameraPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">player</span><span class="p">.</span><span class="nv">InputContexts</span><span class="p">.</span><span class="nv">Character</span><span class="p">.</span><span class="nv">CameraPosition</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="kr">end</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">CharacterContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">player</span><span class="p">.</span><span class="nv">InputContexts</span><span class="p">.</span><span class="nv">Character</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">Humanoid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Character</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;Humanoid&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">Humanoid</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">    </span><span class="nv">Humanoid</span><span class="p">.</span><span class="nv">PlatformStand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">Connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">RunService</span><span class="p">:</span><span class="nc">IsClient</span><span class="p">()</span><span class="w"> </span><span class="kr">then</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">        </span><span class="c1">-- This is used to send the current camera position to the server, so both the server and the client can use this data to calculate the correct orientation of the character.</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="w">        </span><span class="nb">table</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="nv">Connections</span><span class="p">,</span><span class="w"> </span><span class="nv">RunService</span><span class="p">.</span><span class="nv">RenderStepped</span><span class="p">:</span><span class="nc">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="nv">deltaTime</span><span class="p">:</span><span class="w"> </span><span class="nc">number</span><span class="p">)</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="w">            </span><span class="kd">local</span><span class="w"> </span><span class="nv">CurrentCamera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">.</span><span class="nv">Workspace</span><span class="p">.</span><span class="nv">CurrentCamera</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="w">            </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">CurrentCamera</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="w">            </span><span class="nv">CameraPosition</span><span class="p">:</span><span class="nc">Fire</span><span class="p">(</span><span class="nv">CurrentCamera</span><span class="p">.</span><span class="nv">CFrame</span><span class="p">.</span><span class="nv">Position</span><span class="p">)</span><span class="w">  </span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="w">        </span><span class="kr">end</span><span class="p">))</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">    </span><span class="kr">end</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="w">    </span><span class="nb">table</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="nv">Connections</span><span class="p">,</span><span class="w"> </span><span class="nv">RunService</span><span class="p">:</span><span class="nc">BindToSimulation</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="nv">deltaTime</span><span class="p">:</span><span class="w"> </span><span class="nc">number</span><span class="p">)</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="w">        </span><span class="c1">-- Here, we get the camera position, and using it, calculate the target position and the orientation of the character.</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="w">        </span><span class="c1">-- This function is bound to the simulation, and is ran on both the server and the client.</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="w">        </span><span class="kd">local</span><span class="w"> </span><span class="nv">CameraPosition</span><span class="p">:</span><span class="w"> </span><span class="nc">Vector3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CameraPosition</span><span class="p">:</span><span class="nc">GetState</span><span class="p">()</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="w">        </span><span class="nv">AlignPosition</span><span class="p">.</span><span class="nv">Position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">.</span><span class="nv">Position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="nv">HumanoidRootPart</span><span class="p">.</span><span class="nv">Position</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">CameraPosition</span><span class="p">).</span><span class="nv">Unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">AdminModule</span><span class="p">.</span><span class="nv">Speed</span><span class="p">)</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="w">        </span><span class="nv">AlignOrientation</span><span class="p">.</span><span class="nv">CFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CFrame</span><span class="p">.</span><span class="nf">lookAt</span><span class="p">(</span><span class="nv">CameraPosition</span><span class="p">,</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">.</span><span class="nv">Position</span><span class="p">)</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="w">    </span><span class="kr">end</span><span class="p">))</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="w">    </span><span class="nv">AdminModule</span><span class="p">.</span><span class="nv">Flying</span><span class="p">[</span><span class="nv">player</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Connections</span><span class="w"> </span><span class="c1">-- We add the player to the table to indicate that they&#39;re now flying.</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="kr">end</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="c1">-- This is the other main command module function that when ran, stops the target player from flying.</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a><span class="kr">function</span><span class="w"> </span><span class="nc">AdminModule</span><span class="p">.</span><span class="nf">End</span><span class="p">(</span><span class="nv">player</span><span class="p">:</span><span class="w"> </span><span class="nc">TPlayer</span><span class="p">)</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">Connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">AdminModule</span><span class="p">.</span><span class="nv">Flying</span><span class="p">[</span><span class="nv">player</span><span class="p">]</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">Connections</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span><span class="w"> </span><span class="c1">-- If the player is not flying, don&#39;t do anything.</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">RunService</span><span class="p">:</span><span class="nc">IsClient</span><span class="p">()</span><span class="w"> </span><span class="kr">then</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a><span class="w">        </span><span class="c1">-- The client does not need to destroy the instances due to replication.</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a><span class="w">        </span><span class="c1">-- We just need to disconnect the events and clean-up.</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a><span class="w">        </span><span class="kr">for</span><span class="w"> </span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">connection</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nv">Connections</span><span class="w"> </span><span class="kr">do</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a><span class="w">            </span><span class="nv">connection</span><span class="p">:</span><span class="nc">Disconnect</span><span class="p">()</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a><span class="w">        </span><span class="kr">end</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a><span class="w">        </span><span class="nb">table</span><span class="p">.</span><span class="nf">clear</span><span class="p">(</span><span class="nv">Connections</span><span class="p">)</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a><span class="w">        </span><span class="nv">AdminModule</span><span class="p">.</span><span class="nv">Flying</span><span class="p">[</span><span class="nv">player</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="c1">-- We remove the player from the table, now that they&#39;re no longer flying, on the client.</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a><span class="w">        </span><span class="kr">return</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a><span class="w">    </span><span class="kr">end</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>
+<a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a><span class="w">    </span><span class="c1">-- The server will both destroy the created instances, and do the clean-up on its part.</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>
+<a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">Character</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">player</span><span class="p">.</span><span class="nv">Character</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">Character</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">player</span><span class="p">.</span><span class="nv">CharacterAdded</span><span class="p">:</span><span class="nc">Wait</span><span class="p">();</span><span class="w"> </span><span class="nv">Character</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">player</span><span class="p">.</span><span class="nv">Character</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">Character</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>
+<a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">CharacterContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">player</span><span class="p">.</span><span class="nv">InputContexts</span><span class="p">.</span><span class="nv">Character</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>
+<a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Character</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;HumanoidRootPart&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">AlignPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;AlignPosition&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">AlignOrientation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">HumanoidRootPart</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;AlignOrientation&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a><span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">Humanoid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Character</span><span class="p">:</span><span class="nc">FindFirstChild</span><span class="p">(</span><span class="s2">&quot;Humanoid&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">Humanoid</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>
+<a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a><span class="w">    </span><span class="nv">Humanoid</span><span class="p">.</span><span class="nv">PlatformStand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>
+<a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a><span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">connection</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nv">Connections</span><span class="w"> </span><span class="kr">do</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a><span class="w">        </span><span class="nv">connection</span><span class="p">:</span><span class="nc">Disconnect</span><span class="p">()</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a><span class="w">    </span><span class="kr">end</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a><span class="w">    </span><span class="nb">table</span><span class="p">.</span><span class="nf">clear</span><span class="p">(</span><span class="nv">Connections</span><span class="p">)</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>
+<a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a><span class="w">    </span><span class="nv">AlignPosition</span><span class="p">:</span><span class="nc">Destroy</span><span class="p">()</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a><span class="w">    </span><span class="nv">AlignOrientation</span><span class="p">:</span><span class="nc">Destroy</span><span class="p">()</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a><span class="w">    </span><span class="nv">CharacterContext</span><span class="p">.</span><span class="nv">CameraPosition</span><span class="p">:</span><span class="nc">Destroy</span><span class="p">()</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>
+<a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a><span class="w">    </span><span class="nv">AdminModule</span><span class="p">.</span><span class="nv">Flying</span><span class="p">[</span><span class="nv">player</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="c1">-- We remove the player from the table, now that they&#39;re no longer flying, on the server.</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a><span class="kr">end</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>
+<a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a><span class="kr">return</span><span class="w"> </span><span class="nv">AdminModule</span>
+</code></pre></div>
+<p>Our simulation and main flying system code is now ready. Now, we need to create initializer scripts to run this code on both the Server and the Client. To achieve that, we can create two new <code>Script</code>s in the "CommandScripts" folder.</p>
+<p><img alt="hierarchyimage_fly_2" src="../../../img/tutorial/admin/hierarchyimage_fly_2.png" /></p>
+<p>Before we move on to implementing the code for these <code>Script</code>s, we also need to create a new <code>RemoteEvent</code> that allows the client <code>Script</code> to know when to start or stop the command module. We can create a new <code>RemoteEvent</code> for this under the "CommandEvents" folder.</p>
+<p><img alt="hierarchyimage_fly_3" src="../../../img/tutorial/admin/hierarchyimage_fly_3.png" /></p>
+<p>Now that our events and other instances are set, we can start by implementing our Client <code>Script</code> which will start the command module once the "Fly" event has been fired.</p>
+<h3 id="client">Client</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- Written by @TenebrisNoctua</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">-- Handles the relevant command event.</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">--// Variables</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kd">local</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nc">GetService</span><span class="p">(</span><span class="s2">&quot;ReplicatedStorage&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kd">local</span><span class="w"> </span><span class="nv">Players</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nc">GetService</span><span class="p">(</span><span class="s2">&quot;Players&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kd">local</span><span class="w"> </span><span class="nv">StarterPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nc">GetService</span><span class="p">(</span><span class="s2">&quot;StarterPlayer&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="kd">local</span><span class="w"> </span><span class="nv">PlayerModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span><span class="nv">StarterPlayer</span><span class="p">:</span><span class="nc">WaitForChild</span><span class="p">(</span><span class="s2">&quot;PlayerModule&quot;</span><span class="p">))</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="kd">local</span><span class="w"> </span><span class="nv">Controls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">PlayerModule</span><span class="p">:</span><span class="nc">GetControls</span><span class="p">()</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="kd">local</span><span class="w"> </span><span class="nv">AdminSystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="p">.</span><span class="nv">AdminSystem</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="kd">local</span><span class="w"> </span><span class="nv">CommandEvents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">AdminSystem</span><span class="p">.</span><span class="nv">CommandEvents</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="kd">local</span><span class="w"> </span><span class="nv">FlyCommand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span><span class="nv">AdminSystem</span><span class="p">.</span><span class="nv">Main</span><span class="p">).</span><span class="nv">Fly</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="kd">local</span><span class="w"> </span><span class="nv">FlyEvent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CommandEvents</span><span class="p">.</span><span class="nv">Fly</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1">--// Event Handler</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1">-- This event will be fired with a string that allows the client to know which operation to perform.</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nv">FlyEvent</span><span class="p">.</span><span class="nv">OnClientEvent</span><span class="p">:</span><span class="nc">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="nv">state</span><span class="p">:</span><span class="w"> </span><span class="nc">string</span><span class="p">)</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">Players</span><span class="p">.</span><span class="nv">LocalPlayer</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">FlyCommand</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Begin&quot;</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="c1">-- If the state is &quot;Begin&quot;, then begin the simulation.</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">        </span><span class="nv">Controls</span><span class="p">:</span><span class="nc">Enable</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="c1">-- We disable the player controls here to make sure it doesn&#39;t conflict with our system.</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">        </span><span class="nv">FlyCommand</span><span class="p">.</span><span class="nf">Begin</span><span class="p">(</span><span class="nv">Players</span><span class="p">.</span><span class="nv">LocalPlayer</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">any</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Our main command module function that begins the simulation.</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="kr">elseif</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;End&quot;</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="c1">-- If the state is &quot;End&quot;, then end the simulation.</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">FlyCommand</span><span class="p">.</span><span class="nv">End</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">        </span><span class="nv">FlyCommand</span><span class="p">.</span><span class="nf">End</span><span class="p">(</span><span class="nv">Players</span><span class="p">.</span><span class="nv">LocalPlayer</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="nc">any</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Our other main command module function that ends the simulation.</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">        </span><span class="nv">Controls</span><span class="p">:</span><span class="nc">Enable</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="c1">-- We enable the player controls afterwards so the player can move normally again.</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="kr">end</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="kr">end</span><span class="p">)</span>
+</code></pre></div>
+<p>We are almost done! All we need to do is to implement the code that will run the command module on the Server as well.</p>
+<h3 id="server">Server</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Written by @TenebrisNoctua</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">-- Handles the relevant command system.</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">--// Variables</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="kd">local</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nc">GetService</span><span class="p">(</span><span class="s2">&quot;ReplicatedStorage&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="kd">local</span><span class="w"> </span><span class="nv">Players</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nc">GetService</span><span class="p">(</span><span class="s2">&quot;Players&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kd">local</span><span class="w"> </span><span class="nv">AdminSystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="p">.</span><span class="nv">AdminSystem</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="kd">local</span><span class="w"> </span><span class="nv">CommandEvents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">AdminSystem</span><span class="p">.</span><span class="nv">CommandEvents</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="kd">local</span><span class="w"> </span><span class="nv">FlyCommand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span><span class="nv">AdminSystem</span><span class="p">.</span><span class="nv">Main</span><span class="p">).</span><span class="nv">Fly</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="kd">local</span><span class="w"> </span><span class="nv">FlyEvent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">CommandEvents</span><span class="p">.</span><span class="nv">Fly</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1">--// Local Function</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1">-- This function runs when a player has joined the server.</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">onPlayerAdded</span><span class="p">(</span><span class="nv">player</span><span class="p">:</span><span class="w"> </span><span class="nc">Player</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">FlyCommand</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span><span class="w">   </span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="nv">player</span><span class="p">.</span><span class="nv">CharacterAdded</span><span class="p">:</span><span class="nc">Wait</span><span class="p">()</span><span class="w"> </span><span class="c1">-- We wait until the player has a character.</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="nv">FlyCommand</span><span class="p">.</span><span class="nf">Begin</span><span class="p">(</span><span class="nv">player</span><span class="p">)</span><span class="w"> </span><span class="c1">-- We begin the simulation for the player on the server.</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="nv">FlyEvent</span><span class="p">:</span><span class="nc">FireClient</span><span class="p">(</span><span class="nv">player</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Begin&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Then, we send the signal to the client to begin with its own simulation.</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">    </span><span class="nv">task</span><span class="p">.</span><span class="nf">wait</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Waiting 10 seconds to allow the player to test the feature.</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">FlyCommand</span><span class="p">.</span><span class="nv">End</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">end</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">    </span><span class="nv">FlyCommand</span><span class="p">.</span><span class="nf">End</span><span class="p">(</span><span class="nv">player</span><span class="p">)</span><span class="w"> </span><span class="c1">-- We end the simulation for the player on the server.</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="nv">FlyEvent</span><span class="p">:</span><span class="nc">FireClient</span><span class="p">(</span><span class="nv">player</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;End&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Then, we send the signal to the client to stop with its own simulation.</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="kr">end</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="c1">-- This exists just in-case if the below event does not fire.</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="kr">for</span><span class="w"> </span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">player</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nv">Players</span><span class="p">:</span><span class="nc">GetPlayers</span><span class="p">()</span><span class="w"> </span><span class="kr">do</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">    </span><span class="nf">onPlayerAdded</span><span class="p">(</span><span class="nv">player</span><span class="p">)</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="kr">end</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="c1">--// Event Handler</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="nv">Players</span><span class="p">.</span><span class="nv">PlayerAdded</span><span class="p">:</span><span class="nc">Connect</span><span class="p">(</span><span class="nv">onPlayerAdded</span><span class="p">)</span>
+</code></pre></div>
+<p>And that's all! Hitting the "Play" button should allow you to test our new admin command. You are free to change the Server code as much as you like, to implement an input-based system where the player can press certain keys, or use a certain command string, to start or stop flying.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Basic Admin System">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Basic Admin System
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../main/credits/" class="md-footer__link md-footer__link--next" aria-label="Next: Credits">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Credits
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://github.com/TenebrisNoctua"  target="_blank" rel="noopener">Tenebris Noctua</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

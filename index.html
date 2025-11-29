@@ -1,0 +1,906 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://tenebrisnoctua.github.io/ServerAuthority/">
+      
+      
+      
+        <link rel="next" href="main/howto/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Server Authority and Rollback Netcode - Server Authority Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="css/colors.css">
+    
+      <link rel="stylesheet" href="css/theme.css">
+    
+      <link rel="stylesheet" href="css/code.css">
+    
+      <link rel="stylesheet" href="css/api-reference.css">
+    
+      <link rel="stylesheet" href="css/paragraph.css">
+    
+      <link rel="stylesheet" href="css/home.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="pedoc-dark" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Server Authority Documentation" class="md-header__button md-logo" aria-label="Server Authority Documentation" data-md-component="logo">
+      <!-- Logo -->
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Server Authority Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Server Authority and Rollback Netcode
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="pedoc-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to Light Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to Light Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19a7 7 0 1 1 0-14 7 7 0 0 1 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11m-5.657.157a.75.75 0 0 1 0 1.06l-1.768 1.768a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734l1.767-1.768a.75.75 0 0 1 1.061 0M3.515 3.515a.75.75 0 0 1 1.06 0l1.768 1.768a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L3.515 4.575a.75.75 0 0 1 0-1.06M12 0a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 12 0M4 12a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 4 12m8 8a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 12 20m12-8a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h2.5A.75.75 0 0 1 24 12m-6.343 5.657a.75.75 0 0 1 1.06 0l1.768 1.768a.75.75 0 0 1-.018 1.042.75.75 0 0 1-1.042.018l-1.768-1.767a.75.75 0 0 1 0-1.061m2.828-14.142a.75.75 0 0 1 0 1.06l-1.768 1.768a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l1.767-1.768a.75.75 0 0 1 1.061 0"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="pedoc-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch To Dark Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch To Dark Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.768 3.96zl-.002-.005a9 9 0 0 0-.218-.779c-.13-.394.21-.8.602-.67q.435.144.855.328l.01.005A10.002 10.002 0 0 1 12 22a10 10 0 0 1-9.162-5.985l-.004-.01a10 10 0 0 1-.329-.855c-.13-.392.277-.732.67-.602q.386.126.78.218l.004.002A9 9 0 0 0 14.999 6a9 9 0 0 0-.231-2.04M16.5 6c0 5.799-4.701 10.5-10.5 10.5q-.64 0-1.26-.075A8.5 8.5 0 1 0 16.425 4.74q.075.62.075 1.259Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Server Authority
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="main/credits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Credits
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Server Authority Documentation" class="md-nav__button md-logo" aria-label="Server Authority Documentation" data-md-component="logo">
+      <!-- Logo -->
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Server Authority Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="." class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Authority
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Server Authority
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="main/howto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Server Authority
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="main/aurora/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Behaviors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="examples/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/character/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Character Movement System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="examples/admin/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Admin System
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic Admin System
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/admin/fly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="main/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="getting-started">Getting Started</h1>
+<p>Hello. This is a detailed documentation about the new server authority system that Roblox has showcased recently.
+It is a new system aiming to achieve a better physics simulation, while also providing better security.<br>
+This documentation will try to give you almost all of the available information about this new system. However, not all information may be accurate, as this system is still a work-in-progress.</p>
+<p>With all that being said, this documentation may recieve updates whenever there's a new feature added, or a feature removed. If you want to stay up-to-date, make sure to visit this documentation again later, and if you have any additional information that you can provide about this system, let me know with a message on my <a href="https://twitter.com/TenebrisNoctua">Twitter</a>.</p>
+<p>Let's begin.</p>
+<hr />
+<h1 id="how-to-access">How to Access?</h1>
+<p>The simplest way you can gain access to the new features, is through enrolling to the Early Access Program for the Server Authority Core API.
+You can send a reply to this <a href="https://devforum.roblox.com/t/early-access-server-authority/3983188">thread</a> to apply for the program. </p>
+<p>If you're accepted, go to your <a href="https://www.roblox.com/my/account">account settings</a>, and scroll down to the "Early Access Programs" section.
+Then, select the <em>"Early Access: Server Authority Core API Early Access"</em> program. This will now enroll you to the program, and by following the steps below, you can access the features.</p>
+<h2 id="if-using-vanilla-studio">If using vanilla Studio</h2>
+<p>Restart your Studio. Upon the restart, there will be an "Update Studio" button on the top right. Clicking this button will automatically update your Studio and install the version meant for the program. After this, you should be good to go.</p>
+<h2 id="if-using-a-custom-bootstrapper">If using a custom bootstrapper</h2>
+<p>If your custom bootstrapper application to launch Studio does not have a built-in system for automatically opening the version meant for the early access program, then follow the steps below.</p>
+<p>Go to your <a href="https://create.roblox.com">creator page</a>. And re-download the Studio application. After install, it should automatically open. Click on the "Update Studio" button on the top right. This will automatically update your Studio and install the version meant for the program.
+After this, you should be good to go.</p>
+<p>Do not forget to launch the Studio application through the versions folder for the installed Studio application. Using your custom bootstrapper may not work.</p>
+<p>You must also repeat these steps if you wish to roll-out of the program.</p>
+<hr />
+<h1 id="what-is-server-authority">What is Server Authority?</h1>
+<p>Server Authority is when the server becomes the only source of truth for game actions, logic and data in your world.</p>
+<p>In this model, clients can no longer hold network ownership of any instances. This ensures the trusted data replicated from the client to the server is kept at a minimum. The only trusted data that the server recieves from the clients are their inputs, which is used to simulate their characters or systems controlled by them. This results in a far more secure model, which reduces or outright removes many problems that have arisen from giving clients network ownership of certain parts and systems in your world. </p>
+<h2 id="how-does-this-effect-the-physics-around-my-world">How does this effect the physics around my world?</h2>
+<p>Server Authority completely changes the behavior of all unanchored <code>Part</code>s in the <code>Workspace</code>. Before; the physics calculation of a <code>Part</code> was handled by both the server and the clients in a place. When a client came close to a <code>Part</code>, the network ownership would automatically shift from the server to the client, so the client could take the burden of calculating the physics for that <code>Part</code>.</p>
+<p>A similar case was also in effect for the characters too. Before, because of network ownership, the client had full control over their character. This allowed them to change certain properties of their character such as velocity, position, rotation, and many others to their liking. This of course, caused many security issues. Using exploits, the client would be able to give themselves an unfair advantage in gameplay by changing these properties. This gave the rise of many exploiting issues such as speed-hacking, fly-hacking, no-clipping, teleporting, and many others inside popular places on the platform.</p>
+<p>The issues are not only limited to exploiting. In many competitive games, such as racing, the cars would most of the time be misaligned, or their position would constantly jitter, or look very different. That is because of client calculated physics of the previous system. Because the network ownership of each car is set to each client, rather than the server, the car positions would end up different than expected.</p>
+<p>However, with Server Authority, most of these issues, if not all of them, are automatically resolved.</p>
+<p>For the case of the character, where a client would modify their character to gain an unfair advantage such as speedhacking, would no longer be possible, as the client no longer holds ownership of their character, and all that is given to the server are inputs.</p>
+<p>For the case of the racing games, since the server now calculates the positions of the cars, they now move more consistently. Maneuvers, drifts, hits become more accurate, and the system works as smooth as possible.</p>
+<hr />
+<h1 id="the-problem-with-server-authority">The Problem with Server Authority</h1>
+<p>For the reasons I've given above, Server Authority sounds amazing, it improves accuracy, increases security and overall produces a better experience for players, right? Not exactly.</p>
+<p>Server Authority on its own is horrible for player experience. This is simply due to the fact that players are from all around the world, where they might be hundereds, if not thousands of miles away from the nearest server. This distance means their ping will be high, which means the time it will take for a player's input to reach the server will also be high. This creates a choppy, very uncomfortable experience where a player might only start seeing their character move after a long time has passed since they sent their input. Imagine pressing the "W" key and only seeing your character move after a second or two. It would make it incredibly hard to play a game, if not outright impossible for some players.</p>
+<p>Luckily, there is a solution that exists which solves these problems. This solution has existed for a very long time, and many competitive games out there already use it. It is called "Rollback Netcode".</p>
+<hr />
+<h1 id="what-is-rollback-netcode">What is Rollback Netcode?</h1>
+<p>Unfortunately, I cannot give you an in-depth explanation on what Rollback Netcode is, as it is a relatively complex concept, and I do not wish to fill this documentation with every detail of it. By doing a small bit of research, you can find some really good articles on it, such as <a href="https://www.gabrielgambetta.com/client-server-game-architecture.html">this one</a>, on the web to learn more. I will give you a short summary on what the concept is however, so rest assured.</p>
+<p>This concept is when the client also simulates its own input alongside the server, but just a little bit ahead of it. For the inputs to feel responsive and smooth, the client immediately simulates them when they are given, while sending them to the server. Since the server is the authority here, this simulation doesn't hold an important value, and is purely done for the visuals, so we call them "prediction"s. Essentially, the client "predicts" how their inputs will effect the game state (e.g, their character), while the server determines how their inputs will actually effect the game state.</p>
+<p>However, there might be times where the client prediction and the actual simulation results may differ from each other. For example, assuming T is the current time, the client has made a prediction at T-3, and when the authoritative update arrives for T-3 from the server, the client notices its prediction and the authoritative update results are different from each other. This is called a "Misprediction". In this case, the client rolls back to the authoritative update frame by reverting its current state and time. Then, the client resimulates automatically after rollback to speed back to its current predicted frame. The number of frames to resimulate is based on the latency between the client and the server. The client tries to stay far enough ahead of the server so that its own inputs arrive on the server just in time to be processed on the frame the player intended to perform them.</p>
+<p>Mispredictions are normal and expected. They should be small and the resulting correction should be imperceptible to clients.</p>
+<p><img alt="serverauthoritydiagram" src="img/main/ServerAuthorityImage_1.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Your client thinks you’ve moved forward. However, the server registered that you were hit by a stun grenade and can’t move for a few  seconds. The client and server now have different states.</p>
+</div>
+<p>Like I have mentioned above, this divergence is called a misprediction. It can occur for several reasons: the network latency has shifted, other players acted in ways the client didn’t anticipate, the experience runs certain logic exclusively on the server, etc. While you can't prevent every misprediction, you can keep gameplay feeling smooth and responsive by using the right techniques.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let’s say there is 100ms of latency between the client and server, and the experience is a 60Hz game.</p>
+</div>
+<p>Each frame is 1/60s (or 16.67ms). Since 100ms of latency is equivalent to ~6 frames (100 ms divided by 16.67 ms/frame), we know the client will be 6 frames ahead of the server. This means that, when the client detects it made a misprediction, it will rollback to the server's state and then resimulate frames ahead. In general, the player should hardly notice this.</p>
+<hr />
+<h1 id="the-input-action-system">The Input Action System</h1>
+<p>The Input Action System (IAS) is a major part of the server authority system. It allows you to reliably transfer inputs from client to the server, while allowing you to customize them easily. I will not be explaining this system and how it works however. You can check out the main post talking about it through <a href="https://devforum.roblox.com/t/client-beta-input-action-system-is-now-available-to-publish-in-experiences/3890979">here</a>.</p>
+<p>Player inputs like joystick movement and button presses are sent from client to server using <a href="https://create.roblox.com/docs/reference/engine/classes/InputAction"><code>InputAction</code></a>s. You have to use <code>InputAction</code> for all inputs that affect the core game simulation, because they are the only client authoritative data in the core rollback system.</p>
+<p>You can send any continuous stream of data from the client to server using this API, and the server will trust what the client has sent. It is up to you to validate that the clients have sent legitimate inputs. Be sure to enforce maximum and minimum ranges on numbers sent from the client, just like how you would validate values sent from remotes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The server will automatically ignore input data from the client if it arrives far too late or far too early, which can happen if there are sudden changes in a client's network conditions.</p>
+</div>
+<hr />
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="main/howto/" class="md-footer__link md-footer__link--next" aria-label="Next: Working with Server Authority">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Working with Server Authority
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://github.com/TenebrisNoctua"  target="_blank" rel="noopener">Tenebris Noctua</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
