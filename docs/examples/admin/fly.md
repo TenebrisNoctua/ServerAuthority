@@ -156,7 +156,7 @@ Our simulation and main flying system code is now ready. Now, we need to create 
 
 ![hierarchyimage_fly_2](../../img/tutorial/admin/hierarchyimage_fly_2.png)
 
-Before we move on to implementing the code for these `Script`s, we also need to create a new `RemoteEvent` that allows the client `Script` to know when to start the command module. We can create a new `RemoteEvent` for this under the "CommandEvents" folder.
+Before we move on to implementing the code for these `Script`s, we also need to create a new `RemoteEvent` that allows the client `Script` to know when to start or stop the command module. We can create a new `RemoteEvent` for this under the "CommandEvents" folder.
 
 ![hierarchyimage_fly_3](../../img/tutorial/admin/hierarchyimage_fly_3.png)
 
